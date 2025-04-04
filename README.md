@@ -20,6 +20,21 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## HSD Kulüpleri Haritası
+
+Bu proje, Türkiye'deki Huawei Student Developers kulüplerini gösteren interaktif bir harita içerir. Harita üzerindeki işaretlere tıklayarak kulüpler hakkında detaylı bilgi alabilirsiniz.
+
+### Google Maps API Kurulumu
+
+Harita özelliğini kullanabilmek için bir Google Maps API anahtarına ihtiyacınız var. API anahtarı oluşturmak ve projeye entegre etmek için şu adımları izleyin:
+
+1. `.env.local` dosyası oluşturun ve Google Maps API anahtarını ekleyin:
+   ```
+   NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=YOUR_API_KEY
+   ```
+
+2. Daha detaylı kurulum talimatları için `docs/google-maps-kurulum.md` dosyasını inceleyin.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
