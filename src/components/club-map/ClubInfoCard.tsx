@@ -11,12 +11,12 @@ interface ClubInfoCardProps {
 
 const ClubInfoCard: React.FC<ClubInfoCardProps> = ({ club, onClose }) => {
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-4 w-full border border-gray-100 dark:border-gray-700">
+    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-4 w-full min-h-[350px]">
       <div className="flex items-start mb-4">
         <div className="flex items-center space-x-3">
           {club.logo && (
-            <div className="w-10 h-10 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden flex items-center justify-center">
-              <img src={club.logo} alt={`${club.name} logo`} className="w-8 h-8 object-contain" />
+            <div className="w-12 h-12 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden flex items-center justify-center flex-shrink-0">
+              <img src={club.logo} alt={`${club.name} logo`} className="w-10 h-10 object-contain" />
             </div>
           )}
           <div>
@@ -28,30 +28,51 @@ const ClubInfoCard: React.FC<ClubInfoCardProps> = ({ club, onClose }) => {
       
       <div className="space-y-3 mb-4">
         <div className="flex items-center">
-          <svg className="w-5 h-5 text-red-500 dark:text-red-400 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg className="w-5 h-5 text-red-500 dark:text-red-400 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
           </svg>
           <span className="text-sm text-gray-700 dark:text-gray-300">{club.memberCount} Üye</span>
         </div>
         
         <div className="flex items-center">
-          <svg className="w-5 h-5 text-red-500 dark:text-red-400 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg className="w-5 h-5 text-red-500 dark:text-red-400 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
           </svg>
           <span className="text-sm text-gray-700 dark:text-gray-300">{club.yearFounded} yılında kuruldu</span>
         </div>
         
         {club.contactEmail && (
-          <div className="flex items-center">
-            <svg className="w-5 h-5 text-red-500 dark:text-red-400 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <div className="flex items-start">
+            <svg className="w-5 h-5 text-red-500 dark:text-red-400 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
             </svg>
-            <span className="text-sm text-gray-700 dark:text-gray-300">{club.contactEmail}</span>
+            <span className="text-sm text-gray-700 dark:text-gray-300 break-all">{club.contactEmail}</span>
           </div>
         )}
       </div>
       
-      <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 line-clamp-2">{club.description}</p>
+      <div 
+        className="text-sm text-gray-600 dark:text-gray-400 mb-4 h-[80px] overflow-y-auto"
+        style={{
+          scrollbarWidth: 'none',
+          msOverflowStyle: 'none',
+          WebkitOverflowScrolling: 'touch'
+        }}
+      >
+        <p>{club.description}</p>
+      </div>
+      
+      <style jsx global>{`
+        div[class*="overflow-y-auto"]::-webkit-scrollbar {
+          display: none !important;
+          width: 0 !important;
+          height: 0 !important;
+        }
+        * {
+          scrollbar-width: none;
+          -ms-overflow-style: none;
+        }
+      `}</style>
       
       <div className="grid grid-cols-2 gap-3">
         <Button 

@@ -44,7 +44,7 @@ const ClubMapSection: React.FC<ClubMapSectionProps> = ({
           
           <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-4 border border-gray-100 dark:border-gray-700 hover:shadow-lg transition-shadow duration-300 flex flex-col items-center text-center">
             <div className="w-12 h-12 rounded-full bg-red-500/10 flex items-center justify-center mb-3">
-              <span className="text-xl font-bold text-red-500 dark:text-red-400">10</span>
+              <span className="text-xl font-bold text-red-500 dark:text-red-400">56</span>
             </div>
             <div>
               <p className="text-sm text-gray-500 dark:text-gray-400 font-medium">Aktif Topluluk</p>
@@ -54,7 +54,7 @@ const ClubMapSection: React.FC<ClubMapSectionProps> = ({
           
           <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-4 border border-gray-100 dark:border-gray-700 hover:shadow-lg transition-shadow duration-300 flex flex-col items-center text-center">
             <div className="w-12 h-12 rounded-full bg-red-500/10 flex items-center justify-center mb-3">
-              <span className="text-xl font-bold text-red-500 dark:text-red-400">6</span>
+              <span className="text-xl font-bold text-red-500 dark:text-red-400">20</span>
             </div>
             <div>
               <p className="text-sm text-gray-500 dark:text-gray-400 font-medium">Şehir</p>
@@ -64,7 +64,7 @@ const ClubMapSection: React.FC<ClubMapSectionProps> = ({
           
           <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-4 border border-gray-100 dark:border-gray-700 hover:shadow-lg transition-shadow duration-300 flex flex-col items-center text-center">
             <div className="w-12 h-12 rounded-full bg-red-500/10 flex items-center justify-center mb-3">
-              <span className="text-xl font-bold text-red-500 dark:text-red-400">+800</span>
+              <span className="text-md font-bold text-red-500 dark:text-red-400">3.6K+</span>
             </div>
             <div>
               <p className="text-sm text-gray-500 dark:text-gray-400 font-medium">Toplam Üye</p>

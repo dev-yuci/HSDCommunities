@@ -125,10 +125,10 @@ const clubsData: ClubData[] = [
     id: 6,
     name: "HSD Artvin Çoruh üniversitesi",
     university: "Artvin Çoruh üniversitesi",
-    city: "Bilinmiyor",
+    city: "Artvin",
     location: {
-      lat: 0.0,
-      lng: 0.0
+      lat: 41.1873,
+      lng: 41.8188
     },
     logo: "/logos/artvincoruhuniversitesi.png",
     description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
@@ -145,10 +145,10 @@ const clubsData: ClubData[] = [
     id: 7,
     name: "HSD Kıbrıs Doğu Akdeniz Üniversitesi",
     university: "Kıbrıs Doğu Akdeniz Üniversitesi",
-    city: "Bilinmiyor",
+    city: "Gazimağusa, KKTC",
     location: {
-      lat: 0.0,
-      lng: 0.0
+      lat: 35.1457,
+      lng: 33.9126
     },
     logo: "/logos/kibrisdoguakdenizuniversitesi.png",
     description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
@@ -165,10 +165,10 @@ const clubsData: ClubData[] = [
     id: 8,
     name: "HSD YTÜ",
     university: "YTÜ",
-    city: "Bilinmiyor",
+    city: "İstanbul",
     location: {
-      lat: 0.0,
-      lng: 0.0
+      lat: 41.0280,
+      lng: 28.8898
     },
     logo: "/logos/ytu.png",
     description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
@@ -185,10 +185,10 @@ const clubsData: ClubData[] = [
     id: 9,
     name: "HSD Konya Selçuk Üniversitesi",
     university: "Konya Selçuk Üniversitesi",
-    city: "Bilinmiyor",
+    city: "Konya",
     location: {
-      lat: 0.0,
-      lng: 0.0
+      lat: 38.0156,
+      lng: 32.5084
     },
     logo: "/logos/konyaselcukuniversitesi.png",
     description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
@@ -205,10 +205,10 @@ const clubsData: ClubData[] = [
     id: 10,
     name: "HSD Marmara Üniversitesi",
     university: "Marmara Üniversitesi",
-    city: "Bilinmiyor",
+    city: "İstanbul",
     location: {
-      lat: 0.0,
-      lng: 0.0
+      lat: 40.9862,
+      lng: 29.0518
     },
     logo: "/logos/marmarauniversitesi.png",
     description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
@@ -225,10 +225,10 @@ const clubsData: ClubData[] = [
     id: 11,
     name: "HSD İYTE",
     university: "İYTE",
-    city: "Bilinmiyor",
+    city: "İzmir",
     location: {
-      lat: 0.0,
-      lng: 0.0
+      lat: 38.3213,
+      lng: 26.6392
     },
     logo: "/logos/iyte.png",
     description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
@@ -265,10 +265,10 @@ const clubsData: ClubData[] = [
     id: 13,
     name: "HSD Bursa Uludağ Üniversitesi",
     university: "Bursa Uludağ Üniversitesi",
-    city: "Bilinmiyor",
+    city: "Bursa",
     location: {
-      lat: 0.0,
-      lng: 0.0
+      lat: 40.2306,
+      lng: 28.8610
     },
     logo: "/logos/bursauludaguniversitesi.png",
     description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
@@ -285,10 +285,10 @@ const clubsData: ClubData[] = [
     id: 14,
     name: "HSD MEF",
     university: "MEF",
-    city: "Bilinmiyor",
+    city: "İstanbul",
     location: {
-      lat: 0.0,
-      lng: 0.0
+      lat: 41.0969,
+      lng: 29.0256
     },
     logo: "/logos/mef.png",
     description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
@@ -305,10 +305,10 @@ const clubsData: ClubData[] = [
     id: 15,
     name: "HSD Muğla Sıtkı Koçman Üniversitesi",
     university: "Muğla Sıtkı Koçman Üniversitesi",
-    city: "Bilinmiyor",
+    city: "Muğla",
     location: {
-      lat: 0.0,
-      lng: 0.0
+      lat: 37.1696,
+      lng: 28.3733
     },
     logo: "/logos/muglasitkikocmanuniversitesi.png",
     description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
@@ -325,10 +325,10 @@ const clubsData: ClubData[] = [
     id: 16,
     name: "HSD AGÜ",
     university: "AGÜ",
-    city: "Bilinmiyor",
+    city: "Kayseri",
     location: {
-      lat: 0.0,
-      lng: 0.0
+      lat: 38.7333,
+      lng: 35.4833
     },
     logo: "/logos/agu.png",
     description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
@@ -345,10 +345,10 @@ const clubsData: ClubData[] = [
     id: 17,
     name: "HSD Eskişehir Osmangazi Ünveristesi",
     university: "Eskişehir Osmangazi Ünveristesi",
-    city: "Bilinmiyor",
+    city: "Eskişehir",
     location: {
-      lat: 0.0,
-      lng: 0.0
+      lat: 39.7477,
+      lng: 30.4788
     },
     logo: "/logos/eskisehirosmangaziunveristesi.png",
     description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
@@ -365,10 +365,10 @@ const clubsData: ClubData[] = [
     id: 18,
     name: "HSD İTÜ",
     university: "İTÜ",
-    city: "Bilinmiyor",
+    city: "İstanbul",
     location: {
-      lat: 0.0,
-      lng: 0.0
+      lat: 41.1054,
+      lng: 29.0245
     },
     logo: "/logos/itu.png",
     description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
@@ -385,10 +385,10 @@ const clubsData: ClubData[] = [
     id: 19,
     name: "HSD TED Üniversitesi",
     university: "TED Üniversitesi",
-    city: "Bilinmiyor",
+    city: "Ankara",
     location: {
-      lat: 0.0,
-      lng: 0.0
+      lat: 39.9250,
+      lng: 32.8344
     },
     logo: "/logos/teduniversitesi.png",
     description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
@@ -405,10 +405,10 @@ const clubsData: ClubData[] = [
     id: 20,
     name: "HSD Başkent Üniversitesi",
     university: "Başkent Üniversitesi",
-    city: "Bilinmiyor",
+    city: "Ankara",
     location: {
-      lat: 0.0,
-      lng: 0.0
+      lat: 39.9154,
+      lng: 32.8142
     },
     logo: "/logos/baskentuniversitesi.png",
     description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
@@ -425,10 +425,10 @@ const clubsData: ClubData[] = [
     id: 21,
     name: "HSD Hacettepe Üniversitesi",
     university: "Hacettepe Üniversitesi",
-    city: "Bilinmiyor",
+    city: "Ankara",
     location: {
-      lat: 0.0,
-      lng: 0.0
+      lat: 39.8676,
+      lng: 32.7348
     },
     logo: "/logos/hacettepeuniversitesi.png",
     description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
@@ -445,10 +445,10 @@ const clubsData: ClubData[] = [
     id: 22,
     name: "HSD Gebze Teknik Üniversitesi",
     university: "Gebze Teknik Üniversitesi",
-    city: "Bilinmiyor",
+    city: "Kocaeli",
     location: {
-      lat: 0.0,
-      lng: 0.0
+      lat: 40.7930,
+      lng: 29.4511
     },
     logo: "/logos/gebzeteknikuniversitesi.png",
     description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
@@ -465,10 +465,10 @@ const clubsData: ClubData[] = [
     id: 23,
     name: "HSD Bandırma Onyedi Eylül Üniversitesi",
     university: "Bandırma Onyedi Eylül Üniversitesi",
-    city: "Bilinmiyor",
+    city: "Balıkesir",
     location: {
-      lat: 0.0,
-      lng: 0.0
+      lat: 40.3555,
+      lng: 27.9761
     },
     logo: "/logos/bandirmaonyedieyluluniversitesi.png",
     description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
@@ -485,10 +485,10 @@ const clubsData: ClubData[] = [
     id: 24,
     name: "HSD Yaşar Üniversitesi",
     university: "Yaşar Üniversitesi",
-    city: "Bilinmiyor",
+    city: "İzmir",
     location: {
-      lat: 0.0,
-      lng: 0.0
+      lat: 38.4627,
+      lng: 27.2144
     },
     logo: "/logos/yasaruniversitesi.png",
     description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
@@ -505,10 +505,10 @@ const clubsData: ClubData[] = [
     id: 25,
     name: "HSD Karabük Üniversitesi",
     university: "Karabük Üniversitesi",
-    city: "Bilinmiyor",
+    city: "Karabük",
     location: {
-      lat: 0.0,
-      lng: 0.0
+      lat: 41.2101,
+      lng: 32.6227
     },
     logo: "/logos/karabukuniversitesi.png",
     description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
@@ -525,10 +525,10 @@ const clubsData: ClubData[] = [
     id: 26,
     name: "HSD Nevşehir Hacı Bektaş Veli Üniversitesi",
     university: "Nevşehir Hacı Bektaş Veli Üniversitesi",
-    city: "Bilinmiyor",
+    city: "Nevşehir",
     location: {
-      lat: 0.0,
-      lng: 0.0
+      lat: 38.6938,
+      lng: 34.6857
     },
     logo: "/logos/nevsehirhacibektasveliuniversitesi.png",
     description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
@@ -545,10 +545,10 @@ const clubsData: ClubData[] = [
     id: 27,
     name: "HSD Atatürk Üniversitesi",
     university: "Atatürk Üniversitesi",
-    city: "Bilinmiyor",
+    city: "Erzurum",
     location: {
-      lat: 0.0,
-      lng: 0.0
+      lat: 39.9077,
+      lng: 41.2419
     },
     logo: "/logos/ataturkuniversitesi.png",
     description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
@@ -565,10 +565,10 @@ const clubsData: ClubData[] = [
     id: 28,
     name: "HSD Yeditepe Üniversitesi",
     university: "Yeditepe Üniversitesi",
-    city: "Bilinmiyor",
+    city: "İstanbul",
     location: {
-      lat: 0.0,
-      lng: 0.0
+      lat: 40.9717,
+      lng: 29.1515
     },
     logo: "/logos/yeditepeuniversitesi.png",
     description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
@@ -585,10 +585,10 @@ const clubsData: ClubData[] = [
     id: 29,
     name: "HSD İskenderun Teknik Üniversitesi",
     university: "İskenderun Teknik Üniversitesi",
-    city: "Bilinmiyor",
+    city: "Hatay",
     location: {
-      lat: 0.0,
-      lng: 0.0
+      lat: 36.7072,
+      lng: 36.2067
     },
     logo: "/logos/iskenderunteknikuniversitesi.png",
     description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
@@ -605,10 +605,10 @@ const clubsData: ClubData[] = [
     id: 30,
     name: "HSD Kayseri Üniversitesi",
     university: "Kayseri Üniversitesi",
-    city: "Bilinmiyor",
+    city: "Kayseri",
     location: {
-      lat: 0.0,
-      lng: 0.0
+      lat: 38.7205,
+      lng: 35.4826
     },
     logo: "/logos/kayseriuniversitesi.png",
     description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
@@ -645,10 +645,10 @@ const clubsData: ClubData[] = [
     id: 32,
     name: "HSD Malatya İnönü Üniversitesi",
     university: "Malatya İnönü Üniversitesi",
-    city: "Bilinmiyor",
+    city: "Malatya",
     location: {
-      lat: 0.0,
-      lng: 0.0
+      lat: 38.3185,
+      lng: 38.4358
     },
     logo: "/logos/malatyainonuuniversitesi.png",
     description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
@@ -665,10 +665,10 @@ const clubsData: ClubData[] = [
     id: 33,
     name: "HSD İstanbul Bilgi Üniversitesi",
     university: "İstanbul Bilgi Üniversitesi",
-    city: "Bilinmiyor",
+    city: "İstanbul",
     location: {
-      lat: 0.0,
-      lng: 0.0
+      lat: 41.0418,
+      lng: 28.9550
     },
     logo: "/logos/istanbulbilgiuniversitesi.png",
     description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
@@ -685,10 +685,10 @@ const clubsData: ClubData[] = [
     id: 34,
     name: "HSD Dokuz Eylül Üniversitesi",
     university: "Dokuz Eylül Üniversitesi",
-    city: "Bilinmiyor",
+    city: "İzmir",
     location: {
-      lat: 0.0,
-      lng: 0.0
+      lat: 38.3898,
+      lng: 27.0365
     },
     logo: "/logos/dokuzeyluluniversitesi.png",
     description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
@@ -705,10 +705,10 @@ const clubsData: ClubData[] = [
     id: 35,
     name: "HSD Manisa Celal Bayar Üniversitesi",
     university: "Manisa Celal Bayar Üniversitesi",
-    city: "Bilinmiyor",
+    city: "Manisa",
     location: {
-      lat: 0.0,
-      lng: 0.0
+      lat: 38.6196,
+      lng: 27.4289
     },
     logo: "/logos/manisacelalbayaruniversitesi.png",
     description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
@@ -725,10 +725,10 @@ const clubsData: ClubData[] = [
     id: 36,
     name: "HSD Bogazici Universitesi",
     university: "Bogazici Universitesi",
-    city: "Bilinmiyor",
+    city: "İstanbul",
     location: {
-      lat: 0.0,
-      lng: 0.0
+      lat: 41.0850,
+      lng: 29.0514
     },
     logo: "/logos/bogaziciuniversitesi.png",
     description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
@@ -745,10 +745,10 @@ const clubsData: ClubData[] = [
     id: 37,
     name: "HSD Işık Üniversitesi",
     university: "Işık Üniversitesi",
-    city: "Bilinmiyor",
+    city: "İstanbul",
     location: {
-      lat: 0.0,
-      lng: 0.0
+      lat: 41.1066,
+      lng: 29.0373
     },
     logo: "/logos/isikuniversitesi.png",
     description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
@@ -765,10 +765,10 @@ const clubsData: ClubData[] = [
     id: 38,
     name: "HSD Bahçeşehir Üniversitesi",
     university: "Bahçeşehir Üniversitesi",
-    city: "Bilinmiyor",
+    city: "İstanbul",
     location: {
-      lat: 0.0,
-      lng: 0.0
+      lat: 41.0419,
+      lng: 28.9726
     },
     logo: "/logos/bahcesehiruniversitesi.png",
     description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
@@ -785,10 +785,10 @@ const clubsData: ClubData[] = [
     id: 39,
     name: "HSD Necmettin Erbakan Üniversitesi ",
     university: "Necmettin Erbakan Üniversitesi ",
-    city: "Bilinmiyor",
+    city: "Konya",
     location: {
-      lat: 0.0,
-      lng: 0.0
+      lat: 37.8846,
+      lng: 32.4834
     },
     logo: "/logos/necmettinerbakanuniversitesi.png",
     description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
@@ -805,10 +805,10 @@ const clubsData: ClubData[] = [
     id: 40,
     name: "HSD Acıbadem Mehmet Ali Aydınlar Üniversitesi",
     university: "Acıbadem Mehmet Ali Aydınlar Üniversitesi",
-    city: "Bilinmiyor",
+    city: "İstanbul",
     location: {
-      lat: 0.0,
-      lng: 0.0
+      lat: 41.0015,
+      lng: 29.1308
     },
     logo: "/logos/acibademmehmetaliaydinlaruniversitesi.png",
     description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
@@ -825,10 +825,10 @@ const clubsData: ClubData[] = [
     id: 41,
     name: "HSD İstanbul Aydın Üniversitesi",
     university: "İstanbul Aydın Üniversitesi",
-    city: "Bilinmiyor",
+    city: "İstanbul",
     location: {
-      lat: 0.0,
-      lng: 0.0
+      lat: 41.0201,
+      lng: 28.7878
     },
     logo: "/logos/istanbulaydinuniversitesi.png",
     description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
@@ -865,10 +865,10 @@ const clubsData: ClubData[] = [
     id: 43,
     name: "HSD Tekirdağ Namık Kemal Üniversitesi",
     university: "Tekirdağ Namık Kemal Üniversitesi",
-    city: "Bilinmiyor",
+    city: "Tekirdağ",
     location: {
-      lat: 0.0,
-      lng: 0.0
+      lat: 40.9954,
+      lng: 27.5554
     },
     logo: "/logos/tekirdagnamikkemaluniversitesi.png",
     description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
@@ -905,10 +905,10 @@ const clubsData: ClubData[] = [
     id: 45,
     name: "HSD Kadir Has üniversitesi",
     university: "Kadir Has üniversitesi",
-    city: "Bilinmiyor",
+    city: "İstanbul",
     location: {
-      lat: 0.0,
-      lng: 0.0
+      lat: 41.0207,
+      lng: 28.9565
     },
     logo: "/logos/kadirhasuniversitesi.png",
     description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
@@ -925,10 +925,10 @@ const clubsData: ClubData[] = [
     id: 46,
     name: "HSD Ostim Teknik Üniversitesi",
     university: "Ostim Teknik Üniversitesi",
-    city: "Bilinmiyor",
+    city: "Ankara",
     location: {
-      lat: 0.0,
-      lng: 0.0
+      lat: 39.9704,
+      lng: 32.7462
     },
     logo: "/logos/ostimteknikuniversitesi.png",
     description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
@@ -945,10 +945,10 @@ const clubsData: ClubData[] = [
     id: 47,
     name: "HSD Erciyes Universitesi",
     university: "Erciyes Universitesi",
-    city: "Bilinmiyor",
+    city: "Kayseri",
     location: {
-      lat: 0.0,
-      lng: 0.0
+      lat: 38.7022,
+      lng: 35.5359
     },
     logo: "/logos/erciyesuniversitesi.png",
     description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
@@ -965,10 +965,10 @@ const clubsData: ClubData[] = [
     id: 48,
     name: "HSD Zonguldak Bülent Ecevit Üniversitesi",
     university: "Zonguldak Bülent Ecevit Üniversitesi",
-    city: "Bilinmiyor",
+    city: "Zonguldak",
     location: {
-      lat: 0.0,
-      lng: 0.0
+      lat: 41.4481,
+      lng: 31.7790
     },
     logo: "/logos/zonguldakbulentecevituniversitesi.png",
     description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
@@ -985,10 +985,10 @@ const clubsData: ClubData[] = [
     id: 49,
     name: "HSD Ege Üniversitesi",
     university: "Ege Üniversitesi",
-    city: "Bilinmiyor",
+    city: "İzmir",
     location: {
-      lat: 0.0,
-      lng: 0.0
+      lat: 38.4564,
+      lng: 27.2061
     },
     logo: "/logos/egeuniversitesi.png",
     description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
@@ -1005,10 +1005,10 @@ const clubsData: ClubData[] = [
     id: 50,
     name: "HSD Hasan Kalyoncu Üniversitesi",
     university: "Hasan Kalyoncu Üniversitesi",
-    city: "Bilinmiyor",
+    city: "Gaziantep",
     location: {
-      lat: 0.0,
-      lng: 0.0
+      lat: 37.1365,
+      lng: 37.3705
     },
     logo: "/logos/hasankalyoncuuniversitesi.png",
     description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
@@ -1025,10 +1025,10 @@ const clubsData: ClubData[] = [
     id: 51,
     name: "HSD Ankara Üniversitesi",
     university: "Ankara Üniversitesi",
-    city: "Bilinmiyor",
+    city: "Ankara",
     location: {
-      lat: 0.0,
-      lng: 0.0
+      lat: 39.9430,
+      lng: 32.8541
     },
     logo: "/logos/ankarauniversitesi.png",
     description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
@@ -1045,10 +1045,10 @@ const clubsData: ClubData[] = [
     id: 52,
     name: "HSD Akdeniz Üniversitesi",
     university: "Akdeniz Üniversitesi",
-    city: "Bilinmiyor",
+    city: "Antalya",
     location: {
-      lat: 0.0,
-      lng: 0.0
+      lat: 36.8969,
+      lng: 30.6838
     },
     logo: "/logos/akdenizuniversitesi.png",
     description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
@@ -1085,10 +1085,10 @@ const clubsData: ClubData[] = [
     id: 54,
     name: "HSD İzmir Ekonomi Üniversitesi",
     university: "İzmir Ekonomi Üniversitesi",
-    city: "Bilinmiyor",
+    city: "İzmir",
     location: {
-      lat: 0.0,
-      lng: 0.0
+      lat: 38.3885,
+      lng: 27.0438
     },
     logo: "/logos/izmirekonomiuniversitesi.png",
     description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
@@ -1105,10 +1105,10 @@ const clubsData: ClubData[] = [
     id: 55,
     name: "HSD Kahramanmaraş Sütçü İmam Üniversitesi",
     university: "Kahramanmaraş Sütçü İmam Üniversitesi",
-    city: "Bilinmiyor",
+    city: "Kahramanmaraş",
     location: {
-      lat: 0.0,
-      lng: 0.0
+      lat: 37.5849,
+      lng: 36.8020
     },
     logo: "/logos/kahramanmarassutcuimamuniversitesi.png",
     description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
@@ -1125,10 +1125,10 @@ const clubsData: ClubData[] = [
     id: 56,
     name: "HSD Okan Üniversitesi",
     university: "Okan Üniversitesi",
-    city: "Bilinmiyor",
+    city: "İstanbul",
     location: {
-      lat: 0.0,
-      lng: 0.0
+      lat: 40.9741,
+      lng: 29.2268
     },
     logo: "/logos/okanuniversitesi.png",
     description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
