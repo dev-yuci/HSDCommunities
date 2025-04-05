@@ -23,199 +23,1124 @@ export interface ClubData {
 const clubsData: ClubData[] = [
   {
     id: 1,
-    name: "HSD İTÜ",
-    university: "İstanbul Teknik Üniversitesi",
-    city: "İstanbul",
+    name: "HSD Fırat Üniversitesi",
+    university: "Fırat Üniversitesi",
+    city: "Elazığ",
     location: {
-      lat: 41.1055,
-      lng: 29.0267
+      lat: 38.6749,
+      lng: 39.2232
     },
-    memberCount: 120,
-    yearFounded: 2020,
-    logo: "/logos/itu.png",
-    description: "İTÜ Huawei Student Developers topluluğu, İTÜ öğrencileri tarafından kurulmuş, Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
-    website: "https://hsd.itu.edu.tr",
+    logo: "/logos/firatuniversitesi.png",
+    description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
+    website: "https://hsd.firat.edu.tr",
     socialMedia: {
-      instagram: "@hsditutechclub",
-      twitter: "@hsditutechclub",
-      linkedin: "hsd-itu"
+      instagram: "@hsdfiratuniversitesi",
+      linkedin: "hsd-firatuniversitesi"
     },
-    contactEmail: "hsd@itu.edu.tr"
+    contactEmail: "hsd@firatuniversitesi.edu.tr",
+    memberCount: 69,
+    yearFounded: 2022
   },
   {
     id: 2,
-    name: "HSD ODTÜ",
-    university: "Orta Doğu Teknik Üniversitesi",
+    name: "HSD Gazi Üniversitesi",
+    university: "Gazi Üniversitesi",
     city: "Ankara",
     location: {
-      lat: 39.8919,
-      lng: 32.7817
+      lat: 39.9402,
+      lng: 32.8215
     },
-    memberCount: 95,
-    yearFounded: 2021,
-    logo: "/logos/odtu.png",
-    description: "ODTÜ öğrencileri tarafından kurulmuş, Huawei teknolojileri alanında çalışmalar yapan öğrenci topluluğu.",
+    logo: "/logos/gaziuniversitesi.png",
+    description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
+    website: "https://hsd.gazi.edu.tr",
     socialMedia: {
-      instagram: "@hsdodtu",
-      linkedin: "hsd-odtu"
+      instagram: "@hsdgaziuniversitesi",
+      linkedin: "hsd-gaziuniversitesi"
     },
-    contactEmail: "hsd@metu.edu.tr"
+    contactEmail: "hsd@gaziuniversitesi.edu.tr",
+    memberCount: 98,
+    yearFounded: 2021
   },
   {
     id: 3,
-    name: "HSD Ege",
-    university: "Ege Üniversitesi",
-    city: "İzmir",
+    name: "HSD Beykent Üniversitesi",
+    university: "Beykent Üniversitesi",
+    city: "İstanbul",
     location: {
-      lat: 38.4534,
-      lng: 27.2134
+      lat: 41.0677,
+      lng: 28.9983
     },
-    memberCount: 78,
-    yearFounded: 2021,
-    logo: "/logos/ege.png",
-    description: "Ege Üniversitesi'nde Huawei teknolojileri konusunda faaliyetler yürüten öğrenci kulübü.",
+    logo: "/logos/beykentuniversitesi.png",
+    description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
+    website: "https://hsd.beykentuniversitesi.edu.tr",
     socialMedia: {
-      instagram: "@hsdege",
-      linkedin: "hsd-ege"
+      instagram: "@hsdbeykentuniversitesi",
+      linkedin: "hsd-beykentuniversitesi"
     },
-    contactEmail: "hsd@ege.edu.tr"
+    contactEmail: "hsd@beykentuniversitesi.edu.tr",
+    memberCount: 78,
+    yearFounded: 2023
   },
   {
     id: 4,
-    name: "HSD Bilkent",
-    university: "Bilkent Üniversitesi",
-    city: "Ankara",
+    name: "HSD Karadeniz Teknik Üniversitesi",
+    university: "Karadeniz Teknik Üniversitesi",
+    city: "Trabzon",
     location: {
-      lat: 39.8674,
-      lng: 32.7486
+      lat: 41.005,
+      lng: 39.7225
     },
-    memberCount: 85,
-    yearFounded: 2020,
-    logo: "/logos/bilkent.png",
-    description: "Bilkent Üniversitesi'nde Huawei teknolojileri konusunda faaliyetler yürüten, atölye çalışmaları ve etkinlikler düzenleyen öğrenci kulübü.",
-    website: "https://hsdbilkent.org",
+    logo: "/logos/karadenizteknikuniversitesi.png",
+    description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
+    website: "https://hsd.karadenizteknikuniversitesi.edu.tr",
     socialMedia: {
-      instagram: "@hsdbilkent",
-      twitter: "@hsdbilkent",
-      linkedin: "hsd-bilkent"
+      instagram: "@hsdkaradenizteknikuniversitesi",
+      linkedin: "hsd-karadenizteknikuniversitesi"
     },
-    contactEmail: "hsd@bilkent.edu.tr"
+    contactEmail: "hsd@karadenizteknikuniversitesi.edu.tr",
+    memberCount: 58,
+    yearFounded: 2020
   },
   {
     id: 5,
-    name: "HSD Boğaziçi",
-    university: "Boğaziçi Üniversitesi",
-    city: "İstanbul",
+    name: "HSD Yalova Üniversitesi",
+    university: "Yalova Üniversitesi",
+    city: "Yalova",
     location: {
-      lat: 41.0855,
-      lng: 29.0453
+      lat: 40.6517,
+      lng: 29.2195
     },
-    memberCount: 110,
-    yearFounded: 2021,
-    logo: "/logos/bogazici.png",
-    description: "Boğaziçi Üniversitesi öğrencilerinin kurduğu, Huawei teknolojileri odaklı etkinlikler ve projeler geliştiren öğrenci kulübü.",
-    website: "https://hsdbogazici.org",
+    logo: "/logos/yalovauniversitesi.png",
+    description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
+    website: "https://hsd.yalovauniversitesi.edu.tr",
     socialMedia: {
-      instagram: "@hsdbogazici",
-      linkedin: "hsd-bogazici"
+      instagram: "@hsdyalovauniversitesi",
+      linkedin: "hsd-yalovauniversitesi"
     },
-    contactEmail: "hsd@boun.edu.tr"
+    contactEmail: "hsd@yalovauniversitesi.edu.tr",
+    memberCount: 89,
+    yearFounded: 2020
   },
   {
     id: 6,
-    name: "HSD YTÜ",
-    university: "Yıldız Teknik Üniversitesi",
-    city: "İstanbul",
+    name: "HSD Artvin Çoruh üniversitesi",
+    university: "Artvin Çoruh üniversitesi",
+    city: "Bilinmiyor",
     location: {
-      lat: 41.0258,
-      lng: 28.8898
+      lat: 0.0,
+      lng: 0.0
     },
-    memberCount: 92,
-    yearFounded: 2021,
+    logo: "/logos/artvincoruhuniversitesi.png",
+    description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
+    website: "https://hsd.artvincoruhuniversitesi.edu.tr",
+    socialMedia: {
+      instagram: "@hsdartvincoruhuniversitesi",
+      linkedin: "hsd-artvincoruhuniversitesi"
+    },
+    contactEmail: "hsd@artvincoruhuniversitesi.edu.tr",
+    memberCount: 67,
+    yearFounded: 2022
+  },
+  {
+    id: 7,
+    name: "HSD Kıbrıs Doğu Akdeniz Üniversitesi",
+    university: "Kıbrıs Doğu Akdeniz Üniversitesi",
+    city: "Bilinmiyor",
+    location: {
+      lat: 0.0,
+      lng: 0.0
+    },
+    logo: "/logos/kibrisdoguakdenizuniversitesi.png",
+    description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
+    website: "https://hsd.kibrisdoguakdenizuniversitesi.edu.tr",
+    socialMedia: {
+      instagram: "@hsdkibrisdoguakdenizuniversitesi",
+      linkedin: "hsd-kibrisdoguakdenizuniversitesi"
+    },
+    contactEmail: "hsd@kibrisdoguakdenizuniversitesi.edu.tr",
+    memberCount: 118,
+    yearFounded: 2023
+  },
+  {
+    id: 8,
+    name: "HSD YTÜ",
+    university: "YTÜ",
+    city: "Bilinmiyor",
+    location: {
+      lat: 0.0,
+      lng: 0.0
+    },
     logo: "/logos/ytu.png",
-    description: "YTÜ öğrencileri tarafından kurulan, Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren topluluk.",
+    description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
+    website: "https://hsd.ytu.edu.tr",
     socialMedia: {
       instagram: "@hsdytu",
       linkedin: "hsd-ytu"
     },
-    contactEmail: "hsd@ytu.edu.tr"
-  },
-  {
-    id: 7,
-    name: "HSD Ankara",
-    university: "Ankara Üniversitesi",
-    city: "Ankara",
-    location: {
-      lat: 39.9334,
-      lng: 32.8597
-    },
-    memberCount: 65,
-    yearFounded: 2022,
-    logo: "/logos/ankara.png",
-    description: "Ankara Üniversitesi'nde Huawei teknolojileri ve mobil uygulama geliştirme alanında çalışmalar yapan öğrenci topluluğu.",
-    socialMedia: {
-      instagram: "@hsdankara",
-      linkedin: "hsd-ankara"
-    },
-    contactEmail: "hsd@ankara.edu.tr"
-  },
-  {
-    id: 8,
-    name: "HSD KTÜ",
-    university: "Karadeniz Teknik Üniversitesi",
-    city: "Trabzon",
-    location: {
-      lat: 41.0058,
-      lng: 39.7717
-    },
-    memberCount: 55,
-    yearFounded: 2022,
-    logo: "/logos/ktu.png",
-    description: "KTÜ öğrencilerinin kurduğu, Huawei teknolojileri üzerine çalışmalar yapan ve projeler geliştiren öğrenci kulübü.",
-    socialMedia: {
-      instagram: "@hsdktu",
-      linkedin: "hsd-ktu"
-    },
-    contactEmail: "hsd@ktu.edu.tr"
+    contactEmail: "hsd@ytu.edu.tr",
+    memberCount: 84,
+    yearFounded: 2020
   },
   {
     id: 9,
-    name: "HSD Dokuz Eylül",
-    university: "Dokuz Eylül Üniversitesi",
-    city: "İzmir",
+    name: "HSD Konya Selçuk Üniversitesi",
+    university: "Konya Selçuk Üniversitesi",
+    city: "Bilinmiyor",
     location: {
-      lat: 38.3637,
-      lng: 27.1717
+      lat: 0.0,
+      lng: 0.0
     },
-    memberCount: 70,
-    yearFounded: 2022,
-    logo: "/logos/deu.png",
-    description: "Dokuz Eylül Üniversitesi öğrencilerinin kurduğu, Huawei teknolojileri alanında etkinlikler düzenleyen öğrenci topluluğu.",
+    logo: "/logos/konyaselcukuniversitesi.png",
+    description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
+    website: "https://hsd.konyaselcukuniversitesi.edu.tr",
     socialMedia: {
-      instagram: "@hsddeu",
-      linkedin: "hsd-deu"
+      instagram: "@hsdkonyaselcukuniversitesi",
+      linkedin: "hsd-konyaselcukuniversitesi"
     },
-    contactEmail: "hsd@deu.edu.tr"
+    contactEmail: "hsd@konyaselcukuniversitesi.edu.tr",
+    memberCount: 120,
+    yearFounded: 2022
   },
   {
     id: 10,
-    name: "HSD Akdeniz",
-    university: "Akdeniz Üniversitesi",
-    city: "Antalya",
+    name: "HSD Marmara Üniversitesi",
+    university: "Marmara Üniversitesi",
+    city: "Bilinmiyor",
     location: {
-      lat: 36.8969,
-      lng: 30.6838
+      lat: 0.0,
+      lng: 0.0
     },
-    memberCount: 60,
-    yearFounded: 2022,
-    logo: "/logos/akdeniz.png",
-    description: "Akdeniz Üniversitesi öğrencilerinin bir araya gelerek kurduğu, Huawei teknolojileri ve mobil uygulama geliştirme alanında projeler yürüten öğrenci topluluğu.",
+    logo: "/logos/marmarauniversitesi.png",
+    description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
+    website: "https://hsd.marmarauniversitesi.edu.tr",
     socialMedia: {
-      instagram: "@hsdakdeniz",
-      linkedin: "hsd-akdeniz"
+      instagram: "@hsdmarmarauniversitesi",
+      linkedin: "hsd-marmarauniversitesi"
     },
-    contactEmail: "hsd@akdeniz.edu.tr"
+    contactEmail: "hsd@marmarauniversitesi.edu.tr",
+    memberCount: 89,
+    yearFounded: 2021
+  },
+  {
+    id: 11,
+    name: "HSD İYTE",
+    university: "İYTE",
+    city: "Bilinmiyor",
+    location: {
+      lat: 0.0,
+      lng: 0.0
+    },
+    logo: "/logos/iyte.png",
+    description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
+    website: "https://hsd.iyte.edu.tr",
+    socialMedia: {
+      instagram: "@hsdiyte",
+      linkedin: "hsd-iyte"
+    },
+    contactEmail: "hsd@iyte.edu.tr",
+    memberCount: 90,
+    yearFounded: 2020
+  },
+  {
+    id: 12,
+    name: "HSD Kütahya Dumlupınar Üniversitesi",
+    university: "Kütahya Dumlupınar Üniversitesi",
+    city: "Kütahya",
+    location: {
+      lat: 39.4104,
+      lng: 29.9945
+    },
+    logo: "/logos/kutahyadumlupinaruniversitesi.png",
+    description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
+    website: "https://hsd.kutahyadumlupinaruniversitesi.edu.tr",
+    socialMedia: {
+      instagram: "@hsdkutahyadumlupinaruniversitesi",
+      linkedin: "hsd-kutahyadumlupinaruniversitesi"
+    },
+    contactEmail: "hsd@kutahyadumlupinaruniversitesi.edu.tr",
+    memberCount: 86,
+    yearFounded: 2023
+  },
+  {
+    id: 13,
+    name: "HSD Bursa Uludağ Üniversitesi",
+    university: "Bursa Uludağ Üniversitesi",
+    city: "Bilinmiyor",
+    location: {
+      lat: 0.0,
+      lng: 0.0
+    },
+    logo: "/logos/bursauludaguniversitesi.png",
+    description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
+    website: "https://hsd.bursauludaguniversitesi.edu.tr",
+    socialMedia: {
+      instagram: "@hsdbursauludaguniversitesi",
+      linkedin: "hsd-bursauludaguniversitesi"
+    },
+    contactEmail: "hsd@bursauludaguniversitesi.edu.tr",
+    memberCount: 60,
+    yearFounded: 2022
+  },
+  {
+    id: 14,
+    name: "HSD MEF",
+    university: "MEF",
+    city: "Bilinmiyor",
+    location: {
+      lat: 0.0,
+      lng: 0.0
+    },
+    logo: "/logos/mef.png",
+    description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
+    website: "https://hsd.mef.edu.tr",
+    socialMedia: {
+      instagram: "@hsdmef",
+      linkedin: "hsd-mef"
+    },
+    contactEmail: "hsd@mef.edu.tr",
+    memberCount: 61,
+    yearFounded: 2021
+  },
+  {
+    id: 15,
+    name: "HSD Muğla Sıtkı Koçman Üniversitesi",
+    university: "Muğla Sıtkı Koçman Üniversitesi",
+    city: "Bilinmiyor",
+    location: {
+      lat: 0.0,
+      lng: 0.0
+    },
+    logo: "/logos/muglasitkikocmanuniversitesi.png",
+    description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
+    website: "https://hsd.muglasitkikocmanuniversitesi.edu.tr",
+    socialMedia: {
+      instagram: "@hsdmuglasitkikocmanuniversitesi",
+      linkedin: "hsd-muglasitkikocmanuniversitesi"
+    },
+    contactEmail: "hsd@muglasitkikocmanuniversitesi.edu.tr",
+    memberCount: 58,
+    yearFounded: 2020
+  },
+  {
+    id: 16,
+    name: "HSD AGÜ",
+    university: "AGÜ",
+    city: "Bilinmiyor",
+    location: {
+      lat: 0.0,
+      lng: 0.0
+    },
+    logo: "/logos/agu.png",
+    description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
+    website: "https://hsd.agu.edu.tr",
+    socialMedia: {
+      instagram: "@hsdagu",
+      linkedin: "hsd-agu"
+    },
+    contactEmail: "hsd@agu.edu.tr",
+    memberCount: 89,
+    yearFounded: 2021
+  },
+  {
+    id: 17,
+    name: "HSD Eskişehir Osmangazi Ünveristesi",
+    university: "Eskişehir Osmangazi Ünveristesi",
+    city: "Bilinmiyor",
+    location: {
+      lat: 0.0,
+      lng: 0.0
+    },
+    logo: "/logos/eskisehirosmangaziunveristesi.png",
+    description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
+    website: "https://hsd.eskisehirosmangaziunveristesi.edu.tr",
+    socialMedia: {
+      instagram: "@hsdeskisehirosmangaziunveristesi",
+      linkedin: "hsd-eskisehirosmangaziunveristesi"
+    },
+    contactEmail: "hsd@eskisehirosmangaziunveristesi.edu.tr",
+    memberCount: 61,
+    yearFounded: 2021
+  },
+  {
+    id: 18,
+    name: "HSD İTÜ",
+    university: "İTÜ",
+    city: "Bilinmiyor",
+    location: {
+      lat: 0.0,
+      lng: 0.0
+    },
+    logo: "/logos/itu.png",
+    description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
+    website: "https://hsd.itu.edu.tr",
+    socialMedia: {
+      instagram: "@hsditu",
+      linkedin: "hsd-itu"
+    },
+    contactEmail: "hsd@itu.edu.tr",
+    memberCount: 110,
+    yearFounded: 2022
+  },
+  {
+    id: 19,
+    name: "HSD TED Üniversitesi",
+    university: "TED Üniversitesi",
+    city: "Bilinmiyor",
+    location: {
+      lat: 0.0,
+      lng: 0.0
+    },
+    logo: "/logos/teduniversitesi.png",
+    description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
+    website: "https://hsd.teduniversitesi.edu.tr",
+    socialMedia: {
+      instagram: "@hsdteduniversitesi",
+      linkedin: "hsd-teduniversitesi"
+    },
+    contactEmail: "hsd@teduniversitesi.edu.tr",
+    memberCount: 119,
+    yearFounded: 2020
+  },
+  {
+    id: 20,
+    name: "HSD Başkent Üniversitesi",
+    university: "Başkent Üniversitesi",
+    city: "Bilinmiyor",
+    location: {
+      lat: 0.0,
+      lng: 0.0
+    },
+    logo: "/logos/baskentuniversitesi.png",
+    description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
+    website: "https://hsd.baskentuniversitesi.edu.tr",
+    socialMedia: {
+      instagram: "@hsdbaskentuniversitesi",
+      linkedin: "hsd-baskentuniversitesi"
+    },
+    contactEmail: "hsd@baskentuniversitesi.edu.tr",
+    memberCount: 104,
+    yearFounded: 2023
+  },
+  {
+    id: 21,
+    name: "HSD Hacettepe Üniversitesi",
+    university: "Hacettepe Üniversitesi",
+    city: "Bilinmiyor",
+    location: {
+      lat: 0.0,
+      lng: 0.0
+    },
+    logo: "/logos/hacettepeuniversitesi.png",
+    description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
+    website: "https://hsd.hacettepeuniversitesi.edu.tr",
+    socialMedia: {
+      instagram: "@hsdhacettepeuniversitesi",
+      linkedin: "hsd-hacettepeuniversitesi"
+    },
+    contactEmail: "hsd@hacettepeuniversitesi.edu.tr",
+    memberCount: 99,
+    yearFounded: 2020
+  },
+  {
+    id: 22,
+    name: "HSD Gebze Teknik Üniversitesi",
+    university: "Gebze Teknik Üniversitesi",
+    city: "Bilinmiyor",
+    location: {
+      lat: 0.0,
+      lng: 0.0
+    },
+    logo: "/logos/gebzeteknikuniversitesi.png",
+    description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
+    website: "https://hsd.gebzeteknikuniversitesi.edu.tr",
+    socialMedia: {
+      instagram: "@hsdgebzeteknikuniversitesi",
+      linkedin: "hsd-gebzeteknikuniversitesi"
+    },
+    contactEmail: "hsd@gebzeteknikuniversitesi.edu.tr",
+    memberCount: 98,
+    yearFounded: 2023
+  },
+  {
+    id: 23,
+    name: "HSD Bandırma Onyedi Eylül Üniversitesi",
+    university: "Bandırma Onyedi Eylül Üniversitesi",
+    city: "Bilinmiyor",
+    location: {
+      lat: 0.0,
+      lng: 0.0
+    },
+    logo: "/logos/bandirmaonyedieyluluniversitesi.png",
+    description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
+    website: "https://hsd.bandirmaonyedieyluluniversitesi.edu.tr",
+    socialMedia: {
+      instagram: "@hsdbandirmaonyedieyluluniversitesi",
+      linkedin: "hsd-bandirmaonyedieyluluniversitesi"
+    },
+    contactEmail: "hsd@bandirmaonyedieyluluniversitesi.edu.tr",
+    memberCount: 82,
+    yearFounded: 2021
+  },
+  {
+    id: 24,
+    name: "HSD Yaşar Üniversitesi",
+    university: "Yaşar Üniversitesi",
+    city: "Bilinmiyor",
+    location: {
+      lat: 0.0,
+      lng: 0.0
+    },
+    logo: "/logos/yasaruniversitesi.png",
+    description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
+    website: "https://hsd.yasaruniversitesi.edu.tr",
+    socialMedia: {
+      instagram: "@hsdyasaruniversitesi",
+      linkedin: "hsd-yasaruniversitesi"
+    },
+    contactEmail: "hsd@yasaruniversitesi.edu.tr",
+    memberCount: 109,
+    yearFounded: 2020
+  },
+  {
+    id: 25,
+    name: "HSD Karabük Üniversitesi",
+    university: "Karabük Üniversitesi",
+    city: "Bilinmiyor",
+    location: {
+      lat: 0.0,
+      lng: 0.0
+    },
+    logo: "/logos/karabukuniversitesi.png",
+    description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
+    website: "https://hsd.karabukuniversitesi.edu.tr",
+    socialMedia: {
+      instagram: "@hsdkarabukuniversitesi",
+      linkedin: "hsd-karabukuniversitesi"
+    },
+    contactEmail: "hsd@karabukuniversitesi.edu.tr",
+    memberCount: 50,
+    yearFounded: 2023
+  },
+  {
+    id: 26,
+    name: "HSD Nevşehir Hacı Bektaş Veli Üniversitesi",
+    university: "Nevşehir Hacı Bektaş Veli Üniversitesi",
+    city: "Bilinmiyor",
+    location: {
+      lat: 0.0,
+      lng: 0.0
+    },
+    logo: "/logos/nevsehirhacibektasveliuniversitesi.png",
+    description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
+    website: "https://hsd.nevsehirhacibektasveliuniversitesi.edu.tr",
+    socialMedia: {
+      instagram: "@hsdnevsehirhacibektasveliuniversitesi",
+      linkedin: "hsd-nevsehirhacibektasveliuniversitesi"
+    },
+    contactEmail: "hsd@nevsehirhacibektasveliuniversitesi.edu.tr",
+    memberCount: 61,
+    yearFounded: 2022
+  },
+  {
+    id: 27,
+    name: "HSD Atatürk Üniversitesi",
+    university: "Atatürk Üniversitesi",
+    city: "Bilinmiyor",
+    location: {
+      lat: 0.0,
+      lng: 0.0
+    },
+    logo: "/logos/ataturkuniversitesi.png",
+    description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
+    website: "https://hsd.ataturkuniversitesi.edu.tr",
+    socialMedia: {
+      instagram: "@hsdataturkuniversitesi",
+      linkedin: "hsd-ataturkuniversitesi"
+    },
+    contactEmail: "hsd@ataturkuniversitesi.edu.tr",
+    memberCount: 53,
+    yearFounded: 2021
+  },
+  {
+    id: 28,
+    name: "HSD Yeditepe Üniversitesi",
+    university: "Yeditepe Üniversitesi",
+    city: "Bilinmiyor",
+    location: {
+      lat: 0.0,
+      lng: 0.0
+    },
+    logo: "/logos/yeditepeuniversitesi.png",
+    description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
+    website: "https://hsd.yeditepeuniversitesi.edu.tr",
+    socialMedia: {
+      instagram: "@hsdyeditepeuniversitesi",
+      linkedin: "hsd-yeditepeuniversitesi"
+    },
+    contactEmail: "hsd@yeditepeuniversitesi.edu.tr",
+    memberCount: 86,
+    yearFounded: 2023
+  },
+  {
+    id: 29,
+    name: "HSD İskenderun Teknik Üniversitesi",
+    university: "İskenderun Teknik Üniversitesi",
+    city: "Bilinmiyor",
+    location: {
+      lat: 0.0,
+      lng: 0.0
+    },
+    logo: "/logos/iskenderunteknikuniversitesi.png",
+    description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
+    website: "https://hsd.iskenderunteknikuniversitesi.edu.tr",
+    socialMedia: {
+      instagram: "@hsdiskenderunteknikuniversitesi",
+      linkedin: "hsd-iskenderunteknikuniversitesi"
+    },
+    contactEmail: "hsd@iskenderunteknikuniversitesi.edu.tr",
+    memberCount: 109,
+    yearFounded: 2022
+  },
+  {
+    id: 30,
+    name: "HSD Kayseri Üniversitesi",
+    university: "Kayseri Üniversitesi",
+    city: "Bilinmiyor",
+    location: {
+      lat: 0.0,
+      lng: 0.0
+    },
+    logo: "/logos/kayseriuniversitesi.png",
+    description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
+    website: "https://hsd.kayseriuniversitesi.edu.tr",
+    socialMedia: {
+      instagram: "@hsdkayseriuniversitesi",
+      linkedin: "hsd-kayseriuniversitesi"
+    },
+    contactEmail: "hsd@kayseriuniversitesi.edu.tr",
+    memberCount: 85,
+    yearFounded: 2020
+  },
+  {
+    id: 31,
+    name: "HSD Bursa Teknik Üniversitesi",
+    university: "Bursa Teknik Üniversitesi",
+    city: "Bursa",
+    location: {
+      lat: 40.2339,
+      lng: 29.0094
+    },
+    logo: "/logos/bursateknikuniversitesi.png",
+    description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
+    website: "https://hsd.bursateknikuniversitesi.edu.tr",
+    socialMedia: {
+      instagram: "@hsdbursateknikuniversitesi",
+      linkedin: "hsd-bursateknikuniversitesi"
+    },
+    contactEmail: "hsd@bursateknikuniversitesi.edu.tr",
+    memberCount: 76,
+    yearFounded: 2021
+  },
+  {
+    id: 32,
+    name: "HSD Malatya İnönü Üniversitesi",
+    university: "Malatya İnönü Üniversitesi",
+    city: "Bilinmiyor",
+    location: {
+      lat: 0.0,
+      lng: 0.0
+    },
+    logo: "/logos/malatyainonuuniversitesi.png",
+    description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
+    website: "https://hsd.malatyainonuuniversitesi.edu.tr",
+    socialMedia: {
+      instagram: "@hsdmalatyainonuuniversitesi",
+      linkedin: "hsd-malatyainonuuniversitesi"
+    },
+    contactEmail: "hsd@malatyainonuuniversitesi.edu.tr",
+    memberCount: 100,
+    yearFounded: 2022
+  },
+  {
+    id: 33,
+    name: "HSD İstanbul Bilgi Üniversitesi",
+    university: "İstanbul Bilgi Üniversitesi",
+    city: "Bilinmiyor",
+    location: {
+      lat: 0.0,
+      lng: 0.0
+    },
+    logo: "/logos/istanbulbilgiuniversitesi.png",
+    description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
+    website: "https://hsd.istanbulbilgiuniversitesi.edu.tr",
+    socialMedia: {
+      instagram: "@hsdistanbulbilgiuniversitesi",
+      linkedin: "hsd-istanbulbilgiuniversitesi"
+    },
+    contactEmail: "hsd@istanbulbilgiuniversitesi.edu.tr",
+    memberCount: 71,
+    yearFounded: 2023
+  },
+  {
+    id: 34,
+    name: "HSD Dokuz Eylül Üniversitesi",
+    university: "Dokuz Eylül Üniversitesi",
+    city: "Bilinmiyor",
+    location: {
+      lat: 0.0,
+      lng: 0.0
+    },
+    logo: "/logos/dokuzeyluluniversitesi.png",
+    description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
+    website: "https://hsd.dokuzeyluluniversitesi.edu.tr",
+    socialMedia: {
+      instagram: "@hsddokuzeyluluniversitesi",
+      linkedin: "hsd-dokuzeyluluniversitesi"
+    },
+    contactEmail: "hsd@dokuzeyluluniversitesi.edu.tr",
+    memberCount: 89,
+    yearFounded: 2020
+  },
+  {
+    id: 35,
+    name: "HSD Manisa Celal Bayar Üniversitesi",
+    university: "Manisa Celal Bayar Üniversitesi",
+    city: "Bilinmiyor",
+    location: {
+      lat: 0.0,
+      lng: 0.0
+    },
+    logo: "/logos/manisacelalbayaruniversitesi.png",
+    description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
+    website: "https://hsd.manisacelalbayaruniversitesi.edu.tr",
+    socialMedia: {
+      instagram: "@hsdmanisacelalbayaruniversitesi",
+      linkedin: "hsd-manisacelalbayaruniversitesi"
+    },
+    contactEmail: "hsd@manisacelalbayaruniversitesi.edu.tr",
+    memberCount: 65,
+    yearFounded: 2020
+  },
+  {
+    id: 36,
+    name: "HSD Bogazici Universitesi",
+    university: "Bogazici Universitesi",
+    city: "Bilinmiyor",
+    location: {
+      lat: 0.0,
+      lng: 0.0
+    },
+    logo: "/logos/bogaziciuniversitesi.png",
+    description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
+    website: "https://hsd.bogaziciuniversitesi.edu.tr",
+    socialMedia: {
+      instagram: "@hsdbogaziciuniversitesi",
+      linkedin: "hsd-bogaziciuniversitesi"
+    },
+    contactEmail: "hsd@bogaziciuniversitesi.edu.tr",
+    memberCount: 80,
+    yearFounded: 2020
+  },
+  {
+    id: 37,
+    name: "HSD Işık Üniversitesi",
+    university: "Işık Üniversitesi",
+    city: "Bilinmiyor",
+    location: {
+      lat: 0.0,
+      lng: 0.0
+    },
+    logo: "/logos/isikuniversitesi.png",
+    description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
+    website: "https://hsd.isikuniversitesi.edu.tr",
+    socialMedia: {
+      instagram: "@hsdisikuniversitesi",
+      linkedin: "hsd-isikuniversitesi"
+    },
+    contactEmail: "hsd@isikuniversitesi.edu.tr",
+    memberCount: 61,
+    yearFounded: 2023
+  },
+  {
+    id: 38,
+    name: "HSD Bahçeşehir Üniversitesi",
+    university: "Bahçeşehir Üniversitesi",
+    city: "Bilinmiyor",
+    location: {
+      lat: 0.0,
+      lng: 0.0
+    },
+    logo: "/logos/bahcesehiruniversitesi.png",
+    description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
+    website: "https://hsd.bahcesehiruniversitesi.edu.tr",
+    socialMedia: {
+      instagram: "@hsdbahcesehiruniversitesi",
+      linkedin: "hsd-bahcesehiruniversitesi"
+    },
+    contactEmail: "hsd@bahcesehiruniversitesi.edu.tr",
+    memberCount: 58,
+    yearFounded: 2021
+  },
+  {
+    id: 39,
+    name: "HSD Necmettin Erbakan Üniversitesi ",
+    university: "Necmettin Erbakan Üniversitesi ",
+    city: "Bilinmiyor",
+    location: {
+      lat: 0.0,
+      lng: 0.0
+    },
+    logo: "/logos/necmettinerbakanuniversitesi.png",
+    description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
+    website: "https://hsd.necmettinerbakanuniversitesi.edu.tr",
+    socialMedia: {
+      instagram: "@hsdnecmettinerbakanuniversitesi",
+      linkedin: "hsd-necmettinerbakanuniversitesi"
+    },
+    contactEmail: "hsd@necmettinerbakanuniversitesi.edu.tr",
+    memberCount: 70,
+    yearFounded: 2020
+  },
+  {
+    id: 40,
+    name: "HSD Acıbadem Mehmet Ali Aydınlar Üniversitesi",
+    university: "Acıbadem Mehmet Ali Aydınlar Üniversitesi",
+    city: "Bilinmiyor",
+    location: {
+      lat: 0.0,
+      lng: 0.0
+    },
+    logo: "/logos/acibademmehmetaliaydinlaruniversitesi.png",
+    description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
+    website: "https://hsd.acibademmehmetaliaydinlaruniversitesi.edu.tr",
+    socialMedia: {
+      instagram: "@hsdacibademmehmetaliaydinlaruniversitesi",
+      linkedin: "hsd-acibademmehmetaliaydinlaruniversitesi"
+    },
+    contactEmail: "hsd@acibademmehmetaliaydinlaruniversitesi.edu.tr",
+    memberCount: 61,
+    yearFounded: 2021
+  },
+  {
+    id: 41,
+    name: "HSD İstanbul Aydın Üniversitesi",
+    university: "İstanbul Aydın Üniversitesi",
+    city: "Bilinmiyor",
+    location: {
+      lat: 0.0,
+      lng: 0.0
+    },
+    logo: "/logos/istanbulaydinuniversitesi.png",
+    description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
+    website: "https://hsd.istanbulaydinuniversitesi.edu.tr",
+    socialMedia: {
+      instagram: "@hsdistanbulaydinuniversitesi",
+      linkedin: "hsd-istanbulaydinuniversitesi"
+    },
+    contactEmail: "hsd@istanbulaydinuniversitesi.edu.tr",
+    memberCount: 77,
+    yearFounded: 2021
+  },
+  {
+    id: 42,
+    name: "HSD Süleyman Demirel Üniversitesi",
+    university: "Süleyman Demirel Üniversitesi",
+    city: "Isparta",
+    location: {
+      lat: 37.8746,
+      lng: 30.5256
+    },
+    logo: "/logos/suleymandemireluniversitesi.png",
+    description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
+    website: "https://hsd.suleymandemireluniversitesi.edu.tr",
+    socialMedia: {
+      instagram: "@hsdsuleymandemireluniversitesi",
+      linkedin: "hsd-suleymandemireluniversitesi"
+    },
+    contactEmail: "hsd@suleymandemireluniversitesi.edu.tr",
+    memberCount: 55,
+    yearFounded: 2022
+  },
+  {
+    id: 43,
+    name: "HSD Tekirdağ Namık Kemal Üniversitesi",
+    university: "Tekirdağ Namık Kemal Üniversitesi",
+    city: "Bilinmiyor",
+    location: {
+      lat: 0.0,
+      lng: 0.0
+    },
+    logo: "/logos/tekirdagnamikkemaluniversitesi.png",
+    description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
+    website: "https://hsd.tekirdagnamikkemaluniversitesi.edu.tr",
+    socialMedia: {
+      instagram: "@hsdtekirdagnamikkemaluniversitesi",
+      linkedin: "hsd-tekirdagnamikkemaluniversitesi"
+    },
+    contactEmail: "hsd@tekirdagnamikkemaluniversitesi.edu.tr",
+    memberCount: 86,
+    yearFounded: 2023
+  },
+  {
+    id: 44,
+    name: "HSD Mersin Üniversitesi",
+    university: "Mersin Üniversitesi",
+    city: "Mersin",
+    location: {
+      lat: 36.8121,
+      lng: 34.5371
+    },
+    logo: "/logos/mersinuniversitesi.png",
+    description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
+    website: "https://hsd.mersinuniversitesi.edu.tr",
+    socialMedia: {
+      instagram: "@hsdmersinuniversitesi",
+      linkedin: "hsd-mersinuniversitesi"
+    },
+    contactEmail: "hsd@mersinuniversitesi.edu.tr",
+    memberCount: 89,
+    yearFounded: 2020
+  },
+  {
+    id: 45,
+    name: "HSD Kadir Has üniversitesi",
+    university: "Kadir Has üniversitesi",
+    city: "Bilinmiyor",
+    location: {
+      lat: 0.0,
+      lng: 0.0
+    },
+    logo: "/logos/kadirhasuniversitesi.png",
+    description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
+    website: "https://hsd.kadirhasuniversitesi.edu.tr",
+    socialMedia: {
+      instagram: "@hsdkadirhasuniversitesi",
+      linkedin: "hsd-kadirhasuniversitesi"
+    },
+    contactEmail: "hsd@kadirhasuniversitesi.edu.tr",
+    memberCount: 74,
+    yearFounded: 2021
+  },
+  {
+    id: 46,
+    name: "HSD Ostim Teknik Üniversitesi",
+    university: "Ostim Teknik Üniversitesi",
+    city: "Bilinmiyor",
+    location: {
+      lat: 0.0,
+      lng: 0.0
+    },
+    logo: "/logos/ostimteknikuniversitesi.png",
+    description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
+    website: "https://hsd.ostimteknikuniversitesi.edu.tr",
+    socialMedia: {
+      instagram: "@hsdostimteknikuniversitesi",
+      linkedin: "hsd-ostimteknikuniversitesi"
+    },
+    contactEmail: "hsd@ostimteknikuniversitesi.edu.tr",
+    memberCount: 98,
+    yearFounded: 2022
+  },
+  {
+    id: 47,
+    name: "HSD Erciyes Universitesi",
+    university: "Erciyes Universitesi",
+    city: "Bilinmiyor",
+    location: {
+      lat: 0.0,
+      lng: 0.0
+    },
+    logo: "/logos/erciyesuniversitesi.png",
+    description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
+    website: "https://hsd.erciyesuniversitesi.edu.tr",
+    socialMedia: {
+      instagram: "@hsderciyesuniversitesi",
+      linkedin: "hsd-erciyesuniversitesi"
+    },
+    contactEmail: "hsd@erciyesuniversitesi.edu.tr",
+    memberCount: 97,
+    yearFounded: 2021
+  },
+  {
+    id: 48,
+    name: "HSD Zonguldak Bülent Ecevit Üniversitesi",
+    university: "Zonguldak Bülent Ecevit Üniversitesi",
+    city: "Bilinmiyor",
+    location: {
+      lat: 0.0,
+      lng: 0.0
+    },
+    logo: "/logos/zonguldakbulentecevituniversitesi.png",
+    description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
+    website: "https://hsd.zonguldakbulentecevituniversitesi.edu.tr",
+    socialMedia: {
+      instagram: "@hsdzonguldakbulentecevituniversitesi",
+      linkedin: "hsd-zonguldakbulentecevituniversitesi"
+    },
+    contactEmail: "hsd@zonguldakbulentecevituniversitesi.edu.tr",
+    memberCount: 92,
+    yearFounded: 2023
+  },
+  {
+    id: 49,
+    name: "HSD Ege Üniversitesi",
+    university: "Ege Üniversitesi",
+    city: "Bilinmiyor",
+    location: {
+      lat: 0.0,
+      lng: 0.0
+    },
+    logo: "/logos/egeuniversitesi.png",
+    description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
+    website: "https://hsd.egeuniversitesi.edu.tr",
+    socialMedia: {
+      instagram: "@hsdegeuniversitesi",
+      linkedin: "hsd-egeuniversitesi"
+    },
+    contactEmail: "hsd@egeuniversitesi.edu.tr",
+    memberCount: 107,
+    yearFounded: 2021
+  },
+  {
+    id: 50,
+    name: "HSD Hasan Kalyoncu Üniversitesi",
+    university: "Hasan Kalyoncu Üniversitesi",
+    city: "Bilinmiyor",
+    location: {
+      lat: 0.0,
+      lng: 0.0
+    },
+    logo: "/logos/hasankalyoncuuniversitesi.png",
+    description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
+    website: "https://hsd.hasankalyoncuuniversitesi.edu.tr",
+    socialMedia: {
+      instagram: "@hsdhasankalyoncuuniversitesi",
+      linkedin: "hsd-hasankalyoncuuniversitesi"
+    },
+    contactEmail: "hsd@hasankalyoncuuniversitesi.edu.tr",
+    memberCount: 75,
+    yearFounded: 2022
+  },
+  {
+    id: 51,
+    name: "HSD Ankara Üniversitesi",
+    university: "Ankara Üniversitesi",
+    city: "Bilinmiyor",
+    location: {
+      lat: 0.0,
+      lng: 0.0
+    },
+    logo: "/logos/ankarauniversitesi.png",
+    description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
+    website: "https://hsd.ankarauniversitesi.edu.tr",
+    socialMedia: {
+      instagram: "@hsdankarauniversitesi",
+      linkedin: "hsd-ankarauniversitesi"
+    },
+    contactEmail: "hsd@ankarauniversitesi.edu.tr",
+    memberCount: 66,
+    yearFounded: 2023
+  },
+  {
+    id: 52,
+    name: "HSD Akdeniz Üniversitesi",
+    university: "Akdeniz Üniversitesi",
+    city: "Bilinmiyor",
+    location: {
+      lat: 0.0,
+      lng: 0.0
+    },
+    logo: "/logos/akdenizuniversitesi.png",
+    description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
+    website: "https://hsd.akdenizuniversitesi.edu.tr",
+    socialMedia: {
+      instagram: "@hsdakdenizuniversitesi",
+      linkedin: "hsd-akdenizuniversitesi"
+    },
+    contactEmail: "hsd@akdenizuniversitesi.edu.tr",
+    memberCount: 107,
+    yearFounded: 2022
+  },
+  {
+    id: 53,
+    name: "HSD Sakarya Üniversitesi",
+    university: "Sakarya Üniversitesi",
+    city: "Sakarya",
+    location: {
+      lat: 40.7408,
+      lng: 30.3342
+    },
+    logo: "/logos/sakaryauniversitesi.png",
+    description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
+    website: "https://hsd.sakaryauniversitesi.edu.tr",
+    socialMedia: {
+      instagram: "@hsdsakaryauniversitesi",
+      linkedin: "hsd-sakaryauniversitesi"
+    },
+    contactEmail: "hsd@sakaryauniversitesi.edu.tr",
+    memberCount: 63,
+    yearFounded: 2020
+  },
+  {
+    id: 54,
+    name: "HSD İzmir Ekonomi Üniversitesi",
+    university: "İzmir Ekonomi Üniversitesi",
+    city: "Bilinmiyor",
+    location: {
+      lat: 0.0,
+      lng: 0.0
+    },
+    logo: "/logos/izmirekonomiuniversitesi.png",
+    description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
+    website: "https://hsd.izmirekonomiuniversitesi.edu.tr",
+    socialMedia: {
+      instagram: "@hsdizmirekonomiuniversitesi",
+      linkedin: "hsd-izmirekonomiuniversitesi"
+    },
+    contactEmail: "hsd@izmirekonomiuniversitesi.edu.tr",
+    memberCount: 70,
+    yearFounded: 2023
+  },
+  {
+    id: 55,
+    name: "HSD Kahramanmaraş Sütçü İmam Üniversitesi",
+    university: "Kahramanmaraş Sütçü İmam Üniversitesi",
+    city: "Bilinmiyor",
+    location: {
+      lat: 0.0,
+      lng: 0.0
+    },
+    logo: "/logos/kahramanmarassutcuimamuniversitesi.png",
+    description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
+    website: "https://hsd.kahramanmarassutcuimamuniversitesi.edu.tr",
+    socialMedia: {
+      instagram: "@hsdkahramanmarassutcuimamuniversitesi",
+      linkedin: "hsd-kahramanmarassutcuimamuniversitesi"
+    },
+    contactEmail: "hsd@kahramanmarassutcuimamuniversitesi.edu.tr",
+    memberCount: 111,
+    yearFounded: 2023
+  },
+  {
+    id: 56,
+    name: "HSD Okan Üniversitesi",
+    university: "Okan Üniversitesi",
+    city: "Bilinmiyor",
+    location: {
+      lat: 0.0,
+      lng: 0.0
+    },
+    logo: "/logos/okanuniversitesi.png",
+    description: "Huawei teknolojileri alanında kendini geliştirmek isteyen öğrencileri bir araya getiren bir topluluktur.",
+    website: "https://hsd.okanuniversitesi.edu.tr",
+    socialMedia: {
+      instagram: "@hsdokanuniversitesi",
+      linkedin: "hsd-okanuniversitesi"
+    },
+    contactEmail: "hsd@okanuniversitesi.edu.tr",
+    memberCount: 112,
+    yearFounded: 2022
   }
 ];
 
-export default clubsData; 
+export default clubsData;
