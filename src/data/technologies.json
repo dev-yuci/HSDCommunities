@@ -1,0 +1,157 @@
+[
+  {
+    "category": "Depolama",
+    "title": "Object Storage Service (OBS)",
+    "description": "Sonsuz ölçeklenebilir, tutarlı ve güvenli nesne depolamanın avantajlarından faydalanın",
+    "icon": "📦",
+    "color": "green",
+    "url": "https://www.huaweicloud.com/intl/tr-tr/product/obs.html" 
+  },
+  {
+    "category": "Depolama",
+    "title": "Storage Disaster Recovery Service (SDRS)",
+    "description": "Sıfır RPO veri koruması ile sunucularınızı felaket senaryolarına karşı koruyun",
+    "icon": "🛡️",
+    "color": "blue"
+  },
+  {
+    "category": "Depolama",
+    "title": "Elastic Volume Service (EVS)",
+    "description": "Sunucularınıza kalıcı blok depolama sağlayın",
+    "icon": "💽",
+    "color": "red"
+  },
+  {
+    "category": "Depolama",
+    "title": "Cloud Backup and Recovery (CBR)",
+    "description": "Bulut kaynaklarınızın yedeklemelerini merkezi olarak yönetin",
+    "icon": "☁️",
+    "color": "purple"
+  },
+  {
+    "category": "Depolama",
+    "title": "Scalable File Service (SFS)",
+    "description": "Tamamen yönetilen NAS dosya sistemlerinden yararlanın",
+    "icon": "📁",
+    "color": "orange"
+  },
+  {
+    "category": "Depolama",
+    "title": "Data Express Service (DES)",
+    "description": "Büyük veri aktarımını güvenli ve hızlı şekilde gerçekleştirin",
+    "icon": "🚚",
+    "color": "green"
+  },
+  {
+    "category": "Depolama",
+    "title": "Dedicated Distributed Storage Service (DSS)",
+    "description": "Özel fiziksel blok depolama altyapısına sahip olun",
+    "icon": "🧱",
+    "color": "purple"
+  },
+  {
+    "category": "Depolama",
+    "title": "Cloud Server Backup Service (CSBS)",
+    "description": "Bulut sunucularınızda tutarlı yedekleme çözümleri sunar",
+    "icon": "💾",
+    "color": "lime"
+  },
+  {
+    "category": "Bilgi İşlem",
+    "title": "Elastic Cloud Server (ECS)",
+    "description": "Güvenli, ölçeklenebilir ve yüksek performanslı bulut sunucular",
+    "icon": "🖥️",
+    "color": "gray"
+  },
+  {
+    "category": "Bilgi İşlem",
+    "title": "Bare Metal Server (BMS)",
+    "description": "Fiziksel sunucu performansına doğrudan erişim sağlayın",
+    "icon": "🔩",
+    "color": "black"
+  },
+  {
+    "category": "Ağ İşlemleri",
+    "title": "Cloud Connect",
+    "description": "Farklı bölgeler ve bulutlar arası bağlantı çözümleri",
+    "icon": "🌐",
+    "color": "blue"
+  },
+  {
+    "category": "Ağ İşlemleri",
+    "title": "Elastic Load Balance (ELB)",
+    "description": "Trafiği dağıtarak uygulama erişimini optimize edin",
+    "icon": "⚖️",
+    "color": "orange"
+  },
+  {
+    "category": "Yapay Zeka",
+    "title": "ModelArts",
+    "description": "Makine öğrenimi ve model geliştirme platformu",
+    "icon": "🤖",
+    "color": "purple"
+  },
+  {
+    "category": "Veritabanları",
+    "title": "GaussDB",
+    "description": "Yüksek performanslı, kurumsal düzeyde dağıtılmış veritabanı",
+    "icon": "🗃️",
+    "color": "blue"
+  },
+  {
+    "category": "Veritabanları",
+    "title": "RDS for MySQL",
+    "description": "Tam yönetilen MySQL veritabanı hizmeti",
+    "icon": "🐬",
+    "color": "sky"
+  },
+  {
+    "category": "Veritabanları",
+    "title": "RDS for PostgreSQL",
+    "description": "Kurumsal PostgreSQL desteğiyle ilişkisel veritabanı",
+    "icon": "🐘",
+    "color": "indigo"
+  },
+  {
+    "category": "Analiz",
+    "title": "Data Lake Insight (DLI)",
+    "description": "Sunucusuz veri analiz platformu",
+    "icon": "📊",
+    "color": "cyan"
+  },
+  {
+    "category": "Analiz",
+    "title": "Data Warehouse Service (DWS)",
+    "description": "Kurumsal düzeyde veri ambarı hizmeti",
+    "icon": "🏢",
+    "color": "gray"
+  },
+  {
+    "category": "Güvenlik ve Uyumluluk",
+    "title": "Cloud Firewall",
+    "description": "Sanal ağlarınıza yönelik bulut tabanlı güvenlik duvarı",
+    "icon": "🧱",
+    "color": "red"
+  },
+  {
+    "category": "Güvenlik ve Uyumluluk",
+    "title": "Web Application Firewall (WAF)",
+    "description": "Web uygulamalarını yaygın tehditlere karşı koruyun",
+    "icon": "🛡️",
+    "color": "red"
+  },
+  {
+    "category": "Ara Yazılım",
+    "title": "Application Operation Management (AOM)",
+    "description": "Uygulamalarınızın operasyonel görünürlüğünü artırın",
+    "icon": "📈",
+    "color": "yellow"
+  },
+  {
+    "category": "Ara Yazılım",
+    "title": "Distributed Message Service (DMS)",
+    "description": "Yüksek güvenilirlikli, dağılmış mesajlaşma altyapısı",
+    "icon": "✉️",
+    "color": "green"
+  }
+]
