@@ -3,6 +3,7 @@ export interface ClubData {
   name: string;
   university: string;
   city: string;
+  area: string;
   location: {
     lat: number;
     lng: number;
@@ -26,6 +27,7 @@ const clubsData: ClubData[] = [
     name: "HSD Fırat Üniversitesi",
     university: "Fırat Üniversitesi",
     city: "Elazığ",
+    area: "Doğu Anadolu",
     location: {
       lat: 38.6749,
       lng: 39.2232
@@ -46,6 +48,7 @@ const clubsData: ClubData[] = [
     name: "HSD Gazi Üniversitesi",
     university: "Gazi Üniversitesi",
     city: "Ankara",
+    area: "İç Anadolu",
     location: {
       lat: 39.9402,
       lng: 32.8215
@@ -66,6 +69,7 @@ const clubsData: ClubData[] = [
     name: "HSD Beykent Üniversitesi",
     university: "Beykent Üniversitesi",
     city: "İstanbul",
+    area: "Marmara",
     location: {
       lat: 41.0677,
       lng: 28.9983
@@ -86,6 +90,7 @@ const clubsData: ClubData[] = [
     name: "HSD Karadeniz Teknik Üniversitesi",
     university: "Karadeniz Teknik Üniversitesi",
     city: "Trabzon",
+    area: "Karadeniz",
     location: {
       lat: 41.005,
       lng: 39.7225
@@ -106,6 +111,7 @@ const clubsData: ClubData[] = [
     name: "HSD Yalova Üniversitesi",
     university: "Yalova Üniversitesi",
     city: "Yalova",
+    area: "Marmara",
     location: {
       lat: 40.6517,
       lng: 29.2195
@@ -126,6 +132,7 @@ const clubsData: ClubData[] = [
     name: "HSD Artvin Çoruh üniversitesi",
     university: "Artvin Çoruh üniversitesi",
     city: "Artvin",
+    area: "Karadeniz",
     location: {
       lat: 41.1873,
       lng: 41.8188
@@ -146,6 +153,7 @@ const clubsData: ClubData[] = [
     name: "HSD Kıbrıs Doğu Akdeniz Üniversitesi",
     university: "Kıbrıs Doğu Akdeniz Üniversitesi",
     city: "Gazimağusa, KKTC",
+    area: "Kuzey Kıbrıs",
     location: {
       lat: 35.1457,
       lng: 33.9126
@@ -166,6 +174,7 @@ const clubsData: ClubData[] = [
     name: "HSD YTÜ",
     university: "YTÜ",
     city: "İstanbul",
+    area: "Marmara",
     location: {
       lat: 41.0280,
       lng: 28.8898
@@ -186,6 +195,7 @@ const clubsData: ClubData[] = [
     name: "HSD Konya Selçuk Üniversitesi",
     university: "Konya Selçuk Üniversitesi",
     city: "Konya",
+    area: "İç Anadolu",
     location: {
       lat: 38.0156,
       lng: 32.5084
@@ -206,6 +216,7 @@ const clubsData: ClubData[] = [
     name: "HSD Marmara Üniversitesi",
     university: "Marmara Üniversitesi",
     city: "İstanbul",
+    area: "Marmara",
     location: {
       lat: 40.9862,
       lng: 29.0518
@@ -226,6 +237,7 @@ const clubsData: ClubData[] = [
     name: "HSD İYTE",
     university: "İYTE",
     city: "İzmir",
+    area: "Ege",
     location: {
       lat: 38.3213,
       lng: 26.6392
@@ -246,6 +258,7 @@ const clubsData: ClubData[] = [
     name: "HSD Kütahya Dumlupınar Üniversitesi",
     university: "Kütahya Dumlupınar Üniversitesi",
     city: "Kütahya",
+    area: "Ege",
     location: {
       lat: 39.4104,
       lng: 29.9945
@@ -266,6 +279,7 @@ const clubsData: ClubData[] = [
     name: "HSD Bursa Uludağ Üniversitesi",
     university: "Bursa Uludağ Üniversitesi",
     city: "Bursa",
+    area: "Marmara",
     location: {
       lat: 40.2306,
       lng: 28.8610
@@ -286,6 +300,7 @@ const clubsData: ClubData[] = [
     name: "HSD MEF",
     university: "MEF",
     city: "İstanbul",
+    area: "Marmara",
     location: {
       lat: 41.0969,
       lng: 29.0256
@@ -306,6 +321,7 @@ const clubsData: ClubData[] = [
     name: "HSD Muğla Sıtkı Koçman Üniversitesi",
     university: "Muğla Sıtkı Koçman Üniversitesi",
     city: "Muğla",
+    area: "Ege",
     location: {
       lat: 37.1696,
       lng: 28.3733
@@ -326,6 +342,7 @@ const clubsData: ClubData[] = [
     name: "HSD AGÜ",
     university: "AGÜ",
     city: "Kayseri",
+    area: "İç Anadolu",
     location: {
       lat: 38.7333,
       lng: 35.4833
@@ -346,6 +363,7 @@ const clubsData: ClubData[] = [
     name: "HSD Eskişehir Osmangazi Ünveristesi",
     university: "Eskişehir Osmangazi Ünveristesi",
     city: "Eskişehir",
+    area: "İç Anadolu",
     location: {
       lat: 39.7477,
       lng: 30.4788
@@ -366,6 +384,7 @@ const clubsData: ClubData[] = [
     name: "HSD İTÜ",
     university: "İTÜ",
     city: "İstanbul",
+    area: "Marmara",
     location: {
       lat: 41.1054,
       lng: 29.0245
@@ -386,6 +405,7 @@ const clubsData: ClubData[] = [
     name: "HSD TED Üniversitesi",
     university: "TED Üniversitesi",
     city: "Ankara",
+    area: "İç Anadolu",
     location: {
       lat: 39.9250,
       lng: 32.8344
@@ -406,6 +426,7 @@ const clubsData: ClubData[] = [
     name: "HSD Başkent Üniversitesi",
     university: "Başkent Üniversitesi",
     city: "Ankara",
+    area: "İç Anadolu",
     location: {
       lat: 39.9154,
       lng: 32.8142
@@ -426,6 +447,7 @@ const clubsData: ClubData[] = [
     name: "HSD Hacettepe Üniversitesi",
     university: "Hacettepe Üniversitesi",
     city: "Ankara",
+    area: "İç Anadolu",
     location: {
       lat: 39.8676,
       lng: 32.7348
@@ -446,6 +468,7 @@ const clubsData: ClubData[] = [
     name: "HSD Gebze Teknik Üniversitesi",
     university: "Gebze Teknik Üniversitesi",
     city: "Kocaeli",
+    area: "Marmara",
     location: {
       lat: 40.7930,
       lng: 29.4511
@@ -466,6 +489,7 @@ const clubsData: ClubData[] = [
     name: "HSD Bandırma Onyedi Eylül Üniversitesi",
     university: "Bandırma Onyedi Eylül Üniversitesi",
     city: "Balıkesir",
+    area: "Marmara",
     location: {
       lat: 40.3555,
       lng: 27.9761
@@ -486,6 +510,7 @@ const clubsData: ClubData[] = [
     name: "HSD Yaşar Üniversitesi",
     university: "Yaşar Üniversitesi",
     city: "İzmir",
+    area: "Ege",
     location: {
       lat: 38.4627,
       lng: 27.2144
@@ -506,6 +531,7 @@ const clubsData: ClubData[] = [
     name: "HSD Karabük Üniversitesi",
     university: "Karabük Üniversitesi",
     city: "Karabük",
+    area: "Karadeniz",
     location: {
       lat: 41.2101,
       lng: 32.6227
@@ -526,6 +552,7 @@ const clubsData: ClubData[] = [
     name: "HSD Nevşehir Hacı Bektaş Veli Üniversitesi",
     university: "Nevşehir Hacı Bektaş Veli Üniversitesi",
     city: "Nevşehir",
+    area: "İç Anadolu",
     location: {
       lat: 38.6938,
       lng: 34.6857
@@ -546,6 +573,7 @@ const clubsData: ClubData[] = [
     name: "HSD Atatürk Üniversitesi",
     university: "Atatürk Üniversitesi",
     city: "Erzurum",
+    area: "Doğu Anadolu",
     location: {
       lat: 39.9077,
       lng: 41.2419
@@ -566,6 +594,7 @@ const clubsData: ClubData[] = [
     name: "HSD Yeditepe Üniversitesi",
     university: "Yeditepe Üniversitesi",
     city: "İstanbul",
+    area: "Marmara",
     location: {
       lat: 40.9717,
       lng: 29.1515
@@ -586,6 +615,7 @@ const clubsData: ClubData[] = [
     name: "HSD İskenderun Teknik Üniversitesi",
     university: "İskenderun Teknik Üniversitesi",
     city: "Hatay",
+    area: "Akdeniz",
     location: {
       lat: 36.7072,
       lng: 36.2067
@@ -606,6 +636,7 @@ const clubsData: ClubData[] = [
     name: "HSD Kayseri Üniversitesi",
     university: "Kayseri Üniversitesi",
     city: "Kayseri",
+    area: "İç Anadolu",
     location: {
       lat: 38.7205,
       lng: 35.4826
@@ -626,6 +657,7 @@ const clubsData: ClubData[] = [
     name: "HSD Bursa Teknik Üniversitesi",
     university: "Bursa Teknik Üniversitesi",
     city: "Bursa",
+    area: "Marmara",
     location: {
       lat: 40.2339,
       lng: 29.0094
@@ -646,6 +678,7 @@ const clubsData: ClubData[] = [
     name: "HSD Malatya İnönü Üniversitesi",
     university: "Malatya İnönü Üniversitesi",
     city: "Malatya",
+    area: "Doğu Anadolu",
     location: {
       lat: 38.3185,
       lng: 38.4358
@@ -666,6 +699,7 @@ const clubsData: ClubData[] = [
     name: "HSD İstanbul Bilgi Üniversitesi",
     university: "İstanbul Bilgi Üniversitesi",
     city: "İstanbul",
+    area: "Marmara",
     location: {
       lat: 41.0418,
       lng: 28.9550
@@ -686,6 +720,7 @@ const clubsData: ClubData[] = [
     name: "HSD Dokuz Eylül Üniversitesi",
     university: "Dokuz Eylül Üniversitesi",
     city: "İzmir",
+    area: "Ege",
     location: {
       lat: 38.3898,
       lng: 27.0365
@@ -706,6 +741,7 @@ const clubsData: ClubData[] = [
     name: "HSD Manisa Celal Bayar Üniversitesi",
     university: "Manisa Celal Bayar Üniversitesi",
     city: "Manisa",
+    area: "Ege",
     location: {
       lat: 38.6196,
       lng: 27.4289
@@ -726,6 +762,7 @@ const clubsData: ClubData[] = [
     name: "HSD Bogazici Universitesi",
     university: "Bogazici Universitesi",
     city: "İstanbul",
+    area: "Marmara",
     location: {
       lat: 41.0850,
       lng: 29.0514
@@ -746,6 +783,7 @@ const clubsData: ClubData[] = [
     name: "HSD Işık Üniversitesi",
     university: "Işık Üniversitesi",
     city: "İstanbul",
+    area: "Marmara",
     location: {
       lat: 41.1066,
       lng: 29.0373
@@ -766,6 +804,7 @@ const clubsData: ClubData[] = [
     name: "HSD Bahçeşehir Üniversitesi",
     university: "Bahçeşehir Üniversitesi",
     city: "İstanbul",
+    area: "Marmara",
     location: {
       lat: 41.0419,
       lng: 28.9726
@@ -786,6 +825,7 @@ const clubsData: ClubData[] = [
     name: "HSD Necmettin Erbakan Üniversitesi ",
     university: "Necmettin Erbakan Üniversitesi ",
     city: "Konya",
+    area: "Akdeniz",
     location: {
       lat: 37.8846,
       lng: 32.4834
@@ -806,6 +846,7 @@ const clubsData: ClubData[] = [
     name: "HSD Acıbadem Mehmet Ali Aydınlar Üniversitesi",
     university: "Acıbadem Mehmet Ali Aydınlar Üniversitesi",
     city: "İstanbul",
+    area: "Marmara",
     location: {
       lat: 41.0015,
       lng: 29.1308
@@ -826,6 +867,7 @@ const clubsData: ClubData[] = [
     name: "HSD İstanbul Aydın Üniversitesi",
     university: "İstanbul Aydın Üniversitesi",
     city: "İstanbul",
+    area: "Marmara",
     location: {
       lat: 41.0201,
       lng: 28.7878
@@ -846,6 +888,7 @@ const clubsData: ClubData[] = [
     name: "HSD Süleyman Demirel Üniversitesi",
     university: "Süleyman Demirel Üniversitesi",
     city: "Isparta",
+    area: "Akdeniz",
     location: {
       lat: 37.8746,
       lng: 30.5256
@@ -866,6 +909,7 @@ const clubsData: ClubData[] = [
     name: "HSD Tekirdağ Namık Kemal Üniversitesi",
     university: "Tekirdağ Namık Kemal Üniversitesi",
     city: "Tekirdağ",
+    area: "Marmara",
     location: {
       lat: 40.9954,
       lng: 27.5554
@@ -886,6 +930,7 @@ const clubsData: ClubData[] = [
     name: "HSD Mersin Üniversitesi",
     university: "Mersin Üniversitesi",
     city: "Mersin",
+    area: "Akdeniz",
     location: {
       lat: 36.8121,
       lng: 34.5371
@@ -906,6 +951,7 @@ const clubsData: ClubData[] = [
     name: "HSD Kadir Has üniversitesi",
     university: "Kadir Has üniversitesi",
     city: "İstanbul",
+    area: "Marmara",
     location: {
       lat: 41.0207,
       lng: 28.9565
@@ -926,6 +972,7 @@ const clubsData: ClubData[] = [
     name: "HSD Ostim Teknik Üniversitesi",
     university: "Ostim Teknik Üniversitesi",
     city: "Ankara",
+    area: "İç Anadolu",
     location: {
       lat: 39.9704,
       lng: 32.7462
@@ -946,6 +993,7 @@ const clubsData: ClubData[] = [
     name: "HSD Erciyes Universitesi",
     university: "Erciyes Universitesi",
     city: "Kayseri",
+    area: "İç Anadolu",
     location: {
       lat: 38.7022,
       lng: 35.5359
@@ -966,6 +1014,7 @@ const clubsData: ClubData[] = [
     name: "HSD Zonguldak Bülent Ecevit Üniversitesi",
     university: "Zonguldak Bülent Ecevit Üniversitesi",
     city: "Zonguldak",
+    area: "Karadeniz",
     location: {
       lat: 41.4481,
       lng: 31.7790
@@ -986,6 +1035,7 @@ const clubsData: ClubData[] = [
     name: "HSD Ege Üniversitesi",
     university: "Ege Üniversitesi",
     city: "İzmir",
+    area: "Ege",
     location: {
       lat: 38.4564,
       lng: 27.2061
@@ -1006,6 +1056,7 @@ const clubsData: ClubData[] = [
     name: "HSD Hasan Kalyoncu Üniversitesi",
     university: "Hasan Kalyoncu Üniversitesi",
     city: "Gaziantep",
+    area: "Güneydoğu Anadolu",
     location: {
       lat: 37.1365,
       lng: 37.3705
@@ -1026,6 +1077,7 @@ const clubsData: ClubData[] = [
     name: "HSD Ankara Üniversitesi",
     university: "Ankara Üniversitesi",
     city: "Ankara",
+    area: "İç Anadolu",
     location: {
       lat: 39.9430,
       lng: 32.8541
@@ -1046,6 +1098,7 @@ const clubsData: ClubData[] = [
     name: "HSD Akdeniz Üniversitesi",
     university: "Akdeniz Üniversitesi",
     city: "Antalya",
+    area: "Akdeniz",
     location: {
       lat: 36.8969,
       lng: 30.6838
@@ -1066,6 +1119,7 @@ const clubsData: ClubData[] = [
     name: "HSD Sakarya Üniversitesi",
     university: "Sakarya Üniversitesi",
     city: "Sakarya",
+    area: "Marmara",
     location: {
       lat: 40.7408,
       lng: 30.3342
@@ -1086,6 +1140,7 @@ const clubsData: ClubData[] = [
     name: "HSD İzmir Ekonomi Üniversitesi",
     university: "İzmir Ekonomi Üniversitesi",
     city: "İzmir",
+    area: "Ege",
     location: {
       lat: 38.3885,
       lng: 27.0438
@@ -1106,6 +1161,7 @@ const clubsData: ClubData[] = [
     name: "HSD Kahramanmaraş Sütçü İmam Üniversitesi",
     university: "Kahramanmaraş Sütçü İmam Üniversitesi",
     city: "Kahramanmaraş",
+    area: "Akdeniz",
     location: {
       lat: 37.5849,
       lng: 36.8020
@@ -1126,6 +1182,7 @@ const clubsData: ClubData[] = [
     name: "HSD Okan Üniversitesi",
     university: "Okan Üniversitesi",
     city: "İstanbul",
+    area: "Marmara",
     location: {
       lat: 40.9741,
       lng: 29.2268

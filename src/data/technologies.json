@@ -13,7 +13,7 @@
     "description": "Sıfır RPO veri koruması ile sunucularınızı felaket senaryolarına karşı koruyun",
     "icon": "🛡️",
     "color": "blue",
-    "url": "https://www.huaweicloud.com/intl/tr-tr/product/obs.html"
+    "url": "https://www.huaweicloud.com/intl/tr-tr/product/sdrs.html"
   },
   {
     "category": "Depolama",
@@ -21,7 +21,7 @@
     "description": "Sunucularınıza kalıcı blok depolama sağlayın",
     "icon": "💽",
     "color": "red",
-    "url": "https://www.huaweicloud.com/intl/tr-tr/product/obs.html"
+    "url": "https://www.huaweicloud.com/intl/tr-tr/product/evs.html"
   },
   {
     "category": "Depolama",
@@ -29,7 +29,7 @@
     "description": "Bulut kaynaklarınızın yedeklemelerini merkezi olarak yönetin",
     "icon": "☁️",
     "color": "purple",
-    "url": "https://www.huaweicloud.com/intl/tr-tr/product/obs.html"
+    "url": "https://www.huaweicloud.com/intl/tr-tr/product/cbr.html"
   },
   {
     "category": "Depolama",
@@ -37,7 +37,7 @@
     "description": "Tamamen yönetilen NAS dosya sistemlerinden yararlanın",
     "icon": "📁",
     "color": "orange",
-    "url": "https://www.huaweicloud.com/intl/tr-tr/product/obs.html"
+    "url": "https://www.huaweicloud.com/intl/tr-tr/product/sfs.html"
   },
   {
     "category": "Depolama",
@@ -45,7 +45,7 @@
     "description": "Büyük veri aktarımını güvenli ve hızlı şekilde gerçekleştirin",
     "icon": "🚚",
     "color": "green",
-    "url": "https://www.huaweicloud.com/intl/tr-tr/product/obs.html"
+    "url": "https://www.huaweicloud.com/intl/tr-tr/product/des.html"
   },
   {
     "category": "Depolama",
@@ -53,7 +53,7 @@
     "description": "Özel fiziksel blok depolama altyapısına sahip olun",
     "icon": "🧱",
     "color": "purple",
-    "url": "https://www.huaweicloud.com/intl/tr-tr/product/obs.html"
+    "url": "https://www.huaweicloud.com/intl/tr-tr/product/dss.html"
   },
   {
     "category": "Depolama",
@@ -61,7 +61,7 @@
     "description": "Bulut sunucularınızda tutarlı yedekleme çözümleri sunar",
     "icon": "💾",
     "color": "lime",
-    "url": "https://www.huaweicloud.com/intl/tr-tr/product/obs.html"
+    "url": "https://www.huaweicloud.com/intl/tr-tr/product/csbs.html"
   },
   {
     "category": "Bilgi İşlem",
@@ -69,7 +69,7 @@
     "description": "Güvenli, ölçeklenebilir ve yüksek performanslı bulut sunucular",
     "icon": "🖥️",
     "color": "gray",
-    "url": "https://www.huaweicloud.com/intl/tr-tr/product/obs.html"
+    "url": "https://www.huaweicloud.com/intl/tr-tr/product/ecs.html"
   },
   {
     "category": "Bilgi İşlem",
@@ -77,7 +77,7 @@
     "description": "Fiziksel sunucu performansına doğrudan erişim sağlayın",
     "icon": "🔩",
     "color": "black",
-    "url": "https://www.huaweicloud.com/intl/tr-tr/product/obs.html"
+    "url": "https://www.huaweicloud.com/intl/tr-tr/product/bms.html"
   },
   {
     "category": "Ağ İşlemleri",
@@ -85,7 +85,7 @@
     "description": "Farklı bölgeler ve bulutlar arası bağlantı çözümleri",
     "icon": "🌐",
     "color": "blue",
-    "url": "https://www.huaweicloud.com/intl/tr-tr/product/obs.html"
+    "url": "https://www.huaweicloud.com/intl/tr-tr/product/cc.html"
   },
   {
     "category": "Ağ İşlemleri",
@@ -93,7 +93,7 @@
     "description": "Trafiği dağıtarak uygulama erişimini optimize edin",
     "icon": "⚖️",
     "color": "orange",
-    "url": "https://www.huaweicloud.com/intl/tr-tr/product/obs.html"
+    "url": "https://www.huaweicloud.com/intl/tr-tr/product/elb.html"
   },
   {
     "category": "Yapay Zeka",
@@ -101,7 +101,7 @@
     "description": "Makine öğrenimi ve model geliştirme platformu",
     "icon": "🤖",
     "color": "purple",
-    "url": "https://www.huaweicloud.com/intl/tr-tr/product/obs.html"
+    "url": "https://www.huaweicloud.com/intl/tr-tr/product/modelarts.html"
   },
   {
     "category": "Veritabanları",
@@ -109,7 +109,7 @@
     "description": "Yüksek performanslı, kurumsal düzeyde dağıtılmış veritabanı",
     "icon": "🗃️",
     "color": "blue",
-    "url": "https://www.huaweicloud.com/intl/tr-tr/product/obs.html"
+    "url": "https://www.huaweicloud.com/intl/tr-tr/product/gaussdb.html"
   },
   {
     "category": "Veritabanları",
@@ -117,7 +117,7 @@
     "description": "Tam yönetilen MySQL veritabanı hizmeti",
     "icon": "🐬",
     "color": "sky",
-    "url": "https://www.huaweicloud.com/intl/tr-tr/product/obs.html"
+    "url": "https://www.huaweicloud.com/intl/tr-tr/product/mysql.html"
   },
   {
     "category": "Veritabanları",
@@ -125,7 +125,7 @@
     "description": "Kurumsal PostgreSQL desteğiyle ilişkisel veritabanı",
     "icon": "🐘",
     "color": "indigo",
-    "url": "https://www.huaweicloud.com/intl/tr-tr/product/obs.html"
+    "url": "https://www.huaweicloud.com/intl/tr-tr/product/pg.html"
   },
   {
     "category": "Analiz",
@@ -133,7 +133,7 @@
     "description": "Sunucusuz veri analiz platformu",
     "icon": "📊",
     "color": "cyan",
-    "url": "https://www.huaweicloud.com/intl/tr-tr/product/obs.html"
+    "url": "https://www.huaweicloud.com/intl/tr-tr/product/dli.html"
   },
   {
     "category": "Analiz",
@@ -141,7 +141,7 @@
     "description": "Kurumsal düzeyde veri ambarı hizmeti",
     "icon": "🏢",
     "color": "gray",
-    "url": "https://www.huaweicloud.com/intl/tr-tr/product/obs.html"
+    "url": "https://www.huaweicloud.com/intl/tr-tr/product/dws.html"
   },
   {
     "category": "Güvenlik ve Uyumluluk",
@@ -149,7 +149,7 @@
     "description": "Sanal ağlarınıza yönelik bulut tabanlı güvenlik duvarı",
     "icon": "🧱",
     "color": "red",
-    "url": "https://www.huaweicloud.com/intl/tr-tr/product/obs.html"
+    "url": "https://www.huaweicloud.com/intl/tr-tr/product/cfw.html"
   },
   {
     "category": "Güvenlik ve Uyumluluk",
@@ -157,7 +157,7 @@
     "description": "Web uygulamalarını yaygın tehditlere karşı koruyun",
     "icon": "🛡️",
     "color": "red",
-    "url": "https://www.huaweicloud.com/intl/tr-tr/product/obs.html"
+    "url": "https://www.huaweicloud.com/intl/tr-tr/product/waf.html"
   },
   {
     "category": "Ara Yazılım",
@@ -165,7 +165,7 @@
     "description": "Uygulamalarınızın operasyonel görünürlüğünü artırın",
     "icon": "📈",
     "color": "yellow",
-    "url": "https://www.huaweicloud.com/intl/tr-tr/product/obs.html"
+    "url": "https://www.huaweicloud.com/intl/tr-tr/product/aom.html"
   },
   {
     "category": "Ara Yazılım",
@@ -173,6 +173,6 @@
     "description": "Yüksek güvenilirlikli, dağılmış mesajlaşma altyapısı",
     "icon": "✉️",
     "color": "green",
-    "url": "https://www.huaweicloud.com/intl/tr-tr/product/obs.html"
+    "url": "https://www.huaweicloud.com/intl/tr-tr/product/dms.html"
   }
 ]
