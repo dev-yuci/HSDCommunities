@@ -6,13 +6,25 @@ import TechnologiesList from "@/components/technologies/TechnologiesList";
 import Footer from "@/components/layout/Footer";
 import technologiesData from '@/data/technologies.json';
 
-// Popüler kategorileri çıkarma
-const popularCategories = Array.from(
+// Kategorileri veri dosyasından çıkarma
+const allCategories = Array.from(
   new Set(technologiesData.map(tech => tech.category))
-).slice(0, 4); // İlk 4 kategoriyi al
+);
+
+// Her kategori için teknoloji sayılarını hesapla
+const categoryStats = allCategories.reduce((acc, category) => {
+  acc[category] = technologiesData.filter(tech => tech.category === category).length;
+  return acc;
+}, {} as Record<string, number>);
+
+// Teknoloji sayısına göre sırala ve ilk 4'ünü al
+const popularCategories = [...allCategories]
+  .sort((a, b) => categoryStats[b] - categoryStats[a])
+  .slice(0, 4);
 
 export default function TechnologiesPage() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [hoveredCategory, setHoveredCategory] = useState<string | null>(null);
 
   const handleCategoryScroll = (category: string = 'Tümü') => {
     // Kategorilere kaydırma yapacak
@@ -22,6 +34,46 @@ export default function TechnologiesPage() {
       // Seçilen kategoriyi aktif hale getir
       setSelectedCategory(category);
     }
+  };
+
+  // Kategori için ikon belirleme
+  const getCategoryIcon = (category: string) => {
+    const icons: Record<string, string> = {
+      'Yapay Zeka': '🤖',
+      'Bulut Altyapısı': '☁️',
+      'Veritabanı': '🗄️',
+      'Güvenlik': '🔒',
+      'DevOps': '⚙️',
+      'Sunucusuz': '📡',
+      'IoT': '📱',
+      'Veri Analitiği': '📊',
+      'Depolama': '💾',
+      'Ağ': '🔌',
+      'Ağ İşlemleri': '🔌',
+      'Bilgi İşlem': '💻'
+    };
+    
+    return icons[category] || '🔍';
+  };
+
+  // Kategori için ikon arkaplan rengi belirleme
+  const getCategoryIconBg = (category: string) => {
+    const colors: Record<string, string> = {
+      'Depolama': 'bg-amber-100 text-amber-600',
+      'Veritabanı': 'bg-teal-100 text-teal-600',
+      'Bilgi İşlem': 'bg-blue-100 text-blue-600',
+      'Ağ İşlemleri': 'bg-teal-100 text-teal-600',
+      'Ağ': 'bg-teal-100 text-teal-600',
+      'Yapay Zeka': 'bg-purple-100 text-purple-600',
+      'Güvenlik': 'bg-red-100 text-red-600',
+      'Bulut Altyapısı': 'bg-blue-100 text-blue-600',
+      'DevOps': 'bg-green-100 text-green-600',
+      'Sunucusuz': 'bg-indigo-100 text-indigo-600',
+      'IoT': 'bg-orange-100 text-orange-600',
+      'Veri Analitiği': 'bg-violet-100 text-violet-600'
+    };
+    
+    return colors[category] || 'bg-gray-100 text-gray-600';
   };
 
   return (
@@ -45,29 +97,46 @@ export default function TechnologiesPage() {
                 Modern iş ihtiyaçlarınızı karşılayacak geniş hizmet yelpazemizi keşfedin. 
                 Bulut altyapısından, yapay zeka çözümlerine kadar her alanda yanınızdayız.
               </p>
-              <div className="flex flex-wrap items-center gap-3">
+              
+              {/* "Daha Fazla" Butonu */}
+              <div className="flex justify-center mb-10">
                 <button 
                   onClick={() => handleCategoryScroll()}
-                  className="inline-flex items-center gap-2 py-2 px-4 bg-white text-blue-700 rounded-lg font-medium shadow-lg hover:shadow-xl transition-all hover:bg-blue-50 cursor-pointer"
+                  className="bg-white group hover:bg-blue-50 text-blue-700 px-6 py-3 rounded-full flex items-center space-x-2 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
-                  </svg>
-                  Tüm Kategoriler
+                  <span className="font-medium">Tüm Teknolojileri Keşfet</span>
+                  <div className="bg-blue-600 rounded-full p-1 group-hover:bg-blue-700 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </div>
                 </button>
-                
-                {/* Popüler Kategori Butonları */}
-                <div className="flex flex-wrap gap-2 mt-2 md:mt-0">
-                  {popularCategories.map((category) => (
-                    <button
-                      key={category}
-                      onClick={() => handleCategoryScroll(category)}
-                      className="py-2 px-3 bg-blue-500 bg-opacity-20 hover:bg-opacity-30 text-white text-sm rounded-lg transition-all hover:shadow-md"
-                    >
-                      {category}
-                    </button>
-                  ))}
-                </div>
+              </div>
+              
+              {/* Popüler Kategori Kartları */}
+              <div className="grid grid-cols-2 gap-3">
+                {popularCategories.map((category) => (
+                  <div 
+                    key={category}
+                    onClick={() => handleCategoryScroll(category)}
+                    onMouseEnter={() => setHoveredCategory(category)}
+                    onMouseLeave={() => setHoveredCategory(null)}
+                    className={`relative p-4 rounded-xl cursor-pointer transition-all duration-300 overflow-hidden
+                      ${hoveredCategory === category 
+                        ? 'bg-white text-blue-700 shadow-lg scale-105' 
+                        : 'bg-blue-500/20 text-white hover:bg-blue-500/30'}`}
+                  >
+                    <div className="flex items-center space-x-3">
+                      <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${getCategoryIconBg(category)}`}>
+                        <span className="text-xl">{getCategoryIcon(category)}</span>
+                      </div>
+                      <div>
+                        <h3 className="font-medium">{category}</h3>
+                        <p className="text-xs opacity-80">{categoryStats[category]} teknoloji</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
             

@@ -16,6 +16,8 @@ const TechnologiesList: React.FC<TechnologiesListProps> = ({ initialCategory = n
   const [isLoading, setIsLoading] = useState(false);
   const [loadingCategory, setLoadingCategory] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
+  const [isSearchFocused, setIsSearchFocused] = useState(false);
+  const [recentSearches] = useState(['Cloud Computing', 'Yapay Zeka', 'Serverless', 'IoT']);
 
   // initialCategory değiştiğinde aktif kategoriyi güncelle
   useEffect(() => {
@@ -57,40 +59,80 @@ const TechnologiesList: React.FC<TechnologiesListProps> = ({ initialCategory = n
         Modern iş ihtiyaçlarınızı karşılayacak bulut tabanlı çözümlerimizi keşfedin.
       </p>
       
-      {/* Arama ve Filtreleme */}
-      <div className="bg-white p-6 rounded-2xl shadow-md mb-10">
-        <div className="flex flex-col lg:flex-row gap-4 items-center">
+      {/* Arama ve Filtreleme - Yeni Tasarım */}
+      <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-8 rounded-3xl shadow-lg mb-12 border border-blue-100">
+        <div className="flex flex-col gap-6">
           {/* Arama Kutusu */}
-          <div className="relative w-full lg:w-1/3">
-            <div className="absolute inset-y-0 left-0 flex items-center pl-3">
-              <svg className="w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <div className="relative w-full">
+            <div className={`absolute inset-y-0 left-0 flex items-center pl-4 transition-all ${isSearchFocused ? 'text-blue-600' : 'text-gray-400'}`}>
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
             </div>
             <input
               type="text"
-              placeholder="Teknoloji ara..."
+              placeholder="Teknoloji veya çözüm ara..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
+              onFocus={() => setIsSearchFocused(true)}
+              onBlur={() => setIsSearchFocused(false)}
+              className={`w-full pl-12 pr-4 py-4 border-2 rounded-2xl text-lg transition-all duration-300 focus:outline-none
+                ${isSearchFocused 
+                  ? 'border-blue-500 bg-white shadow-md' 
+                  : 'border-transparent bg-white/80 shadow-sm hover:bg-white'}`}
             />
+            {searchQuery && (
+              <button 
+                onClick={() => setSearchQuery('')}
+                className="absolute inset-y-0 right-0 flex items-center pr-4 text-gray-400 hover:text-gray-600"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            )}
           </div>
           
+          {/* Önerilen Aramalar */}
+          {isSearchFocused && !searchQuery && (
+            <div className="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 animate-fadeIn">
+              <p className="text-xs uppercase tracking-wider text-gray-500 font-medium mb-3">Önerilen Aramalar</p>
+              <div className="flex flex-wrap gap-2">
+                {recentSearches.map((term, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setSearchQuery(term)}
+                    className="py-1.5 px-3 bg-gray-100 hover:bg-blue-100 hover:text-blue-700 rounded-lg text-sm text-gray-700 transition-all flex items-center gap-1.5"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    {term}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+          
           {/* Kategori Filtreleri */}
-          <div id="categories" className="flex-1 overflow-x-auto scroll-mt-24 pb-2">
-            <div className="flex items-center gap-2 md:gap-3 min-w-max">
+          <div className="mt-2">
+            <div className="flex items-center mb-4">
+              <span className="w-1.5 h-6 bg-gradient-to-b from-blue-600 to-indigo-700 rounded-full mr-2"></span>
+              <h3 className="text-sm font-semibold tracking-wider text-gray-800 bg-gradient-to-r from-blue-600 to-indigo-700 bg-clip-text text-transparent">KATEGORİLER</h3>
+            </div>
+            <div id="categories" className="flex flex-wrap gap-2.5 scroll-mt-24">
               {categories.map(category => (
                 <button
                   key={category}
                   onClick={() => handleCategoryChange(category)}
                   disabled={isLoading}
-                  className={`px-4 py-2.5 rounded-xl text-sm md:text-base transition-all duration-300 relative whitespace-nowrap
+                  className={`px-4 py-2.5 rounded-xl text-sm transition-all duration-300 relative 
                     ${
                       activeCategory === category
-                        ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-md font-medium'
+                        ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg font-medium scale-105'
                         : loadingCategory === category && isLoading
                         ? 'bg-blue-50 text-blue-700'
-                        : 'bg-gray-50 text-gray-700 hover:bg-gray-100 hover:scale-105'
+                        : 'bg-white text-gray-700 hover:shadow-md hover:scale-105 border border-gray-100'
                     }
                     ${isLoading ? 'cursor-wait' : 'cursor-pointer'}
                   `}
@@ -123,15 +165,18 @@ const TechnologiesList: React.FC<TechnologiesListProps> = ({ initialCategory = n
         </div>
         
         {searchQuery && (
-          <button 
-            onClick={() => setSearchQuery('')}
-            className="text-gray-500 hover:text-gray-700 text-sm flex items-center"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            Aramayı Temizle
-          </button>
+          <div className="bg-blue-50 rounded-full px-4 py-1.5 flex items-center text-blue-700">
+            <span className="mr-2 text-sm">Aranan:</span>
+            <span className="font-medium text-sm">{searchQuery}</span>
+            <button 
+              onClick={() => setSearchQuery('')}
+              className="ml-2 hover:text-blue-900 transition-colors"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
         )}
       </div>
       
@@ -173,7 +218,7 @@ const TechnologiesList: React.FC<TechnologiesListProps> = ({ initialCategory = n
           {searchQuery && (
             <button 
               onClick={() => setSearchQuery('')} 
-              className="inline-flex items-center text-blue-600 hover:text-blue-800"
+              className="inline-flex items-center px-4 py-2 bg-blue-50 hover:bg-blue-100 text-blue-700 rounded-full transition-colors"
             >
               <svg className="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
