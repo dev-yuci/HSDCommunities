@@ -10,6 +10,8 @@ export interface ClubData {
   };
   memberCount: number;
   yearFounded: number;
+  eventCount?: number;
+  awardCount?: number; 
   logo?: string;
   description: string;
   website?: string;

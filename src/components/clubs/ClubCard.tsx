@@ -52,21 +52,21 @@ export default function ClubCard({ club }: { club: ClubData }) {
                 <UsersIcon size={16} />
               </div>
               <p className="text-xs text-gray-500">Üyeler</p>
-              <p className="text-sm font-medium text-gray-800">{club.members || 120}+</p>
+              <p className="text-sm font-medium text-gray-800">{club.memberCount || 120}+</p>
             </div>
             <div className="bg-gray-50 rounded-lg p-2 text-center">
               <div className="flex justify-center text-indigo-600 mb-1">
                 <CalendarIcon size={16} />
               </div>
               <p className="text-xs text-gray-500">Etkinlikler</p>
-              <p className="text-sm font-medium text-gray-800">{club.events || 15}+</p>
+              <p className="text-sm font-medium text-gray-800">{club.eventCount || 15}+</p>
             </div>
             <div className="bg-gray-50 rounded-lg p-2 text-center">
               <div className="flex justify-center text-indigo-600 mb-1">
                 <TrophyIcon size={16} />
               </div>
               <p className="text-xs text-gray-500">Ödüller</p>
-              <p className="text-sm font-medium text-gray-800">{club.awards || 8}</p>
+              <p className="text-sm font-medium text-gray-800">{club.awardCount || 8}</p>
             </div>
           </div>
         </div>

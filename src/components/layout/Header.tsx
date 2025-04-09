@@ -31,19 +31,19 @@ export default function Header() {
                 Ana Sayfa
               </Link>
               <Link 
-                href="/etkinlikler" 
+                href="/events" 
                 className="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300"
               >
                 Etkinlikler
               </Link>
               <Link 
-                href="/kulupler" 
+                href="/clubs" 
                 className="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300"
               >
                 Kulüpler
               </Link>
               <Link 
-                href="/teknolojiler" 
+                href="/technologies" 
                 className="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300"
               >
                 Teknolojiler

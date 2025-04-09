@@ -5,7 +5,7 @@ import ClubList from '@/components/clubs/ClubList';
 import Footer from '@/components/layout/Footer';
 import Header from '@/components/layout/Header';
 
-export default function KuluplerPage() {
+export default function ClubsPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-blue-50">
       <Header />
