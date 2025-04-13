@@ -93,27 +93,6 @@ const TechnologiesList: React.FC<TechnologiesListProps> = ({ initialCategory = n
             )}
           </div>
           
-          {/* Önerilen Aramalar */}
-          {isSearchFocused && !searchQuery && (
-            <div className="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 animate-fadeIn">
-              <p className="text-xs uppercase tracking-wider text-gray-500 font-medium mb-3">Önerilen Aramalar</p>
-              <div className="flex flex-wrap gap-2">
-                {recentSearches.map((term, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setSearchQuery(term)}
-                    className="py-1.5 px-3 bg-gray-100 hover:bg-blue-100 hover:text-blue-700 rounded-lg text-sm text-gray-700 transition-all flex items-center gap-1.5"
-                  >
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                    {term}
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
-          
           {/* Kategori Filtreleri */}
           <div className="mt-2">
             <div className="flex items-center mb-4">
