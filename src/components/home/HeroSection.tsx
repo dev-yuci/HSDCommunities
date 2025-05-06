@@ -23,7 +23,7 @@ export default function HeroSection() {
             <div className="sm:text-center lg:text-left">
               <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-5xl md:text-6xl">
                 <span className="block xl:inline">Huawei Student</span>{' '}
-                <span className="block text-red-600 dark:text-red-400 xl:inline">Developers</span>
+                <span className="block text-blue-600 dark:text-blue-400 xl:inline">Developers</span>
               </h1>
               <p className="mt-3 text-base text-gray-500 dark:text-gray-400 sm:mx-auto sm:mt-5 sm:max-w-xl sm:text-lg md:mt-5 md:text-xl lg:mx-0">
                 Huawei teknolojilerini öğrenmek, geliştirmek ve paylaşmak isteyen öğrenciler için Türkiye'nin en büyük öğrenci geliştirici topluluğuna katılın.
@@ -45,7 +45,7 @@ export default function HeroSection() {
         </div>
       </div>
       <div className="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
-        <div className="h-56 w-full bg-gradient-to-br from-red-500 to-gray-800 object-cover sm:h-72 md:h-96 lg:h-full lg:w-full">
+        <div className="h-56 w-full bg-gradient-to-br from-blue-500 to-indigo-800 object-cover sm:h-72 md:h-96 lg:h-full lg:w-full">
           <div className="h-full w-full bg-opacity-50 flex items-center justify-center">
             <svg width="220" height="220" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-white">
               <defs>

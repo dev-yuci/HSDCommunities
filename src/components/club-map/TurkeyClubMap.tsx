@@ -28,7 +28,7 @@ const mapOptions = {
       featureType: 'administrative.country',
       elementType: 'geometry.stroke',
       stylers: [
-        { color: '#ff4136' },
+        { color: '#3B82F6' },
         { weight: 2 }
       ]
     }
@@ -75,9 +75,9 @@ const TurkeyClubMap: React.FC = () => {
   // Google Maps API yüklenirken hata oluşursa
   if (loadError) {
     return (
-      <div className="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg text-center">
-        <h3 className="text-lg font-semibold text-red-600 dark:text-red-400">Harita yüklenirken hata oluştu</h3>
-        <p className="text-red-500 dark:text-red-300">Google Haritalar API'si yüklenemedi. Lütfen daha sonra tekrar deneyin.</p>
+      <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg text-center">
+        <h3 className="text-lg font-semibold text-blue-600 dark:text-blue-400">Harita yüklenirken hata oluştu</h3>
+        <p className="text-blue-500 dark:text-blue-300">Google Haritalar API'si yüklenemedi. Lütfen daha sonra tekrar deneyin.</p>
       </div>
     );
   }
@@ -141,7 +141,7 @@ const TurkeyClubMap: React.FC = () => {
       <div className="absolute bottom-4 left-4 bg-white dark:bg-gray-800 p-3 rounded-xl shadow-lg z-10 max-w-xs w-auto border border-gray-100 dark:border-gray-700 backdrop-blur-sm bg-opacity-90 dark:bg-opacity-90">
         <div className="flex flex-col items-start">
           <div className="flex items-center mb-1">
-            <svg className="w-4 h-4 text-red-500 dark:text-red-400 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="w-4 h-4 text-blue-500 dark:text-blue-400 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
             <h4 className="text-sm font-bold text-gray-900 dark:text-white">Türkiye'deki HSD Kulüpleri</h4>

@@ -16,15 +16,20 @@ const EventCard = ({ event, onClick, categoryColor = "bg-blue-100 text-blue-700"
   // Etkinlik kategorisine göre kapak resmi seç
   const getCoverImage = (category?: string) => {
     const images: Record<string, string> = {
-      "Workshop": "https://images.unsplash.com/photo-1540317580384-e5d43867caa6?w=500",
-      "Seminer": "https://images.unsplash.com/photo-1558008258-d9f4aa2a7926?w=500",
+      // Huawei temalı teknoloji ve geliştirici görselleri
+      "Workshop": "https://images.unsplash.com/photo-1551434678-e076c223a692?w=500",
+      "Seminer": "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=500",
       "Hackathon": "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=500",
-      "Panel": "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=500",
-      "Konferans": "https://images.unsplash.com/photo-1560523159-4a9692d222f9?w=500",
-      "Meetup": "https://images.unsplash.com/photo-1528605248644-14dd04022da1?w=500"
+      "Panel": "https://images.unsplash.com/photo-1591115765373-5207764f72e4?w=500",
+      "Konferans": "https://images.unsplash.com/photo-1540317580384-e5d43867caa6?w=500",
+      "Meetup": "https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=500",
+      // Eklediğimiz yeni kategoriler
+      "Bootcamp": "https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=500",
+      "Webinar": "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=500", 
+      "Eğitim": "https://images.unsplash.com/photo-1531538606174-0f90ff5dce83?w=500"
     };
     
-    return images[category || "Workshop"] || "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=500";
+    return images[category || "Workshop"] || "https://images.unsplash.com/photo-1496171367470-9ed9a91ea931?w=500";
   };
 
   // Etkinlik konumun kısa gösterimi

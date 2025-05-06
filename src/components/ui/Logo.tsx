@@ -21,12 +21,12 @@ export default function Logo({ className = '' }: LogoProps) {
         {/* Huawei modern teknoloji logosu - Ağ bağlantıları ve dayanıklılık konsepti */}
         <defs>
           <linearGradient id="techGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#FF3A2F" />
-            <stop offset="100%" stopColor="#B30000" />
+            <stop offset="0%" stopColor="#3B82F6" />
+            <stop offset="100%" stopColor="#1E40AF" />
           </linearGradient>
           <linearGradient id="nodeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#FF5B54" />
-            <stop offset="100%" stopColor="#FF3A2F" />
+            <stop offset="0%" stopColor="#60A5FA" />
+            <stop offset="100%" stopColor="#3B82F6" />
           </linearGradient>
         </defs>
         
@@ -40,12 +40,12 @@ export default function Logo({ className = '' }: LogoProps) {
           
           {/* Bağlantı çizgileri */}
           <g>
-            <path d="M0,-25 L0,-35" stroke="#FF3A2F" strokeWidth="2" strokeLinecap="round" />
-            <path d="M21.65,12.5 L30,18" stroke="#FF3A2F" strokeWidth="2" strokeLinecap="round" />
-            <path d="M-21.65,12.5 L-30,18" stroke="#FF3A2F" strokeWidth="2" strokeLinecap="round" />
-            <path d="M21.65,-12.5 L30,-18" stroke="#FF3A2F" strokeWidth="2" strokeLinecap="round" />
-            <path d="M-21.65,-12.5 L-30,-18" stroke="#FF3A2F" strokeWidth="2" strokeLinecap="round" />
-            <path d="M0,25 L0,35" stroke="#FF3A2F" strokeWidth="2" strokeLinecap="round" />
+            <path d="M0,-25 L0,-35" stroke="#3B82F6" strokeWidth="2" strokeLinecap="round" />
+            <path d="M21.65,12.5 L30,18" stroke="#3B82F6" strokeWidth="2" strokeLinecap="round" />
+            <path d="M-21.65,12.5 L-30,18" stroke="#3B82F6" strokeWidth="2" strokeLinecap="round" />
+            <path d="M21.65,-12.5 L30,-18" stroke="#3B82F6" strokeWidth="2" strokeLinecap="round" />
+            <path d="M-21.65,-12.5 L-30,-18" stroke="#3B82F6" strokeWidth="2" strokeLinecap="round" />
+            <path d="M0,25 L0,35" stroke="#3B82F6" strokeWidth="2" strokeLinecap="round" />
             
             {/* Bağlantı noktaları */}
             <circle cx="0" cy="-35" r="4" fill="url(#nodeGradient)" />
@@ -67,7 +67,7 @@ export default function Logo({ className = '' }: LogoProps) {
           <circle cx="0" cy="0" r="4" fill="#FFFFFF" opacity="0.85" />
         </g>
       </svg>
-      <span className="text-2xl font-bold text-red-600 dark:text-red-400">HSD Türkiye</span>
+      <span className="text-2xl font-bold text-blue-600 dark:text-blue-400">HSD Türkiye</span>
     </Link>
   );
 } 

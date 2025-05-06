@@ -16,7 +16,7 @@ const ClubMapSection: React.FC<ClubMapSectionProps> = ({
     <section className="py-16 bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <span className="bg-clip-text text-transparent bg-gradient-to-r from-red-600 to-red-400 text-lg font-bold tracking-wider uppercase relative inline-block pb-2 after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-20 after:h-1 after:bg-gradient-to-r after:from-red-500 after:to-red-300 after:rounded-full">
+          <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-400 text-lg font-bold tracking-wider uppercase relative inline-block pb-2 after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-20 after:h-1 after:bg-gradient-to-r after:from-blue-500 after:to-blue-300 after:rounded-full">
             Üniversite Kulüpleri
           </span>
           <h2 className="mt-4 text-5xl font-black text-gray-900 dark:text-white tracking-tight leading-tight">
@@ -33,8 +33,8 @@ const ClubMapSection: React.FC<ClubMapSectionProps> = ({
         
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-12">
           <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-4 border border-gray-100 dark:border-gray-700 hover:shadow-lg transition-shadow duration-300 flex flex-col items-center text-center">
-            <div className="w-12 h-12 rounded-full bg-red-500/10 flex items-center justify-center mb-3">
-              <div className="w-5 h-5 rounded-full bg-red-500 shadow-sm shadow-red-300 dark:shadow-red-900/30"></div>
+            <div className="w-12 h-12 rounded-full bg-blue-500/10 flex items-center justify-center mb-3">
+              <div className="w-5 h-5 rounded-full bg-blue-500 shadow-sm shadow-blue-300 dark:shadow-blue-900/30"></div>
             </div>
             <div>
               <p className="text-sm text-gray-500 dark:text-gray-400 font-medium">Üniversite Kulübü</p>
@@ -43,8 +43,8 @@ const ClubMapSection: React.FC<ClubMapSectionProps> = ({
           </div>
           
           <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-4 border border-gray-100 dark:border-gray-700 hover:shadow-lg transition-shadow duration-300 flex flex-col items-center text-center">
-            <div className="w-12 h-12 rounded-full bg-red-500/10 flex items-center justify-center mb-3">
-              <span className="text-xl font-bold text-red-500 dark:text-red-400">56</span>
+            <div className="w-12 h-12 rounded-full bg-blue-500/10 flex items-center justify-center mb-3">
+              <span className="text-xl font-bold text-blue-500 dark:text-blue-400">56</span>
             </div>
             <div>
               <p className="text-sm text-gray-500 dark:text-gray-400 font-medium">Aktif Topluluk</p>
@@ -53,8 +53,8 @@ const ClubMapSection: React.FC<ClubMapSectionProps> = ({
           </div>
           
           <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-4 border border-gray-100 dark:border-gray-700 hover:shadow-lg transition-shadow duration-300 flex flex-col items-center text-center">
-            <div className="w-12 h-12 rounded-full bg-red-500/10 flex items-center justify-center mb-3">
-              <span className="text-xl font-bold text-red-500 dark:text-red-400">20</span>
+            <div className="w-12 h-12 rounded-full bg-blue-500/10 flex items-center justify-center mb-3">
+              <span className="text-xl font-bold text-blue-500 dark:text-blue-400">20</span>
             </div>
             <div>
               <p className="text-sm text-gray-500 dark:text-gray-400 font-medium">Şehir</p>
@@ -63,8 +63,8 @@ const ClubMapSection: React.FC<ClubMapSectionProps> = ({
           </div>
           
           <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-4 border border-gray-100 dark:border-gray-700 hover:shadow-lg transition-shadow duration-300 flex flex-col items-center text-center">
-            <div className="w-12 h-12 rounded-full bg-red-500/10 flex items-center justify-center mb-3">
-              <span className="text-md font-bold text-red-500 dark:text-red-400">3.6K+</span>
+            <div className="w-12 h-12 rounded-full bg-blue-500/10 flex items-center justify-center mb-3">
+              <span className="text-md font-bold text-blue-500 dark:text-blue-400">3.6K+</span>
             </div>
             <div>
               <p className="text-sm text-gray-500 dark:text-gray-400 font-medium">Toplam Üye</p>

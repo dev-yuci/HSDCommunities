@@ -10,6 +10,7 @@ export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
   const isLoginPage = pathname === '/login';
+  const isRegisterPage = pathname === '/register';
 
   return (
     <header className="bg-white dark:bg-gray-900 shadow-sm border-b border-gray-200 dark:border-gray-800">
@@ -23,8 +24,8 @@ export default function Header() {
               <Link 
                 href="/" 
                 className={`inline-flex items-center px-1 pt-1 border-b-2 ${
-                  pathname === '/' && !isLoginPage 
-                    ? 'border-red-500 text-gray-900 dark:text-gray-100' 
+                  pathname === '/' && !isLoginPage && !isRegisterPage
+                    ? 'border-blue-500 text-gray-900 dark:text-gray-100' 
                     : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300'
                 } text-sm font-medium`}
               >
@@ -32,25 +33,41 @@ export default function Header() {
               </Link>
               <Link 
                 href="/events" 
-                className="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300"
+                className={`inline-flex items-center px-1 pt-1 border-b-2 ${
+                  pathname === '/events' 
+                    ? 'border-blue-500 text-gray-900 dark:text-gray-100' 
+                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300'
+                } text-sm font-medium`}
               >
                 Etkinlikler
               </Link>
               <Link 
                 href="/clubs" 
-                className="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300"
+                className={`inline-flex items-center px-1 pt-1 border-b-2 ${
+                  pathname === '/clubs' 
+                    ? 'border-blue-500 text-gray-900 dark:text-gray-100' 
+                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300'
+                } text-sm font-medium`}
               >
                 Kulüpler
               </Link>
               <Link 
                 href="/technologies" 
-                className="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300"
+                className={`inline-flex items-center px-1 pt-1 border-b-2 ${
+                  pathname === '/technologies' 
+                    ? 'border-blue-500 text-gray-900 dark:text-gray-100' 
+                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300'
+                } text-sm font-medium`}
               >
                 Teknolojiler
               </Link>
               <Link 
                 href="/blog" 
-                className="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300"
+                className={`inline-flex items-center px-1 pt-1 border-b-2 ${
+                  pathname === '/blog' 
+                    ? 'border-blue-500 text-gray-900 dark:text-gray-100' 
+                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300'
+                } text-sm font-medium`}
               >
                 Blog
               </Link>
@@ -60,12 +77,14 @@ export default function Header() {
             <Link href="/login">
               <Button variant="outline" size="sm">Giriş Yap</Button>
             </Link>
-            <Button variant="primary" size="sm">Kulübe Katıl</Button>
+            <Link href="/register">
+              <Button variant="primary" size="sm">Kulübe Katıl</Button>
+            </Link>
           </div>
           <div className="-mr-2 flex items-center sm:hidden">
             <button
               type="button"
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-red-500"
+              className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
               <span className="sr-only">Menüyü aç</span>
@@ -89,34 +108,50 @@ export default function Header() {
             <Link 
               href="/" 
               className={`block pl-3 pr-4 py-2 border-l-4 ${
-                pathname === '/' && !isLoginPage
-                  ? 'border-red-500 text-gray-900 dark:text-white bg-red-50 dark:bg-red-900/20'
+                pathname === '/' && !isLoginPage && !isRegisterPage
+                  ? 'border-blue-500 text-gray-900 dark:text-white bg-blue-50 dark:bg-blue-900/20'
                   : 'border-transparent text-gray-500 hover:text-gray-700 hover:bg-gray-50 hover:border-gray-300 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-300'
               } text-base font-medium`}
             >
               Ana Sayfa
             </Link>
             <Link 
-              href="/etkinlikler" 
-              className="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-500 hover:text-gray-700 hover:bg-gray-50 hover:border-gray-300 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-300"
+              href="/events" 
+              className={`block pl-3 pr-4 py-2 border-l-4 ${
+                pathname === '/events'
+                  ? 'border-blue-500 text-gray-900 dark:text-white bg-blue-50 dark:bg-blue-900/20'
+                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:bg-gray-50 hover:border-gray-300 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-300'
+              } text-base font-medium`}
             >
               Etkinlikler
             </Link>
             <Link 
-              href="/kulupler" 
-              className="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-500 hover:text-gray-700 hover:bg-gray-50 hover:border-gray-300 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-300"
+              href="/clubs" 
+              className={`block pl-3 pr-4 py-2 border-l-4 ${
+                pathname === '/clubs'
+                  ? 'border-blue-500 text-gray-900 dark:text-white bg-blue-50 dark:bg-blue-900/20'
+                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:bg-gray-50 hover:border-gray-300 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-300'
+              } text-base font-medium`}
             >
               Kulüpler
             </Link>
             <Link 
-              href="/teknolojiler" 
-              className="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-500 hover:text-gray-700 hover:bg-gray-50 hover:border-gray-300 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-300"
+              href="/technologies" 
+              className={`block pl-3 pr-4 py-2 border-l-4 ${
+                pathname === '/technologies'
+                  ? 'border-blue-500 text-gray-900 dark:text-white bg-blue-50 dark:bg-blue-900/20'
+                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:bg-gray-50 hover:border-gray-300 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-300'
+              } text-base font-medium`}
             >
               Teknolojiler
             </Link>
             <Link 
               href="/blog" 
-              className="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-500 hover:text-gray-700 hover:bg-gray-50 hover:border-gray-300 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-300"
+              className={`block pl-3 pr-4 py-2 border-l-4 ${
+                pathname === '/blog'
+                  ? 'border-blue-500 text-gray-900 dark:text-white bg-blue-50 dark:bg-blue-900/20'
+                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:bg-gray-50 hover:border-gray-300 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-300'
+              } text-base font-medium`}
             >
               Blog
             </Link>
@@ -125,7 +160,9 @@ export default function Header() {
             <Link href="/login" className="w-full">
               <Button variant="outline" className="w-full">Giriş Yap</Button>
             </Link>
-            <Button variant="primary" className="w-full">Kulübe Katıl</Button>
+            <Link href="/register" className="w-full">
+              <Button variant="primary" className="w-full">Kulübe Katıl</Button>
+            </Link>
           </div>
         </div>
       )}
