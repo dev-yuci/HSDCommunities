@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Button from '../ui/Button';
 import { useRouter } from 'next/navigation';
@@ -14,32 +14,52 @@ const LoginForm: React.FC = () => {
   const [rememberMe, setRememberMe] = useState(false);
   const router = useRouter();
 
+  // Sayfa yüklendiğinde token kontrolü
+  useEffect(() => {
+    const token = localStorage.getItem('auth_token');
+    if (token) {
+      router.push('/dashboard');
+    }
+  }, [router]);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
     setIsLoading(true);
     
-    // Burada normalde API ile authentication yapılır
-    // Şimdilik sadece simülasyon amaçlı 1 saniyelik bekletme koyuyorum
     try {
       await new Promise(resolve => setTimeout(resolve, 1000));
       
-      // Başarılı giriş simülasyonu
-      console.log('Logged in with:', email, password, 'Remember me:', rememberMe);
-      
-      // Beni hatırlayı işleme
-      if (rememberMe) {
-        // LocalStorage'a kullanıcı bilgilerini kaydedebiliriz
-        // Gerçek uygulamada token veya kullanıcı ID'si kaydedilir
-        console.log('Remember me enabled, saving user session');
+      // Admin/admin kontrolü
+      if (email === 'admin' && password === 'admin') {
+        // Başarılı giriş - token oluştur ve sakla
+        const token = generateToken();
+        localStorage.setItem('auth_token', token);
+        localStorage.setItem('user_role', 'admin');
+        localStorage.setItem('user_name', 'Admin Kullanıcı');
+        
+        if (rememberMe) {
+          localStorage.setItem('remember_me', 'true');
+        } else {
+          localStorage.removeItem('remember_me');
+        }
+        
+        // Dashboard'a yönlendir
+        router.push('/dashboard');
+      } else {
+        // Başarısız giriş
+        setError('Geçersiz kullanıcı adı veya şifre.');
       }
-      
-      router.push('/'); // Ana sayfaya yönlendir
     } catch (err) {
       setError('Giriş yapılırken bir hata oluştu. Lütfen tekrar deneyiniz.');
     } finally {
       setIsLoading(false);
     }
+  };
+
+  // Basit bir token oluşturucu
+  const generateToken = (): string => {
+    return 'auth_' + Math.random().toString(36).substring(2) + Date.now().toString(36);
   };
 
   const handleGoogleLogin = () => {
@@ -62,7 +82,7 @@ const LoginForm: React.FC = () => {
         
         <div className="p-8">
           {error && (
-            <div className="mb-4 p-3 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg text-blue-700 dark:text-blue-300 text-sm">
+            <div className="mb-4 p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg text-red-700 dark:text-red-300 text-sm">
               {error}
             </div>
           )}
@@ -70,15 +90,15 @@ const LoginForm: React.FC = () => {
           <form onSubmit={handleSubmit}>
             <div className="mb-6">
               <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                E-posta
+                Kullanıcı Adı
               </label>
               <input
                 id="email"
-                type="email"
+                type="text"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                placeholder="example@university.edu.tr"
+                placeholder="Kullanıcı adınızı girin (admin)"
                 className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg text-gray-800 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
               />
             </div>
@@ -101,7 +121,7 @@ const LoginForm: React.FC = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                placeholder="********"
+                placeholder="Şifrenizi girin (admin)"
                 className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg text-gray-800 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
               />
             </div>
@@ -135,9 +155,9 @@ const LoginForm: React.FC = () => {
             
             <div className="mb-6">
               <Button
+                type="submit"
                 variant="primary"
                 className="w-full py-3 flex items-center justify-center relative"
-                onClick={() => {}} // Form submit ile handle ediliyor
               >
                 {isLoading ? (
                   <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -151,21 +171,24 @@ const LoginForm: React.FC = () => {
             </div>
           </form>
           
-          <div className="flex flex-col items-center space-y-4">
-            <div className="relative w-full h-px bg-gray-200 dark:bg-gray-700">
-              <span className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white dark:bg-gray-800 px-2 text-sm text-gray-500 dark:text-gray-400">
-                veya
-              </span>
+          <div className="relative my-6">
+            <div className="absolute inset-0 flex items-center">
+              <div className="w-full border-t border-gray-200 dark:border-gray-700"></div>
             </div>
-            
+            <div className="relative flex justify-center text-sm">
+              <span className="px-2 bg-white dark:bg-gray-800 text-gray-500 dark:text-gray-400">veya</span>
+            </div>
+          </div>
+          
+          <div>
             <button
               type="button"
               onClick={handleGoogleLogin}
-              disabled={isLoading || isGoogleLoading}
-              className="w-full group flex items-center justify-center py-2.5 px-4 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+              className="w-full flex items-center justify-center py-3 px-4 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 shadow-sm transition-colors group"
+              disabled={isGoogleLoading}
             >
               {isGoogleLoading ? (
-                <svg className="animate-spin h-5 w-5 text-gray-700 dark:text-gray-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <svg className="animate-spin h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                   <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                   <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                 </svg>
