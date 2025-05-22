@@ -2,28 +2,23 @@
 
 import { ReactNode, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { useAuthContext } from '@/contexts/AuthContext';
+import { useFirestoreAuthContext } from '@/contexts/FirestoreAuthContext';
+import { safeGetItem } from '@/lib/firestoreAuth';
 
 // Tarayıcı ortamında olup olmadığımızı kontrol eden yardımcı fonksiyon
 const isBrowser = () => typeof window !== 'undefined';
 
-// localStorage'a güvenli erişim sağlayan yardımcı fonksiyon
-const safeGetItem = (key: string): string | null => {
-  if (isBrowser()) {
-    return localStorage.getItem(key);
-  }
-  return null;
-};
-
 interface RouteGuardProps {
   children: ReactNode;
+  requiredRole?: string; // Belirli sayfalar için rol kısıtlaması eklenebilir
 }
 
-export default function RouteGuard({ children }: RouteGuardProps) {
-  const { user, loading } = useAuthContext();
+export default function RouteGuard({ children, requiredRole }: RouteGuardProps) {
+  const { user, loading, role } = useFirestoreAuthContext();
   const router = useRouter();
   const [isChecking, setIsChecking] = useState(true);
   const [hasAuth, setHasAuth] = useState(false);
+  const [hasRequiredRole, setHasRequiredRole] = useState(true);
 
   useEffect(() => {
     // Yükleme tamamlandıysa kontrol yap
@@ -32,6 +27,31 @@ export default function RouteGuard({ children }: RouteGuardProps) {
       const token = safeGetItem('auth_token');
       const isAuthenticated = !!user || !!token;
       setHasAuth(isAuthenticated);
+
+      // Rol kontrolü (eğer bir rol gerekiyorsa)
+      if (requiredRole && isAuthenticated) {
+        // Kullanıcı rolünü kontrol et
+        const userRole = user?.role || safeGetItem('user_role') || 'guest';
+        const hasRole = userRole === requiredRole;
+        setHasRequiredRole(hasRole);
+
+        // Gerekli role sahip değilse dashboard'a yönlendir
+        if (!hasRole) {
+          console.log('Yetkiniz yok, ana sayfaya yönlendiriliyor...');
+          
+          if (isChecking) {
+            setIsChecking(false);
+            router.push('/dashboard');
+            
+            setTimeout(() => {
+              if (isBrowser()) {
+                window.location.href = '/dashboard';
+              }
+            }, 500);
+          }
+          return;
+        }
+      }
 
       // Kullanıcı oturum açmamışsa login sayfasına yönlendir
       if (!isAuthenticated) {
@@ -57,7 +77,7 @@ export default function RouteGuard({ children }: RouteGuardProps) {
         setIsChecking(false);
       }
     }
-  }, [user, loading, router, isChecking]);
+  }, [user, loading, router, isChecking, requiredRole, role]);
 
   // Yükleme sırasında veya kontrol sürerken yükleme göster
   if (loading || isChecking) {
@@ -71,11 +91,11 @@ export default function RouteGuard({ children }: RouteGuardProps) {
     );
   }
 
-  // Kullanıcı veya token yoksa içerik gösterme 
-  if (!hasAuth) {
+  // Kullanıcı veya token yoksa veya gerekli role sahip değilse içerik gösterme
+  if (!hasAuth || !hasRequiredRole) {
     return null;
   }
 
-  // Kullanıcı oturum açmışsa içeriği göster
+  // Kullanıcı oturum açmış ve gerekli role sahipse içeriği göster
   return <>{children}</>;
 } 

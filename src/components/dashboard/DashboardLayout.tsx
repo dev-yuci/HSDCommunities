@@ -3,6 +3,8 @@
 import React, { useState, useEffect } from 'react';
 import Sidebar from './Sidebar';
 import { useRouter } from 'next/navigation';
+import { useFirestoreAuthContext } from '@/contexts/FirestoreAuthContext';
+import { safeGetItem } from '@/lib/firestoreAuth';
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
@@ -10,27 +12,19 @@ interface DashboardLayoutProps {
 
 export default function DashboardLayout({ children }: DashboardLayoutProps) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [isAuthorized, setIsAuthorized] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const { user, loading, isAuthenticated } = useFirestoreAuthContext();
   const router = useRouter();
 
   // Auth kontrolü
   useEffect(() => {
-    // Token kontrolü
-    const token = localStorage.getItem('auth_token');
-    
-    if (!token) {
-      // Token yoksa login sayfasına yönlendir
+    // Kullanıcı yoksa ve yükleme tamamlandıysa login sayfasına yönlendir
+    if (!loading && !isAuthenticated) {
       router.push('/login');
-    } else {
-      setIsAuthorized(true);
     }
-    
-    setIsLoading(false);
-  }, [router]);
+  }, [loading, isAuthenticated, router]);
 
   // Sayfa yüklenirken loading göster
-  if (isLoading) {
+  if (loading) {
     return (
       <div className="h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
         <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-blue-500"></div>
@@ -39,7 +33,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
   }
 
   // Yetkisiz erişim
-  if (!isAuthorized) {
+  if (!isAuthenticated) {
     return null; // Router login'e yönlendirdiği için bir şey göstermeye gerek yok
   }
 

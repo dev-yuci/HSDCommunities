@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useAuthContext } from '@/contexts/AuthContext';
+import { useFirestoreAuthContext } from '@/contexts/FirestoreAuthContext';
 
 type SidebarItem = {
   name: string;
@@ -120,7 +120,7 @@ export default function Sidebar() {
   const [userName, setUserName] = useState('');
   const [userRole, setUserRole] = useState('');
   const [isLoggingOut, setIsLoggingOut] = useState(false);
-  const { logout, user } = useAuthContext();
+  const { logout, user } = useFirestoreAuthContext();
 
   useEffect(() => {
     if (user) {

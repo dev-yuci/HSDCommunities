@@ -4,41 +4,21 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Button from '../ui/Button';
 import { useRouter } from 'next/navigation';
-import { useAuthContext } from '@/contexts/AuthContext';
+import { useFirestoreAuthContext } from '@/contexts/FirestoreAuthContext';
+import { safeGetItem, safeSetItem, safeRemoveItem } from '@/lib/firestoreAuth';
 
 // Tarayıcı ortamında olup olmadığımızı kontrol eden yardımcı fonksiyon
 const isBrowser = () => typeof window !== 'undefined';
-
-// localStorage'a güvenli erişim sağlayan yardımcı fonksiyonlar
-const safeSetItem = (key: string, value: string): void => {
-  if (isBrowser()) {
-    localStorage.setItem(key, value);
-  }
-};
-
-const safeRemoveItem = (key: string): void => {
-  if (isBrowser()) {
-    localStorage.removeItem(key);
-  }
-};
-
-const safeGetItem = (key: string): string | null => {
-  if (isBrowser()) {
-    return localStorage.getItem(key);
-  }
-  return null;
-};
 
 const LoginForm: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [isGoogleLoading, setIsGoogleLoading] = useState(false);
   const [error, setError] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
   const [redirected, setRedirected] = useState(false);
   const router = useRouter();
-  const { login, loginGoogle, user } = useAuthContext();
+  const { login, user, role, logout } = useFirestoreAuthContext();
 
   // Sayfa yüklendiğinde veya kullanıcı güncellendiğinde kontrol et
   useEffect(() => {
@@ -48,6 +28,7 @@ const LoginForm: React.FC = () => {
     // Kullanıcı veya token mevcutsa ve daha önce yönlendirme yapılmadıysa
     if ((user || token) && !redirected) {
       console.log('Kullanıcı oturum açmış, dashboard\'a yönlendiriliyor...');
+      console.log('Kullanıcı rolü:', role);
       setRedirected(true);
       
       // İki yönlendirme yöntemini de deneyelim
@@ -61,7 +42,7 @@ const LoginForm: React.FC = () => {
         }
       }, 500);
     }
-  }, [user, router, redirected]);
+  }, [user, router, redirected, role]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -72,20 +53,19 @@ const LoginForm: React.FC = () => {
       const result = await login(email, password);
       
       if (result.error) {
-        // Firebase hata kodlarını Türkçe mesajlara dönüştür
-        if (result.error.code === 'auth/user-not-found') {
-          setError('Bu e-posta adresiyle kayıtlı kullanıcı bulunamadı.');
-        } else if (result.error.code === 'auth/wrong-password') {
-          setError('Geçersiz şifre girdiniz.');
-        } else if (result.error.code === 'auth/invalid-email') {
-          setError('Geçersiz e-posta formatı.');
-        } else if (result.error.code === 'auth/too-many-requests') {
-          setError('Çok fazla başarısız giriş denemesi. Lütfen daha sonra tekrar deneyin.');
+        // Hata kodlarını Türkçe mesajlara dönüştür
+        if (result.error.code === 'auth/wrong-credentials') {
+          setError('E-posta veya şifre hatalı.');
+        } else if (result.error.code === 'auth/user-not-found') {
+          setError('Bu e-posta adresine sahip kullanıcı bulunamadı.');
+        } else if (result.error.code === 'auth/auth-document-not-found') {
+          setError('Kimlik doğrulama belgesi bulunamadı.');
         } else {
           setError(`Giriş hatası: ${result.error.message}`);
         }
       } else if (result.user) {
         console.log('Başarılı giriş:', result.user.displayName);
+        console.log('Kullanıcı rolü:', result.user.role);
         
         // Remember me seçeneğini kaydet
         if (rememberMe) {
@@ -94,11 +74,14 @@ const LoginForm: React.FC = () => {
           safeRemoveItem('remember_me');
         }
         
-        // Yönlendirme işlemini hem burada hem de useEffect'te yapıyoruz
+        // Yönlendirmeyi doğrudan burada yapalım
         setRedirected(true);
+        
+        // İki yönlendirme yöntemini de deneyelim
+        // 1. Next.js router ile
         router.push('/dashboard');
         
-        // Yedek yönlendirme - router başarısız olursa
+        // 2. Doğrudan URL değişikliği ile - router.push çalışmazsa bu çalışır
         setTimeout(() => {
           if (isBrowser()) {
             window.location.href = '/dashboard';
@@ -110,41 +93,6 @@ const LoginForm: React.FC = () => {
       console.error('Login error:', err);
     } finally {
       setIsLoading(false);
-    }
-  };
-
-  const handleGoogleLogin = async () => {
-    setError('');
-    setIsGoogleLoading(true);
-    
-    try {
-      const result = await loginGoogle();
-      
-      if (result.error) {
-        if (result.error.code === 'auth/popup-closed-by-user') {
-          setError('Giriş işlemi iptal edildi.');
-        } else {
-          setError(`Google ile giriş hatası: ${result.error.message}`);
-        }
-      } else if (result.user) {
-        console.log('Google ile başarılı giriş:', result.user.displayName);
-        
-        // Yönlendirme işlemini hem burada hem de useEffect'te yapıyoruz
-        setRedirected(true);
-        router.push('/dashboard');
-        
-        // Yedek yönlendirme - router başarısız olursa
-        setTimeout(() => {
-          if (isBrowser()) {
-            window.location.href = '/dashboard';
-          }
-        }, 500);
-      }
-    } catch (err: any) {
-      setError('Google ile giriş yapılırken beklenmeyen bir hata oluştu.');
-      console.error('Google login error:', err);
-    } finally {
-      setIsGoogleLoading(false);
     }
   };
 
@@ -256,31 +204,11 @@ const LoginForm: React.FC = () => {
           </div>
           
           <div>
-            <button
-              type="button"
-              onClick={handleGoogleLogin}
-              className="w-full flex items-center justify-center py-3 px-4 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 shadow-sm transition-colors group"
-              disabled={isGoogleLoading}
-            >
-              {isGoogleLoading ? (
-                <svg className="animate-spin h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                </svg>
-              ) : (
-                <>
-                  <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M23.766 12.2764C23.766 11.4607 23.6999 10.6406 23.5588 9.83807H12.24V14.4591H18.7217C18.4528 15.9494 17.5885 17.2678 16.323 18.1056V21.1039H20.1871C22.4448 19.0139 23.766 15.9274 23.766 12.2764Z" fill="#4285F4"/>
-                    <path d="M12.2401 24.0008C15.4766 24.0008 18.2059 22.9382 20.1881 21.1039L16.3239 18.1055C15.2482 18.8375 13.8584 19.252 12.2401 19.252C9.11137 19.252 6.45903 17.1399 5.50117 14.3003H1.5166V17.3912C3.55371 21.4434 7.7029 24.0008 12.2401 24.0008Z" fill="#34A853"/>
-                    <path d="M5.49612 14.3003C5.00779 12.8099 5.00779 11.1961 5.49612 9.70575V6.61481H1.51155C-0.18767 10.0056 -0.18767 14.0004 1.51155 17.3912L5.49612 14.3003Z" fill="#FBBC04"/>
-                    <path d="M12.2401 4.74966C13.9511 4.7232 15.6044 5.36697 16.8434 6.54867L20.2695 3.12262C18.1001 1.0855 15.2208 -0.034466 12.2401 0.000808666C7.7029 0.000808666 3.55371 2.55822 1.5166 6.61481L5.50117 9.70575C6.45903 6.86622 9.11137 4.74966 12.2401 4.74966Z" fill="#EA4335"/>
-                  </svg>
-                  <span className="text-sm text-gray-700 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-white transition-colors">
-                    Google ile Giriş Yap
-                  </span>
-                </>
-              )}
-            </button>
+            <Link href="/register" className="w-full flex items-center justify-center py-3 px-4 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 shadow-sm transition-colors group text-center">
+              <span className="text-sm text-gray-700 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-white transition-colors">
+                Yeni Hesap Oluştur
+              </span>
+            </Link>
           </div>
         </div>
         
