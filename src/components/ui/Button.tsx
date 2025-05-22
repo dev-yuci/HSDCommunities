@@ -8,6 +8,7 @@ interface ButtonProps {
   size?: 'sm' | 'md' | 'lg';
   className?: string;
   onClick?: () => void;
+  type?: 'button' | 'submit' | 'reset';
 }
 
 export default function Button({
@@ -16,6 +17,7 @@ export default function Button({
   size = 'md',
   className = '',
   onClick,
+  type = 'button',
 }: ButtonProps) {
   const baseClasses = "rounded-lg font-medium transition-all focus:outline-none focus:ring-2 focus:ring-offset-2";
   
@@ -35,6 +37,7 @@ export default function Button({
     <button
       className={`${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${className}`}
       onClick={onClick}
+      type={type}
     >
       {children}
     </button>

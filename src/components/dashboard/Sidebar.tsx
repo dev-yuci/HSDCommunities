@@ -2,7 +2,8 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
+import { useAuthContext } from '@/contexts/AuthContext';
 
 type SidebarItem = {
   name: string;
@@ -117,24 +118,48 @@ export default function Sidebar() {
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [userName, setUserName] = useState('');
-  const router = useRouter();
+  const [userRole, setUserRole] = useState('');
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
+  const { logout, user } = useAuthContext();
 
   useEffect(() => {
-    // LocalStorage'dan kullanıcı adını al
-    const name = localStorage.getItem('user_name') || 'Admin Kullanıcı';
-    setUserName(name);
-  }, []);
+    if (user) {
+      // Firebase'den gelen kullanıcı bilgileri
+      setUserName(user.displayName || 'Kullanıcı');
+      
+      // LocalStorage'dan rol bilgisi
+      const role = localStorage.getItem('user_role') || 'Üye';
+      setUserRole(role);
+    }
+  }, [user]);
 
   // Çıkış yapma fonksiyonu
-  const handleLogout = () => {
-    // LocalStorage'dan token ve kullanıcı bilgilerini temizle
-    localStorage.removeItem('auth_token');
-    localStorage.removeItem('user_role');
-    localStorage.removeItem('user_name');
-    localStorage.removeItem('remember_me');
+  const handleLogout = async () => {
+    if (isLoggingOut) return; // Çift tıklamayı önle
     
-    // Login sayfasına yönlendir
-    router.push('/login');
+    setIsLoggingOut(true);
+    
+    try {
+      // Önce LocalStorage'daki token bilgilerini manuel olarak temizleyelim
+      localStorage.removeItem('auth_token');
+      localStorage.removeItem('user_name');
+      localStorage.removeItem('user_email');
+      localStorage.removeItem('user_role');
+      localStorage.removeItem('remember_me');
+      
+      // Firebase çıkış işlemini çalıştır
+      const result = await logout();
+      
+      if (result.error) {
+        console.error('Çıkış yapılırken hata:', result.error);
+        // Hata olsa bile login sayfasına yönlendirelim
+        window.location.href = '/login'; // router.push kullanmak yerine tam sayfa yenilemeyle yönlendir
+      }
+    } catch (error) {
+      console.error('Çıkış işleminde beklenmeyen hata:', error);
+      // Hata olsa bile login sayfasına yönlendir
+      window.location.href = '/login';
+    }
   };
 
   return (
@@ -175,25 +200,33 @@ export default function Sidebar() {
         {/* Kullanıcı profil bölümü */}
         <div className="px-4 py-3">
           <p className="text-sm font-medium text-gray-700 dark:text-gray-300">{userName}</p>
-          <p className="text-xs text-gray-500 dark:text-gray-400">Admin</p>
+          <p className="text-xs text-gray-500 dark:text-gray-400">{userRole}</p>
         </div>
         
         {/* Çıkış yapma ve ana sayfa butonları */}
         <div className="px-2 pb-2 pt-1 space-y-1">
           <button
             onClick={handleLogout}
-            className="w-full text-left flex items-center px-2 py-2 text-sm font-medium rounded-md text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
+            disabled={isLoggingOut}
+            className={`w-full text-left flex items-center px-2 py-2 text-sm font-medium rounded-md text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors ${isLoggingOut ? 'opacity-70 cursor-not-allowed' : ''}`}
           >
-            <svg 
-              xmlns="http://www.w3.org/2000/svg" 
-              className="mr-3 flex-shrink-0 h-6 w-6" 
-              fill="none" 
-              viewBox="0 0 24 24" 
-              stroke="currentColor"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-            </svg>
-            Çıkış Yap
+            {isLoggingOut ? (
+              <svg className="animate-spin mr-3 flex-shrink-0 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+            ) : (
+              <svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                className="mr-3 flex-shrink-0 h-6 w-6" 
+                fill="none" 
+                viewBox="0 0 24 24" 
+                stroke="currentColor"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+              </svg>
+            )}
+            {isLoggingOut ? 'Çıkış Yapılıyor...' : 'Çıkış Yap'}
           </button>
           
           <Link

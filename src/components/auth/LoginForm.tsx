@@ -4,6 +4,30 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Button from '../ui/Button';
 import { useRouter } from 'next/navigation';
+import { useAuthContext } from '@/contexts/AuthContext';
+
+// Tarayıcı ortamında olup olmadığımızı kontrol eden yardımcı fonksiyon
+const isBrowser = () => typeof window !== 'undefined';
+
+// localStorage'a güvenli erişim sağlayan yardımcı fonksiyonlar
+const safeSetItem = (key: string, value: string): void => {
+  if (isBrowser()) {
+    localStorage.setItem(key, value);
+  }
+};
+
+const safeRemoveItem = (key: string): void => {
+  if (isBrowser()) {
+    localStorage.removeItem(key);
+  }
+};
+
+const safeGetItem = (key: string): string | null => {
+  if (isBrowser()) {
+    return localStorage.getItem(key);
+  }
+  return null;
+};
 
 const LoginForm: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -12,15 +36,32 @@ const LoginForm: React.FC = () => {
   const [isGoogleLoading, setIsGoogleLoading] = useState(false);
   const [error, setError] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
+  const [redirected, setRedirected] = useState(false);
   const router = useRouter();
+  const { login, loginGoogle, user } = useAuthContext();
 
-  // Sayfa yüklendiğinde token kontrolü
+  // Sayfa yüklendiğinde veya kullanıcı güncellendiğinde kontrol et
   useEffect(() => {
-    const token = localStorage.getItem('auth_token');
-    if (token) {
+    // LocalStorage'da token varsa kullanıcı oturum açmış demektir
+    const token = safeGetItem('auth_token');
+    
+    // Kullanıcı veya token mevcutsa ve daha önce yönlendirme yapılmadıysa
+    if ((user || token) && !redirected) {
+      console.log('Kullanıcı oturum açmış, dashboard\'a yönlendiriliyor...');
+      setRedirected(true);
+      
+      // İki yönlendirme yöntemini de deneyelim
+      // 1. Next.js router ile
       router.push('/dashboard');
+      
+      // 2. Doğrudan URL değişikliği ile - router.push çalışmazsa bu çalışır
+      setTimeout(() => {
+        if (isBrowser() && window.location.pathname !== '/dashboard') {
+          window.location.href = '/dashboard';
+        }
+      }, 500);
     }
-  }, [router]);
+  }, [user, router, redirected]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -28,49 +69,83 @@ const LoginForm: React.FC = () => {
     setIsLoading(true);
     
     try {
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      const result = await login(email, password);
       
-      // Admin/admin kontrolü
-      if (email === 'admin' && password === 'admin') {
-        // Başarılı giriş - token oluştur ve sakla
-        const token = generateToken();
-        localStorage.setItem('auth_token', token);
-        localStorage.setItem('user_role', 'admin');
-        localStorage.setItem('user_name', 'Admin Kullanıcı');
-        
-        if (rememberMe) {
-          localStorage.setItem('remember_me', 'true');
+      if (result.error) {
+        // Firebase hata kodlarını Türkçe mesajlara dönüştür
+        if (result.error.code === 'auth/user-not-found') {
+          setError('Bu e-posta adresiyle kayıtlı kullanıcı bulunamadı.');
+        } else if (result.error.code === 'auth/wrong-password') {
+          setError('Geçersiz şifre girdiniz.');
+        } else if (result.error.code === 'auth/invalid-email') {
+          setError('Geçersiz e-posta formatı.');
+        } else if (result.error.code === 'auth/too-many-requests') {
+          setError('Çok fazla başarısız giriş denemesi. Lütfen daha sonra tekrar deneyin.');
         } else {
-          localStorage.removeItem('remember_me');
+          setError(`Giriş hatası: ${result.error.message}`);
+        }
+      } else if (result.user) {
+        console.log('Başarılı giriş:', result.user.displayName);
+        
+        // Remember me seçeneğini kaydet
+        if (rememberMe) {
+          safeSetItem('remember_me', 'true');
+        } else {
+          safeRemoveItem('remember_me');
         }
         
-        // Dashboard'a yönlendir
+        // Yönlendirme işlemini hem burada hem de useEffect'te yapıyoruz
+        setRedirected(true);
         router.push('/dashboard');
-      } else {
-        // Başarısız giriş
-        setError('Geçersiz kullanıcı adı veya şifre.');
+        
+        // Yedek yönlendirme - router başarısız olursa
+        setTimeout(() => {
+          if (isBrowser()) {
+            window.location.href = '/dashboard';
+          }
+        }, 500);
       }
-    } catch (err) {
-      setError('Giriş yapılırken bir hata oluştu. Lütfen tekrar deneyiniz.');
+    } catch (err: any) {
+      setError('Beklenmeyen bir hata oluştu. Lütfen tekrar deneyiniz.');
+      console.error('Login error:', err);
     } finally {
       setIsLoading(false);
     }
   };
 
-  // Basit bir token oluşturucu
-  const generateToken = (): string => {
-    return 'auth_' + Math.random().toString(36).substring(2) + Date.now().toString(36);
-  };
-
-  const handleGoogleLogin = () => {
+  const handleGoogleLogin = async () => {
+    setError('');
     setIsGoogleLoading(true);
-    // Normalde burada Google OAuth entegrasyonu yapılır
-    // Simüle ediyoruz
-    setTimeout(() => {
-      console.log('Logging in with Google...');
+    
+    try {
+      const result = await loginGoogle();
+      
+      if (result.error) {
+        if (result.error.code === 'auth/popup-closed-by-user') {
+          setError('Giriş işlemi iptal edildi.');
+        } else {
+          setError(`Google ile giriş hatası: ${result.error.message}`);
+        }
+      } else if (result.user) {
+        console.log('Google ile başarılı giriş:', result.user.displayName);
+        
+        // Yönlendirme işlemini hem burada hem de useEffect'te yapıyoruz
+        setRedirected(true);
+        router.push('/dashboard');
+        
+        // Yedek yönlendirme - router başarısız olursa
+        setTimeout(() => {
+          if (isBrowser()) {
+            window.location.href = '/dashboard';
+          }
+        }, 500);
+      }
+    } catch (err: any) {
+      setError('Google ile giriş yapılırken beklenmeyen bir hata oluştu.');
+      console.error('Google login error:', err);
+    } finally {
       setIsGoogleLoading(false);
-      router.push('/');
-    }, 1500);
+    }
   };
 
   return (
@@ -90,15 +165,15 @@ const LoginForm: React.FC = () => {
           <form onSubmit={handleSubmit}>
             <div className="mb-6">
               <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                Kullanıcı Adı
+                E-posta
               </label>
               <input
                 id="email"
-                type="text"
+                type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                placeholder="Kullanıcı adınızı girin (admin)"
+                placeholder="E-posta adresinizi girin"
                 className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg text-gray-800 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
               />
             </div>
@@ -121,7 +196,7 @@ const LoginForm: React.FC = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                placeholder="Şifrenizi girin (admin)"
+                placeholder="Şifrenizi girin"
                 className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg text-gray-800 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
               />
             </div>
