@@ -1,8 +1,27 @@
-import React from 'react';
+'use client';
+
+import React, { useEffect } from 'react';
 import DashboardHeader from '@/components/dashboard/DashboardHeader';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useFirestoreAuthContext } from '@/contexts/FirestoreAuthContext';
+import { safeGetItem } from '@/lib/firestoreAuth';
 
 export default function DashboardPage() {
+  const router = useRouter();
+  const { user, loading } = useFirestoreAuthContext();
+  
+  useEffect(() => {
+    if (!loading) {
+      const userRole = safeGetItem('user_role');
+      
+      // Normal kullanıcıları kullanıcı paneline yönlendir
+      if (userRole === 'user') {
+        router.push('/dashboard/user');
+      }
+    }
+  }, [loading, router]);
+  
   // Örnek istatistikler
   const stats = [
     { name: 'Toplam Etkinlik', stat: '12', url: '/dashboard/events' },
@@ -14,7 +33,7 @@ export default function DashboardPage() {
   return (
     <div>
       <DashboardHeader 
-        title="Dashboard" 
+        title="Admin Dashboard" 
         description="HSD Toplulukları yönetim paneline hoş geldiniz."
       />
 

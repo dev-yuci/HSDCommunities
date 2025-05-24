@@ -30,7 +30,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <FirestoreAuthProvider>
-          {children}
+        {children}
         </FirestoreAuthProvider>
       </body>
     </html>

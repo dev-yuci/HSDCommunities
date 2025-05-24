@@ -205,9 +205,9 @@ const LoginForm: React.FC = () => {
           
           <div>
             <Link href="/register" className="w-full flex items-center justify-center py-3 px-4 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 shadow-sm transition-colors group text-center">
-              <span className="text-sm text-gray-700 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-white transition-colors">
+                  <span className="text-sm text-gray-700 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-white transition-colors">
                 Yeni Hesap Oluştur
-              </span>
+                  </span>
             </Link>
           </div>
         </div>

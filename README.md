@@ -20,6 +20,33 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## E-posta Gönderim Ayarları
+
+Uygulama, etkinlik kayıtları sonrası e-posta gönderimi için SMTP yapılandırmasına ihtiyaç duyar. Gerçek e-postalar göndermek için Gmail SMTP sunucusunu kullanabilirsiniz.
+
+### Gmail SMTP Ayarları
+
+Gmail SMTP sunucusunu kullanmak için:
+
+1. `.env.local` dosyasına SMTP bilgilerinizi ekleyin:
+   ```
+   SMTP_HOST=smtp.gmail.com
+   SMTP_PORT=587
+   SMTP_SECURE=false
+   SMTP_USER=your-gmail@gmail.com
+   SMTP_PASS=your-app-password
+   SMTP_FROM="HSD Communities <your-gmail@gmail.com>"
+   ```
+
+2. Gmail hesabınızda "Uygulama Şifreleri" oluşturmak için:
+   - Google hesabınıza gidin ve "Güvenlik" ayarlarına erişin
+   - İki adımlı doğrulamayı etkinleştirin (gerekli)
+   - "Uygulama Şifreleri" bölümüne gidin
+   - "Diğer" seçeneğini seçin ve uygulama için bir isim girin (örn. "HSD Communities")
+   - Oluşturulan şifreyi SMTP_PASS olarak kullanın
+
+Not: Normal Gmail şifreniz yerine uygulama şifresi kullanmanız gerekmektedir.
+
 ## HSD Kulüpleri Haritası
 
 Bu proje, Türkiye'deki Huawei Student Developers kulüplerini gösteren interaktif bir harita içerir. Harita üzerindeki işaretlere tıklayarak kulüpler hakkında detaylı bilgi alabilirsiniz.

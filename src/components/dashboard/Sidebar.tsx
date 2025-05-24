@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useFirestoreAuthContext } from '@/contexts/FirestoreAuthContext';
+import { safeGetItem, safeRemoveItem } from '@/lib/firestoreAuth';
 
 type SidebarItem = {
   name: string;
@@ -11,7 +12,8 @@ type SidebarItem = {
   icon: (props: { className: string }) => JSX.Element;
 };
 
-const navigation: SidebarItem[] = [
+// Admin için navigasyon öğeleri
+const adminNavigation: SidebarItem[] = [
   {
     name: 'Genel Bakış',
     href: '/dashboard',
@@ -114,13 +116,57 @@ const navigation: SidebarItem[] = [
   },
 ];
 
+// Kullanıcı için navigasyon öğeleri
+const userNavigation: SidebarItem[] = [
+  {
+    name: 'Kullanıcı Paneli',
+    href: '/dashboard/user',
+    icon: (props) => (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        strokeWidth={1.5}
+        stroke="currentColor"
+        {...props}
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
+        />
+      </svg>
+    ),
+  },
+  {
+    name: 'Etkinlikler',
+    href: '/dashboard/events',
+    icon: (props) => (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        strokeWidth={1.5}
+        stroke="currentColor"
+        {...props}
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"
+        />
+      </svg>
+    ),
+  },
+];
+
 export default function Sidebar() {
   const pathname = usePathname();
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [userName, setUserName] = useState('');
   const [userRole, setUserRole] = useState('');
   const [isLoggingOut, setIsLoggingOut] = useState(false);
   const { logout, user } = useFirestoreAuthContext();
+  const [navigationItems, setNavigationItems] = useState<SidebarItem[]>([]);
 
   useEffect(() => {
     if (user) {
@@ -128,8 +174,15 @@ export default function Sidebar() {
       setUserName(user.displayName || 'Kullanıcı');
       
       // LocalStorage'dan rol bilgisi
-      const role = localStorage.getItem('user_role') || 'Üye';
+      const role = safeGetItem('user_role') || 'user';
       setUserRole(role);
+      
+      // Role göre navigasyon ayarla
+      if (role === 'admin') {
+        setNavigationItems(adminNavigation);
+      } else {
+        setNavigationItems(userNavigation);
+      }
     }
   }, [user]);
 
@@ -141,11 +194,11 @@ export default function Sidebar() {
     
     try {
       // Önce LocalStorage'daki token bilgilerini manuel olarak temizleyelim
-      localStorage.removeItem('auth_token');
-      localStorage.removeItem('user_name');
-      localStorage.removeItem('user_email');
-      localStorage.removeItem('user_role');
-      localStorage.removeItem('remember_me');
+      safeRemoveItem('auth_token');
+      safeRemoveItem('user_name');
+      safeRemoveItem('user_email');
+      safeRemoveItem('user_role');
+      safeRemoveItem('remember_me');
       
       // Firebase çıkış işlemini çalıştır
       const result = await logout();
@@ -172,7 +225,7 @@ export default function Sidebar() {
         </div>
         <div className="mt-5 flex flex-col flex-1">
           <nav className="flex-1 space-y-1 px-2" aria-label="Sidebar">
-            {navigation.map((item) => {
+            {navigationItems.map((item) => {
               const isActive = pathname === item.href || pathname.startsWith(`${item.href}/`);
               return (
                 <Link

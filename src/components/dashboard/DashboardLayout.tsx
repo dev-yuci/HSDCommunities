@@ -15,13 +15,41 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
   const { user, loading, isAuthenticated } = useFirestoreAuthContext();
   const router = useRouter();
 
-  // Auth kontrolü
+  // Auth kontrolü ve rol bazlı yönlendirme
   useEffect(() => {
     // Kullanıcı yoksa ve yükleme tamamlandıysa login sayfasına yönlendir
     if (!loading && !isAuthenticated) {
       router.push('/login');
+      return;
     }
-  }, [loading, isAuthenticated, router]);
+    
+    // Kullanıcı varsa, role göre yönlendirme yap
+    if (!loading && isAuthenticated && user) {
+      const userRole = safeGetItem('user_role') || 'user';
+      const isAdmin = userRole === 'admin';
+      const isUser = userRole === 'user';
+      const pathname = window.location.pathname;
+      
+      // Kullanıcı admin değilse ve admin sayfalarına erişmeye çalışıyorsa
+      if (!isAdmin && (
+        pathname.includes('/dashboard/roles') || 
+        pathname.includes('/dashboard/todos') || 
+        pathname.includes('/dashboard/clubs')
+      )) {
+        router.push('/dashboard/user');
+      }
+      
+      // Admin kullanıcı paneline girmeye çalışıyorsa
+      if (isAdmin && pathname.includes('/dashboard/user')) {
+        router.push('/dashboard');
+      }
+      
+      // Kullanıcı user ise ve dashboard anasayfasına erişmeye çalışıyorsa
+      if (isUser && pathname === '/dashboard') {
+        router.push('/dashboard/user');
+      }
+    }
+  }, [loading, isAuthenticated, router, user]);
 
   // Sayfa yüklenirken loading göster
   if (loading) {
