@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, useEffect } from 'react';
 import { 
   getCurrentUser,
@@ -9,9 +11,75 @@ import {
   safeRemoveItem
 } from '@/lib/firestoreAuth';
 import { useRouter } from 'next/navigation';
+import Cookies from 'js-cookie';
 
 // Tarayıcı ortamında olup olmadığımızı kontrol eden yardımcı fonksiyon
 const isBrowser = () => typeof window !== 'undefined';
+
+// Cookie'leri güvenli bir şekilde ayarla ve sil
+const setCookie = (name: string, value: string, days = 7) => {
+  if (isBrowser()) {
+    try {
+      // Önce mevcut cookie'yi temizleyelim
+      Cookies.remove(name, { path: '/' });
+      // Sonra yeni değeri ayarlayalım
+      Cookies.set(name, value, { 
+        expires: days, 
+        path: '/',
+        sameSite: 'strict' 
+      });
+      console.log(`Cookie set: ${name}`);
+    } catch (error) {
+      console.error(`Cookie ayarlanırken hata: ${name}`, error);
+    }
+  }
+};
+
+const removeCookie = (name: string) => {
+  if (isBrowser()) {
+    try {
+      Cookies.remove(name, { path: '/' });
+      console.log(`Cookie removed: ${name}`);
+    } catch (error) {
+      console.error(`Cookie silinirken hata: ${name}`, error);
+    }
+  }
+};
+
+// Tüm kullanıcı oturum bilgilerini ayarla
+const setUserData = (user: CustomUser) => {
+  // LocalStorage'a kaydet
+  safeSetItem('auth_token', user.uid);
+  safeSetItem('user_name', user.displayName);
+  safeSetItem('user_email', user.email);
+  safeSetItem('user_role', user.role);
+  
+  // Cookie'lere kaydet
+  setCookie('auth_token', user.uid);
+  setCookie('user_name', user.displayName);
+  setCookie('user_email', user.email);
+  setCookie('user_role', user.role);
+
+  console.log('Tüm kullanıcı bilgileri kaydedildi:', user.role);
+};
+
+// Tüm kullanıcı oturum bilgilerini temizle
+const clearUserData = () => {
+  // LocalStorage'dan temizle
+  safeRemoveItem('auth_token');
+  safeRemoveItem('user_name');
+  safeRemoveItem('user_email');
+  safeRemoveItem('user_role');
+  safeRemoveItem('remember_me');
+  
+  // Cookie'lerden temizle
+  removeCookie('auth_token');
+  removeCookie('user_name');
+  removeCookie('user_email');
+  removeCookie('user_role');
+
+  console.log('Tüm kullanıcı bilgileri temizlendi');
+};
 
 export const useFirestoreAuth = () => {
   const [user, setUser] = useState<CustomUser | null>(null);
@@ -22,28 +90,39 @@ export const useFirestoreAuth = () => {
   useEffect(() => {
     // localStorage'dan kullanıcı bilgilerini yükleme
     const loadUser = () => {
-      const currentUser = getCurrentUser();
-      setUser(currentUser);
-      setLoading(false);
-
-      // Kullanıcı varsa ve şu anda login sayfasındaysa rol kontrolüne göre yönlendir
-      if (currentUser && isBrowser() && window.location.pathname === '/login') {
-        setTimeout(() => {
-          // Admin ise dashboard'a yönlendir
-          if (currentUser.role === 'admin') {
-            router.push('/dashboard');
-          } else {
-            // Diğer roller için farklı sayfalar tanımlanabilir
-            router.push('/dashboard');
-          }
+      try {
+        const currentUser = getCurrentUser();
+        
+        if (currentUser) {
+          console.log('Kullanıcı yüklendi:', currentUser.role);
           
-          // Yedek yönlendirme - router.push çalışmazsa
+          // Cookie'leri yeniden ayarla (sync işlemi)
+          setUserData(currentUser);
+        } else {
+          console.log('Yüklenen kullanıcı bilgisi yok');
+        }
+        
+        setUser(currentUser);
+        setLoading(false);
+
+        // Kullanıcı varsa ve şu anda login sayfasındaysa rol kontrolüne göre yönlendir
+        if (currentUser && isBrowser() && window.location.pathname === '/login') {
           setTimeout(() => {
-            if (isBrowser() && window.location.pathname === '/login') {
-              window.location.href = '/dashboard';
+            // Admin ise dashboard'a yönlendir
+            if (currentUser.role === 'admin') {
+              router.replace('/dashboard');
+            } else if (currentUser.role === 'coreteam') {
+              router.replace('/dashboard/coreteam');
+            } else {
+              // Normal kullanıcılar için user paneline doğrudan yönlendir
+              router.replace('/dashboard/user');
             }
-          }, 500);
-        }, 0);
+          }, 0);
+        }
+      } catch (error) {
+        console.error('Kullanıcı yüklenirken hata:', error);
+        setUser(null);
+        setLoading(false);
       }
     };
 
@@ -53,68 +132,81 @@ export const useFirestoreAuth = () => {
   // Email/şifre ile giriş
   const login = async (email: string, password: string) => {
     setLoading(true);
-    const result = await loginWithEmailAndPassword(email, password);
-    
-    if (result.user) {
-      setUser(result.user);
+    try {
+      const result = await loginWithEmailAndPassword(email, password);
       
-      // Kullanıcı bilgilerini LocalStorage'e kaydet
-      safeSetItem('auth_token', result.user.uid);
-      safeSetItem('user_name', result.user.displayName);
-      safeSetItem('user_email', result.user.email);
-      safeSetItem('user_role', result.user.role);
+      if (result.user) {
+        setUser(result.user);
+        
+        // Kullanıcı bilgilerini kaydet
+        setUserData(result.user);
+        
+        console.log('Giriş başarılı, rol:', result.user.role);
+      } else {
+        console.log('Giriş başarısız');
+      }
+      
+      setLoading(false);
+      return result;
+    } catch (error) {
+      console.error('Giriş işlemi sırasında hata:', error);
+      setLoading(false);
+      return { user: null, error };
     }
-    
-    setLoading(false);
-    return result;
   };
 
   // Çıkış yap
   const logout = async () => {
-    // Önce LocalStorage temizleme işlemini elle yapalım
-    safeRemoveItem('auth_token');
-    safeRemoveItem('user_name');
-    safeRemoveItem('user_email');
-    safeRemoveItem('user_role');
-    safeRemoveItem('remember_me');
-    
-    setLoading(true);
-    const result = await logoutUser();
-    setLoading(false);
-    
-    // Önce kullanıcı durumunu null yap, ardından yönlendir
-    setUser(null);
-    
-    // Yönlendirmeyi sadece başarılı çıkış durumunda yap
-    if (result.success) {
-      // setTimeout kullanarak yönlendirme işlemini state güncellemelerinden sonraya bırak
-      setTimeout(() => {
-        // İki yönlendirme yöntemini de deneyelim
-        // 1. Next.js router ile
-        router.push('/login');
-        
-        // 2. Doğrudan URL değişikliği ile (router.push çalışmazsa)
+    try {
+      // Önce tüm storage verilerini temizle
+      clearUserData();
+      
+      setLoading(true);
+      const result = await logoutUser();
+      
+      // Kullanıcı durumunu null yap
+      setUser(null);
+      setLoading(false);
+      
+      // Yönlendirmeyi sadece başarılı çıkış durumunda yap
+      if (result.success) {
+        // setTimeout kullanarak yönlendirme işlemini state güncellemelerinden sonraya bırak
         setTimeout(() => {
-          if (isBrowser()) {
-            window.location.href = '/login';
-          }
-        }, 300);
-      }, 100);
+          router.replace('/login');
+        }, 100);
+      }
+      
+      return result;
+    } catch (error) {
+      console.error('Çıkış işlemi sırasında hata:', error);
+      setLoading(false);
+      return { success: false, error };
     }
-    
-    return result;
   };
 
   // Token durumu - sadece client side'da çalışır
   const hasToken = (): boolean => {
-    return !!safeGetItem('auth_token');
+    try {
+      // Hem localStorage hem de cookie kontrolü yap
+      return !!safeGetItem('auth_token') || !!Cookies.get('auth_token');
+    } catch (error) {
+      console.error('Token kontrolü sırasında hata:', error);
+      return false;
+    }
   };
 
   // Client tarafında olup olmadığımızı ve isAuthenticated değerini useEffect ile takip edelim
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   
   useEffect(() => {
-    setIsAuthenticated(!!user || hasToken());
+    try {
+      const isAuth = !!user || hasToken();
+      setIsAuthenticated(isAuth);
+      console.log('Yetkilendirme durumu:', isAuth);
+    } catch (error) {
+      console.error('Yetkilendirme kontrolü sırasında hata:', error);
+      setIsAuthenticated(false);
+    }
   }, [user]);
 
   return {

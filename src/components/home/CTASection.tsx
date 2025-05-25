@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from '../ui/Button';
+import { Button } from '../ui/Button';
 
 export default function CTASection() {
   return (
@@ -10,7 +10,7 @@ export default function CTASection() {
           <span className="block text-blue-100 mt-1">Bugün başvur ve Huawei Student Developers liderlerine katıl.</span>
         </h2>
         <div className="mt-8 flex lg:mt-0 lg:flex-shrink-0 space-x-4">
-          <Button variant="primary" className="bg-blue-600 text-white hover:bg-blue-50 shadow-md hover:shadow-lg font-semibold">
+          <Button variant="default" className="bg-blue-600 text-white hover:bg-blue-50 shadow-md hover:shadow-lg font-semibold">
             HSD Kulübü Kur
           </Button>
           <Button variant="outline" className="border-blue-200 text-white hover:bg-blue-700 hover:border-blue-200 font-semibold">

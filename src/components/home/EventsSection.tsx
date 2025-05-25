@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { Event } from "@/data/eventsData";
 import EventCard from '@/components/events/EventCard';
-import Button from '../ui/Button';
+import { Button } from '../ui/Button';
 import Link from 'next/link';
 import EventModal from '@/components/events/EventModal';
 

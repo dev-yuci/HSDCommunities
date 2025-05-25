@@ -6,8 +6,11 @@ import {
   getDoc, 
   getDocs, 
   query, 
-  where 
+  where,
+  updateDoc,
+  setDoc
 } from 'firebase/firestore';
+import { ReadonlyRequestCookies } from 'next/dist/server/web/spec-extension/adapters/request-cookies';
 
 // Tarayıcı ortamında olup olmadığımızı kontrol eden yardımcı fonksiyon
 const isBrowser = () => typeof window !== 'undefined';
@@ -29,6 +32,17 @@ export const safeSetItem = (key: string, value: string): void => {
 export const safeRemoveItem = (key: string): void => {
   if (isBrowser()) {
     localStorage.removeItem(key);
+  }
+};
+
+// Middleware için cookie okuma fonksiyonu
+export const safeGetCookie = (cookies: ReadonlyRequestCookies, name: string): string | null => {
+  try {
+    const cookie = cookies.get(name);
+    return cookie?.value || null;
+  } catch (error) {
+    console.error(`Cookie okuma hatası (${name}):`, error);
+    return null;
   }
 };
 
@@ -60,6 +74,7 @@ export interface CustomUser {
   email: string;
   displayName: string;
   role: string;
+  photoURL?: string;
 }
 
 // Firestore'dan kullanıcı bilgilerini kontrol et
@@ -154,6 +169,85 @@ export const logoutUser = async () => {
     return { success: true, error: null };
   } catch (error: any) {
     console.error('Çıkış yapılırken hata:', error);
+    return { success: false, error };
+  }
+};
+
+// Kullanıcı bilgilerini güncelleme fonksiyonu
+export const updateUserProfile = async (email: string, updateData: {
+  displayName?: string;
+  password?: string;
+  // role güncellemesi yalnızca admin tarafından yapılabilir
+}) => {
+  try {
+    // Önce kullanıcının admin mi yoksa normal kullanıcı mı olduğunu belirle
+    const isAdmin = email === safeGetItem('user_email') && safeGetItem('user_role') === 'admin';
+    
+    if (isAdmin) {
+      // Admin profili güncelleme
+      const authDocRef = doc(db, 'auth', 'hsd-auth');
+      const authDocSnap = await getDoc(authDocRef);
+      
+      if (authDocSnap.exists()) {
+        const currentData = authDocSnap.data() as UserData;
+        
+        // Sadece sağlanan alanları güncelle
+        const updatedData: Partial<UserData> = {};
+        
+        if (updateData.displayName) {
+          updatedData.displayName = updateData.displayName;
+          // LocalStorage'ı da güncelle
+          safeSetItem('user_name', updateData.displayName);
+        }
+        
+        if (updateData.password) {
+          updatedData.password = updateData.password;
+        }
+        
+        // Firestore'da güncelle
+        await updateDoc(authDocRef, updatedData);
+        
+        return { success: true, error: null };
+      }
+    } else {
+      // Normal kullanıcı profili güncelleme
+      const userDocRef = doc(db, 'users', email);
+      const userDocSnap = await getDoc(userDocRef);
+      
+      if (userDocSnap.exists()) {
+        const currentData = userDocSnap.data() as UserData;
+        
+        // Sadece sağlanan alanları güncelle
+        const updatedData: Partial<UserData> = {};
+        
+        if (updateData.displayName) {
+          updatedData.displayName = updateData.displayName;
+          // LocalStorage'ı da güncelle
+          safeSetItem('user_name', updateData.displayName);
+        }
+        
+        if (updateData.password) {
+          updatedData.password = updateData.password;
+        }
+        
+        // Firestore'da güncelle
+        await updateDoc(userDocRef, updatedData);
+        
+        return { success: true, error: null };
+      } else {
+        return { 
+          success: false, 
+          error: { code: 'auth/user-not-found', message: 'Kullanıcı bulunamadı' } 
+        };
+      }
+    }
+    
+    return { 
+      success: false, 
+      error: { code: 'auth/unknown-error', message: 'Bilinmeyen bir hata oluştu' } 
+    };
+  } catch (error: any) {
+    console.error('Profil güncelleme hatası:', error);
     return { success: false, error };
   }
 };

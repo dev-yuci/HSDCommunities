@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import Button from '../ui/Button';
+import { Button } from '../ui/Button';
 import Logo from '../ui/Logo';
 
 export default function Header() {
@@ -78,7 +78,7 @@ export default function Header() {
               <Button variant="outline" size="sm">Giriş Yap</Button>
             </Link>
             <Link href="/register">
-              <Button variant="primary" size="sm">Kulübe Katıl</Button>
+              <Button variant="default" size="sm">Kulübe Katıl</Button>
             </Link>
           </div>
           <div className="-mr-2 flex items-center sm:hidden">
@@ -161,7 +161,7 @@ export default function Header() {
               <Button variant="outline" className="w-full">Giriş Yap</Button>
             </Link>
             <Link href="/register" className="w-full">
-              <Button variant="primary" className="w-full">Kulübe Katıl</Button>
+              <Button variant="default" className="w-full">Kulübe Katıl</Button>
             </Link>
           </div>
         </div>

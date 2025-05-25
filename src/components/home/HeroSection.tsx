@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from '../ui/Button';
+import { Button } from '../ui/Button';
 import Image from 'next/image';
 
 export default function HeroSection() {
@@ -30,7 +30,7 @@ export default function HeroSection() {
               </p>
               <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
                 <div className="rounded-md shadow">
-                  <Button size="lg" variant="primary" className="w-full">
+                  <Button size="lg" variant="default" className="w-full">
                     Kulübe Katıl
                   </Button>
                 </div>

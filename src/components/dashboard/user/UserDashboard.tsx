@@ -4,10 +4,19 @@ import React, { useState, useEffect } from 'react';
 import { CustomUser } from '@/lib/firestoreAuth';
 import { formatDate } from '@/lib/utils';
 import { EventCard, EventFilters, NotificationsPanel, MyEventsPanel } from '.';
-import { collection, query, where, getDocs, doc, deleteDoc, getDoc } from 'firebase/firestore';
+import { collection, query, where, getDocs, doc, deleteDoc, getDoc, addDoc, serverTimestamp } from 'firebase/firestore';
 import { db } from '../../../lib/firebase-config';
+import { 
+  getAllEvents, 
+  getUpcomingEvents, 
+  getUserRegisteredEvents, 
+  seedEvents, 
+  getEventsByCategory,
+  Event as FirestoreEvent
+} from '@/lib/firestore-service';
+import { toast } from 'react-hot-toast';
 
-// Örnek etkinlikler
+// Örnek etkinlikler (Seed data olarak kullanılacak)
 const mockEvents = [
   {
     id: '1',
@@ -101,22 +110,74 @@ interface UserDashboardProps {
 }
 
 export default function UserDashboard({ user }: UserDashboardProps) {
-  const [events, setEvents] = useState(mockEvents);
-  const [myEvents, setMyEvents] = useState<typeof mockEvents>([]);
+  const [events, setEvents] = useState<FirestoreEvent[]>([]);
+  const [myEvents, setMyEvents] = useState<FirestoreEvent[]>([]);
   const [myRegistrations, setMyRegistrations] = useState<any[]>([]);
   const [notifications, setNotifications] = useState(mockNotifications);
   const [activeFilter, setActiveFilter] = useState('all');
   const [loading, setLoading] = useState(true);
+  const [isDataSeeded, setIsDataSeeded] = useState(false);
   
-  // Kullanıcının kayıtlı olduğu etkinlikleri Firebase'den çek
-  useEffect(() => {
-    const fetchUserRegistrations = async () => {
-      if (!user || !user.uid) return;
+  // Etkinlikleri Firestore'a yükle (İlk kez çalıştığında)
+  const seedEventsToFirestore = async () => {
+    try {
+      // Önce mevcut etkinlikleri kontrol et
+      const existingEvents = await getAllEvents();
+      console.log('Mevcut etkinlikler kontrolü:', existingEvents.length);
       
-      try {
-        setLoading(true);
+      // Eğer etkinlik yoksa örnek verileri yükle
+      if (existingEvents.length === 0) {
+        console.log('Örnek etkinlikler yükleniyor...');
+        // id alanını kaldırarak veriyi hazırla
+        const seedData = mockEvents.map(event => {
+          const { id, isRegistered, ...rest } = event;
+          return rest;
+        });
         
-        // Kullanıcının etkinlik kayıtlarını al
+        const eventIds = await seedEvents(seedData);
+        
+        if (eventIds.length > 0) {
+          toast.success('Örnek etkinlikler başarıyla yüklendi!');
+          console.log('Yüklenen etkinlik ID\'leri:', eventIds);
+          setIsDataSeeded(true);
+          
+          // Etkinlikleri yükledikten sonra yeniden getir
+          fetchEvents();
+        }
+      } else {
+        console.log('Etkinlikler zaten var, seed işlemi atlanıyor.');
+        setIsDataSeeded(true);
+      }
+    } catch (error) {
+      console.error('Örnek etkinlikler yüklenirken hata oluştu:', error);
+      toast.error('Etkinlikler yüklenirken bir hata oluştu!');
+    }
+  };
+
+  // Firestore'dan tüm etkinlikleri getir
+  const fetchEvents = async () => {
+    try {
+      setLoading(true);
+      console.log('Etkinlikler getiriliyor...');
+      
+      // Gelecek etkinlikleri getir
+      const allEvents = await getUpcomingEvents();
+      console.log('Getirilen etkinlik sayısı:', allEvents.length);
+      
+      if (allEvents.length === 0) {
+        console.log('Hiç etkinlik bulunamadı, manuel mock veri kullanılacak');
+        // Eğer etkinlik bulunamadıysa, mock verileri kullan
+        const mockEventData = mockEvents.map(event => ({
+          ...event,
+          date: new Date(event.date)  // Tarih nesnesini yeniden oluştur
+        }));
+        setEvents(mockEventData);
+        setLoading(false);
+        return;
+      }
+      
+      if (user?.uid) {
+        // Kullanıcının kayıtlı olduğu etkinlik ID'lerini al
         const registrationsQuery = query(
           collection(db, 'eventRegistrations'),
           where('userId', '==', user.uid)
@@ -132,7 +193,7 @@ export default function UserDashboard({ user }: UserDashboardProps) {
         setMyRegistrations(registrationsData);
         
         // Kayıtlı etkinlikleri işaretle
-        const updatedEvents = events.map(event => {
+        const updatedEvents = allEvents.map(event => {
           const isRegistered = registrationsData.some(reg => reg.eventId === event.id);
           return {
             ...event,
@@ -141,6 +202,7 @@ export default function UserDashboard({ user }: UserDashboardProps) {
         });
         
         setEvents(updatedEvents);
+        console.log('Etkinlikler ve kayıt durumları güncellendi:', updatedEvents.length);
         
         // Kayıtlı etkinlikleri filtrele
         const registeredEvents = updatedEvents.filter(event => 
@@ -148,41 +210,168 @@ export default function UserDashboard({ user }: UserDashboardProps) {
         );
         
         setMyEvents(registeredEvents);
-      } catch (error) {
-        console.error('Etkinlik kayıtları alınırken hata oluştu:', error);
-      } finally {
-        setLoading(false);
+        console.log('Kayıtlı etkinlikler güncellendi:', registeredEvents.length);
+      } else {
+        setEvents(allEvents);
+        console.log('Kullanıcı girişi yok, etkinlikler kayıt durumu olmadan güncellendi');
       }
-    };
+    } catch (error) {
+      console.error('Etkinlikler alınırken hata oluştu:', error);
+      toast.error('Etkinlikler yüklenirken bir hata oluştu!');
+      
+      // Hata durumunda mock verileri kullan
+      console.log('Hata durumunda mock veriler kullanılıyor');
+      setEvents(mockEvents);
+    } finally {
+      setLoading(false);
+    }
+  };
+  
+  // Belirli kategorideki etkinlikleri getir
+  const fetchEventsByCategory = async (category: string) => {
+    try {
+      setLoading(true);
+      console.log(`${category} kategorisindeki etkinlikler getiriliyor...`);
+      
+      let fetchedEvents;
+      
+      if (category === 'all') {
+        // Tüm etkinlikleri getir
+        fetchedEvents = await getUpcomingEvents();
+        console.log('Tüm etkinlikler getirildi:', fetchedEvents.length);
+      } else {
+        // Kategoriye göre filtrele
+        fetchedEvents = await getEventsByCategory(category);
+        console.log(`${category} kategorisindeki etkinlikler getirildi:`, fetchedEvents.length);
+      }
+      
+      // Eğer etkinlik bulunamadıysa ve tüm etkinlikler görüntüleniyorsa
+      if (fetchedEvents.length === 0 && category === 'all') {
+        console.log('Hiç etkinlik bulunamadı, manuel mock veri kullanılacak');
+        // Mock verileri kullan
+        const mockEventData = mockEvents.map(event => ({
+          ...event,
+          date: new Date(event.date)  // Tarih nesnesini yeniden oluştur
+        }));
+        
+        if (user?.uid) {
+          // Kayıtlı etkinlikleri işaretle (mock veriler için)
+          const updatedEvents = mockEventData.map(event => {
+            const isRegistered = myRegistrations.some(reg => reg.eventId === event.id);
+            return { ...event, isRegistered };
+          });
+          setEvents(updatedEvents);
+        } else {
+          setEvents(mockEventData);
+        }
+        setLoading(false);
+        return;
+      }
+      
+      if (user?.uid) {
+        // Kullanıcının kayıtlı olduğu etkinlikleri işaretle
+        const updatedEvents = fetchedEvents.map(event => {
+          const isRegistered = myRegistrations.some(reg => reg.eventId === event.id);
+          return {
+            ...event,
+            isRegistered
+          };
+        });
+        
+        setEvents(updatedEvents);
+        console.log('Filtrelenmiş etkinlikler güncellendi:', updatedEvents.length);
+      } else {
+        setEvents(fetchedEvents);
+        console.log('Kullanıcı girişi yok, filtrelenmiş etkinlikler güncellendi');
+      }
+    } catch (error) {
+      console.error(`${category} kategorisindeki etkinlikler alınırken hata oluştu:`, error);
+      
+      // Hata durumunda filtrelenmiş mock verileri kullan
+      if (category === 'all') {
+        setEvents(mockEvents);
+      } else {
+        const filteredMocks = mockEvents.filter(
+          event => event.category.toLowerCase() === category.toLowerCase()
+        );
+        setEvents(filteredMocks);
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+  
+  // Kullanıcının kayıtlı olduğu etkinlikleri Firebase'den çek
+  useEffect(() => {
+    // İlk yüklenmede ve kullanıcı değiştiğinde tüm etkinlikleri getir
+    fetchEvents();
     
-    fetchUserRegistrations();
-  }, [user]);
+    // İlk kez çalıştırıldığında etkinlikleri seed et
+    if (!isDataSeeded) {
+      seedEventsToFirestore();
+    }
+  }, [user, isDataSeeded]);
+  
+  // Filtre değiştiğinde etkinlikleri yeniden getir
+  useEffect(() => {
+    if (activeFilter) {
+      console.log('Filtre değişti:', activeFilter);
+      fetchEventsByCategory(activeFilter);
+    }
+  }, [activeFilter]);
 
   // Etkinliğe kayıt olma
-  const handleRegisterEvent = (eventId: string) => {
-    // Not: Kayıt işlemi artık EventCard içinde yapılıyor
+  const handleRegisterEvent = async (eventId: string) => {
+    if (!user || !user.uid) {
+      toast.error('Etkinliğe kaydolmak için giriş yapmalısınız!');
+      return;
+    }
     
-    // UI'ı güncelle
-    setEvents(prev => 
-      prev.map(event => 
-        event.id === eventId 
-          ? { ...event, isRegistered: true, registeredCount: event.registeredCount + 1 } 
-          : event
-      )
-    );
-    
-    // Yeni bildirim ekle
-    const event = events.find(e => e.id === eventId);
-    if (event) {
-      const newNotification = {
-        id: Date.now().toString(),
-        title: 'Etkinlik kaydı',
-        message: `"${event.title}" etkinliğine başarıyla kaydoldunuz.`,
-        date: new Date(),
-        read: false
+    try {
+      // Firestore'a etkinlik kaydını ekle
+      const registrationData = {
+        userId: user.uid,
+        eventId: eventId,
+        email: user.email,
+        registeredAt: serverTimestamp(),
+        displayName: user.displayName
       };
       
-      setNotifications(prev => [newNotification, ...prev]);
+      const docRef = await addDoc(collection(db, 'eventRegistrations'), registrationData);
+      
+      // UI'ı güncelle
+      setEvents(prev => 
+        prev.map(event => 
+          event.id === eventId 
+            ? { ...event, isRegistered: true, registeredCount: event.registeredCount + 1 } 
+            : event
+        )
+      );
+      
+      // Kayıtlı etkinlikleri güncelle
+      const registeredEvent = events.find(e => e.id === eventId);
+      if (registeredEvent) {
+        setMyEvents(prev => [...prev, { ...registeredEvent, isRegistered: true }]);
+      }
+      
+      // Yeni bildirim ekle
+      const event = events.find(e => e.id === eventId);
+      if (event) {
+        const newNotification = {
+          id: Date.now().toString(),
+          title: 'Etkinlik kaydı',
+          message: `"${event.title}" etkinliğine başarıyla kaydoldunuz.`,
+          date: new Date(),
+          read: false
+        };
+        
+        setNotifications(prev => [newNotification, ...prev]);
+      }
+      
+      toast.success('Etkinliğe başarıyla kaydoldunuz!');
+    } catch (error) {
+      console.error('Etkinlik kaydı yapılırken hata oluştu:', error);
+      toast.error('Etkinlik kaydı yapılırken bir hata oluştu!');
     }
   };
   
@@ -233,9 +422,12 @@ export default function UserDashboard({ user }: UserDashboardProps) {
           
           setNotifications(prev => [newNotification, ...prev]);
         }
+        
+        toast.success('Etkinlik kaydınız iptal edildi!');
       }
     } catch (error) {
       console.error('Etkinlik kaydı iptal edilirken hata oluştu:', error);
+      toast.error('Etkinlik kaydınız iptal edilirken bir hata oluştu!');
     }
   };
   
@@ -266,11 +458,15 @@ export default function UserDashboard({ user }: UserDashboardProps) {
     <div className="mt-6 space-y-8">
       {/* Etkinlik banner */}
       <div className="relative w-full h-[200px] rounded-xl overflow-hidden shadow-lg">
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/80 to-blue-400/80 z-10"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/90 to-blue-400/90 z-10"></div>
         <img 
-          src="https://images.unsplash.com/photo-1624377632657-3902bfd35249?auto=format&fit=crop&w=1400&h=400" 
+          src="https://www.huawei.com/-/media/corporate/images/home/big-banner/2021/mwc-shanghai-2021-v1.jpg" 
           alt="Banner" 
           className="absolute inset-0 w-full h-full object-cover"
+          onError={(e) => {
+            // Resim yüklenemezse fallback
+            e.currentTarget.style.display = 'none';
+          }}
         />
         <div className="absolute inset-0 z-20 flex flex-col justify-center p-8">
           <h2 className="text-3xl font-bold text-white mb-2">Merhaba, {user?.displayName || 'Kullanıcı'}</h2>
@@ -292,14 +488,30 @@ export default function UserDashboard({ user }: UserDashboardProps) {
             
             {/* Etkinlik listesi */}
             <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {filteredEvents.map(event => (
-                <EventCard 
-                  key={event.id}
-                  event={event}
-                  onRegister={() => handleRegisterEvent(event.id)}
-                  onUnregister={() => handleUnregisterEvent(event.id)}
-                />
-              ))}
+              {loading ? (
+                // Yükleme durumunda iskelet gösterimi
+                Array(4).fill(0).map((_, index) => (
+                  <div 
+                    key={index} 
+                    className="bg-gray-100 dark:bg-gray-700 animate-pulse rounded-lg h-[300px]"
+                  ></div>
+                ))
+              ) : filteredEvents.length > 0 ? (
+                filteredEvents.map(event => (
+                  <EventCard 
+                    key={event.id}
+                    event={event}
+                    onRegister={() => handleRegisterEvent(event.id)}
+                    onUnregister={() => handleUnregisterEvent(event.id)}
+                  />
+                ))
+              ) : (
+                <div className="col-span-2 text-center py-10">
+                  <p className="text-gray-500 dark:text-gray-400">
+                    Bu kategoride etkinlik bulunamadı.
+                  </p>
+                </div>
+              )}
             </div>
           </div>
         </div>

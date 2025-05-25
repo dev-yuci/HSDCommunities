@@ -1,18 +1,19 @@
 import React, { useState } from 'react';
 import { formatDate } from '@/lib/utils';
-import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { collection, addDoc, serverTimestamp, Timestamp } from 'firebase/firestore';
 import { db } from '../../../lib/firebase-config';
 import { useFirestoreAuthContext } from '@/contexts/FirestoreAuthContext';
 
-type Event = {
+// Firestore Event tipi
+export type Event = {
   id: string;
   title: string;
   description: string;
-  date: Date;
+  date: Date | Timestamp;
   location: string;
   imageUrl: string;
   category: string;
-  isRegistered: boolean;
+  isRegistered?: boolean;
   capacity: number;
   registeredCount: number;
 };
@@ -30,6 +31,14 @@ export default function EventCard({ event, onRegister, onUnregister }: EventCard
   
   const remainingSpots = event.capacity - event.registeredCount;
   const availabilityPercentage = (event.registeredCount / event.capacity) * 100;
+  
+  // Timestamp veya Date nesnesini formatlamak için yardımcı fonksiyon
+  const getFormattedDate = (date: Date | Timestamp) => {
+    if (date instanceof Timestamp) {
+      return formatDate(date.toDate());
+    }
+    return formatDate(date);
+  };
   
   const handleRegisterClick = () => {
     setShowRegistrationModal(true);
@@ -58,6 +67,9 @@ export default function EventCard({ event, onRegister, onUnregister }: EventCard
             src={event.imageUrl} 
             alt={event.title} 
             className="w-full h-full object-cover"
+            onError={(e) => {
+              e.currentTarget.src = 'https://img.freepik.com/free-vector/flat-design-abstract-background_23-2149120347.jpg';
+            }}
           />
           <div className="absolute top-3 left-3">
             <span className="px-2 py-1 text-xs font-semibold rounded-full bg-blue-500 text-white">
@@ -75,7 +87,7 @@ export default function EventCard({ event, onRegister, onUnregister }: EventCard
               <svg className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
               </svg>
-              <span>{formatDate(event.date)}</span>
+              <span>{getFormattedDate(event.date)}</span>
             </div>
             
             <div className="flex items-center">
@@ -288,7 +300,12 @@ function RegistrationModal({
               <svg className="h-4 w-4 mr-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
               </svg>
-              <span>{event.date.toLocaleString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit' })}</span>
+              <span>
+                {event.date instanceof Timestamp 
+                  ? event.date.toDate().toLocaleString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit' }) 
+                  : event.date.toLocaleString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit' })
+                }
+              </span>
             </div>
             <div className="flex items-center">
               <svg className="h-4 w-4 mr-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">

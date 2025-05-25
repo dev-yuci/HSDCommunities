@@ -35,14 +35,14 @@ const mapOptions = {
   ]
 };
 
-// InfoWindow stil ayarları - bu objeyi bileşen içine taşıyorum
-// İlk yüklemede Google Maps henüz yüklenmemiş olduğu için bu kısım hata veriyor
+// API anahtarı
+const GOOGLE_MAPS_API_KEY = "AIzaSyDbhtvgUKOCctX5r9F3JnU_Wi2vMLKxpto";
 
 const TurkeyClubMap: React.FC = () => {
   // Google Maps API'yi yükleme
   const { isLoaded, loadError } = useJsApiLoader({
     id: 'google-map-script',
-    googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || ''
+    googleMapsApiKey: GOOGLE_MAPS_API_KEY
   });
 
   const [selectedClub, setSelectedClub] = useState<ClubData | null>(null);
@@ -78,6 +78,7 @@ const TurkeyClubMap: React.FC = () => {
       <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg text-center">
         <h3 className="text-lg font-semibold text-blue-600 dark:text-blue-400">Harita yüklenirken hata oluştu</h3>
         <p className="text-blue-500 dark:text-blue-300">Google Haritalar API'si yüklenemedi. Lütfen daha sonra tekrar deneyin.</p>
+        <p className="text-sm text-red-500 mt-2">Hata: {loadError.message}</p>
       </div>
     );
   }

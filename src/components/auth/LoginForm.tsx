@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import Button from '../ui/Button';
+import { Button } from '../ui/Button';
 import { useRouter } from 'next/navigation';
 import { useFirestoreAuthContext } from '@/contexts/FirestoreAuthContext';
 import { safeGetItem, safeSetItem, safeRemoveItem } from '@/lib/firestoreAuth';
@@ -31,16 +31,16 @@ const LoginForm: React.FC = () => {
       console.log('Kullanıcı rolü:', role);
       setRedirected(true);
       
-      // İki yönlendirme yöntemini de deneyelim
-      // 1. Next.js router ile
-      router.push('/dashboard');
+      // Rol kontrolü yaparak uygun sayfaya yönlendir
+      const userRole = role || safeGetItem('user_role') || 'user';
       
-      // 2. Doğrudan URL değişikliği ile - router.push çalışmazsa bu çalışır
-      setTimeout(() => {
-        if (isBrowser() && window.location.pathname !== '/dashboard') {
-          window.location.href = '/dashboard';
-        }
-      }, 500);
+      if (userRole === 'admin') {
+        // Admin için dashboard ana sayfasına yönlendir
+        router.replace('/dashboard');
+      } else {
+        // Normal kullanıcılar için user paneline yönlendir
+        router.replace('/dashboard/user');
+      }
     }
   }, [user, router, redirected, role]);
 
@@ -77,16 +77,12 @@ const LoginForm: React.FC = () => {
         // Yönlendirmeyi doğrudan burada yapalım
         setRedirected(true);
         
-        // İki yönlendirme yöntemini de deneyelim
-        // 1. Next.js router ile
-        router.push('/dashboard');
-        
-        // 2. Doğrudan URL değişikliği ile - router.push çalışmazsa bu çalışır
-        setTimeout(() => {
-          if (isBrowser()) {
-            window.location.href = '/dashboard';
-          }
-        }, 500);
+        // Kullanıcı rolüne göre doğru sayfaya yönlendir
+        if (result.user.role === 'admin') {
+          router.replace('/dashboard');
+        } else {
+          router.replace('/dashboard/user');
+        }
       }
     } catch (err: any) {
       setError('Beklenmeyen bir hata oluştu. Lütfen tekrar deneyiniz.');
@@ -179,7 +175,7 @@ const LoginForm: React.FC = () => {
             <div className="mb-6">
               <Button
                 type="submit"
-                variant="primary"
+                variant="default"
                 className="w-full py-3 flex items-center justify-center relative"
               >
                 {isLoading ? (

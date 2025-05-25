@@ -1,11 +1,11 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Event } from './EventList';
+import { EventFormData } from './EventList';
 
 interface EventFormProps {
-  event?: Event;
-  onSubmit: (event: Omit<Event, 'id'>) => void;
+  event?: EventFormData;
+  onSubmit: (event: EventFormData) => void;
   onCancel: () => void;
 }
 
@@ -15,24 +15,46 @@ export default function EventForm({ event, onSubmit, onCancel }: EventFormProps)
   const [date, setDate] = useState(event?.date || '');
   const [time, setTime] = useState(event?.time || '');
   const [location, setLocation] = useState(event?.location || '');
+  const [category, setCategory] = useState(event?.category || 'Workshop');
+  const [capacity, setCapacity] = useState(event?.capacity || 30);
+  const [imageUrl, setImageUrl] = useState(event?.imageUrl || 'https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=800&h=400');
   const [status, setStatus] = useState<'upcoming' | 'active' | 'completed' | 'cancelled'>(event?.status || 'upcoming');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
     onSubmit({
+      id: event?.id,
       title,
       description,
       date,
       time,
       location,
+      category,
+      capacity,
+      imageUrl,
       status,
     });
   };
 
+  // Kategori seçenekleri
+  const categoryOptions = [
+    'Workshop',
+    'Eğitim',
+    'Konferans',
+    'Webinar',
+    'Hackathon',
+    'Kariyer',
+    'Networking'
+  ];
+
   return (
     <div className="bg-white dark:bg-gray-800 shadow sm:rounded-lg overflow-hidden">
       <div className="px-4 py-5 sm:p-6">
+        <h3 className="text-lg leading-6 font-medium text-gray-900 dark:text-white mb-4">
+          {event ? 'Etkinliği Düzenle' : 'Yeni Etkinlik Oluştur'}
+        </h3>
+        
         <form onSubmit={handleSubmit}>
           <div className="space-y-6">
             <div>
@@ -105,6 +127,56 @@ export default function EventForm({ event, onSubmit, onCancel }: EventFormProps)
                 required
                 className="mt-1 block w-full py-2 px-3 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-gray-900 dark:text-gray-100 sm:text-sm"
               />
+            </div>
+            
+            <div className="grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-2">
+              <div>
+                <label htmlFor="category" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                  Kategori
+                </label>
+                <select
+                  id="category"
+                  value={category}
+                  onChange={(e) => setCategory(e.target.value)}
+                  className="mt-1 block w-full py-2 px-3 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-gray-900 dark:text-gray-100 sm:text-sm"
+                >
+                  {categoryOptions.map(option => (
+                    <option key={option} value={option}>{option}</option>
+                  ))}
+                </select>
+              </div>
+              
+              <div>
+                <label htmlFor="capacity" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                  Kontenjan
+                </label>
+                <input
+                  type="number"
+                  id="capacity"
+                  value={capacity}
+                  onChange={(e) => setCapacity(Number(e.target.value))}
+                  required
+                  min={1}
+                  className="mt-1 block w-full py-2 px-3 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-gray-900 dark:text-gray-100 sm:text-sm"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label htmlFor="imageUrl" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                Görsel URL
+              </label>
+              <input
+                type="url"
+                id="imageUrl"
+                value={imageUrl}
+                onChange={(e) => setImageUrl(e.target.value)}
+                placeholder="https://example.com/image.jpg"
+                className="mt-1 block w-full py-2 px-3 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-gray-900 dark:text-gray-100 sm:text-sm"
+              />
+              <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
+                Görsel URL boş bırakılırsa varsayılan görsel kullanılacaktır.
+              </p>
             </div>
 
             <div>

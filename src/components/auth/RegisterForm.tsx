@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import Button from '../ui/Button';
+import { Button } from '../ui/Button';
 import { useRouter } from 'next/navigation';
 import { doc, setDoc, getFirestore } from 'firebase/firestore';
 import { initializeApp } from 'firebase/app';
@@ -193,7 +193,7 @@ const RegisterForm: React.FC = () => {
             <div className="mb-6">
               <Button
                 type="submit"
-                variant="primary"
+                variant="default"
                 className="w-full py-3 flex items-center justify-center relative"
               >
                 {isLoading ? (

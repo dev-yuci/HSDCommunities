@@ -136,7 +136,7 @@ export async function storePosts(posts: BlogPost[]): Promise<void> {
 }
 
 // Belirli bir Medium hesabı için blog yazılarını alma
-export async function getMediumPostsFromUser(username: string = '@ilgazbeyza139'): Promise<BlogPost[]> {
+export async function getMediumPostsFromUser(username: string = '@hsdfiratuniversity'): Promise<BlogPost[]> {
   try {
     const feed = await parser.parseURL(`https://medium.com/feed/${username}`);
 
@@ -179,7 +179,7 @@ export async function getMediumPostsFromUser(username: string = '@ilgazbeyza139'
 
 // Geriye uyumluluk için
 export async function getMediumPosts(): Promise<BlogPost[]> {
-  return getMediumPostsFromUser('@ilgazbeyza139');
+  return getMediumPostsFromUser('@hsdfiratuniversity');
 }
 
 // Birden fazla kaynaktan tüm Medium yazılarını alma
@@ -188,7 +188,7 @@ export async function getAllMediumPosts(): Promise<BlogPost[]> {
   const storedPosts = await readStoredPosts();
   
   // Yeni yazıları al
-  const usernames = ['@ilgazbeyza139']; // Buraya takip etmek istediğiniz diğer Medium hesaplarını ekleyebilirsiniz
+  const usernames = ['@hsdfiratuniversity']; // Buraya takip etmek istediğiniz diğer Medium hesaplarını ekleyebilirsiniz
   const newPostsPromises = usernames.map(username => getMediumPostsFromUser(username));
   const allNewPostsArrays = await Promise.all(newPostsPromises);
   

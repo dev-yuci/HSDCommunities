@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import Button from '../ui/Button';
+import { Button } from '../ui/Button';
 import type { ClubData } from '../../data/clubsData';
 
 interface ClubInfoCardProps {

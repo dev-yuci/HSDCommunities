@@ -19,7 +19,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
   useEffect(() => {
     // Kullanıcı yoksa ve yükleme tamamlandıysa login sayfasına yönlendir
     if (!loading && !isAuthenticated) {
-      router.push('/login');
+      router.replace('/login');
       return;
     }
     
@@ -28,25 +28,50 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
       const userRole = safeGetItem('user_role') || 'user';
       const isAdmin = userRole === 'admin';
       const isUser = userRole === 'user';
+      const isCoreTeam = userRole === 'coreteam';
       const pathname = window.location.pathname;
       
       // Kullanıcı admin değilse ve admin sayfalarına erişmeye çalışıyorsa
       if (!isAdmin && (
         pathname.includes('/dashboard/roles') || 
         pathname.includes('/dashboard/todos') || 
-        pathname.includes('/dashboard/clubs')
+        pathname.includes('/dashboard/clubs') ||
+        pathname.includes('/dashboard/events')
       )) {
-        router.push('/dashboard/user');
+        if (isCoreTeam) {
+          router.replace('/dashboard/coreteam');
+        } else {
+          router.replace('/dashboard/user');
+        }
+        return;
+      }
+    
+      // Admin kullanıcı paneline girmeye çalışıyorsa
+      if (isAdmin && (pathname.includes('/dashboard/user') || pathname.includes('/dashboard/coreteam'))) {
+        router.replace('/dashboard');
+        return;
       }
       
-      // Admin kullanıcı paneline girmeye çalışıyorsa
-      if (isAdmin && pathname.includes('/dashboard/user')) {
-        router.push('/dashboard');
+      // CoreTeam üyesi normal kullanıcı paneline girmeye çalışıyorsa
+      if (isCoreTeam && pathname.includes('/dashboard/user')) {
+        router.replace('/dashboard/coreteam');
+        return;
+      }
+      
+      // Normal kullanıcı CoreTeam paneline girmeye çalışıyorsa
+      if (isUser && pathname.includes('/dashboard/coreteam')) {
+        router.replace('/dashboard/user');
+        return;
       }
       
       // Kullanıcı user ise ve dashboard anasayfasına erişmeye çalışıyorsa
-      if (isUser && pathname === '/dashboard') {
-        router.push('/dashboard/user');
+      if ((isUser || isCoreTeam) && pathname === '/dashboard') {
+        if (isCoreTeam) {
+          router.replace('/dashboard/coreteam');
+        } else {
+          router.replace('/dashboard/user');
+        }
+        return;
       }
     }
   }, [loading, isAuthenticated, router, user]);

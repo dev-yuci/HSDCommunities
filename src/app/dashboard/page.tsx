@@ -12,15 +12,15 @@ export default function DashboardPage() {
   const { user, loading } = useFirestoreAuthContext();
   
   useEffect(() => {
-    if (!loading) {
-      const userRole = safeGetItem('user_role');
-      
-      // Normal kullanıcıları kullanıcı paneline yönlendir
-      if (userRole === 'user') {
-        router.push('/dashboard/user');
-      }
+    const userRole = safeGetItem('user_role');
+    
+    // Normal kullanıcıları kullanıcı paneline yönlendir
+    if (userRole === 'user') {
+      // router.push yerine router.replace kullanarak daha temiz yönlendirme yapalım
+      router.replace('/dashboard/user');
+      return;
     }
-  }, [loading, router]);
+  }, [router]); // sadece router bağımlılığı yeterli
   
   // Örnek istatistikler
   const stats = [
