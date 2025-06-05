@@ -1,0 +1,20 @@
+{
+  "title": "Deepfake ve Sahte Haberlerin NLP ile Tespiti",
+  "description": "Makale, derin sahte videolar ve sahte haberlerin yaygınlaşmasıyla birlikte, Doğal Dil İşleme (NLP) tekniklerinin bu zararlı içeriklerin tespitinde nasıl kullanılabileceğini ele alıyor.  NLP'nin metin analizi yeteneğiyle sahte haberlerin tespitinde ve derin sahte videoların metinsel açıklamalarındaki tutarsızlıkların belirlenmesinde önemli bir rol oynadığı vurgulanıyor.  Sonuç olarak, makale NLP'nin dezenformasyonla mücadelede güçlü bir araç olduğunu savunuyor.\n",
+  "thumbnail": "/images/blog/featured.jpg",
+  "link": "https://medium.com/@leylaerdogann/deepfake-ve-sahte-haberlerin-nlp-ile-tespiti-9c488b6450f4",
+  "author": "Leyla Erdoğan",
+  "date": "10 Mart 2025",
+  "readingTime": "7",
+  "tags": [
+    "deepfakes",
+    "fake-news",
+    "yazılım",
+    "nlp"
+  ],
+  "stats": {
+    "likes": 100,
+    "comments": 0,
+    "shares": 0
+  }
+}

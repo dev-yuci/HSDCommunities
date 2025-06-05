@@ -1,7 +1,7 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 
 // API anahtarı
-const apiKey = "AIzaSyBv__3o6eNMArs1xpkdYjchp7k5UG3HoxY";
+export const apiKey = "AIzaSyBv__3o6eNMArs1xpkdYjchp7k5UG3HoxY";
 
 // GoogleGenerativeAI örneği oluşturun
 export const genAI = new GoogleGenerativeAI(apiKey);
